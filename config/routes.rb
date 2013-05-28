@@ -1,4 +1,4 @@
-IlluminaBPipeline::Application.routes.draw do
+IlluminaCPipeline::Application.routes.draw do
   scope 'search', :controller => :search do
     match '/',                            :action => 'new',            :via => :get,  :as => :search
     match '/',                            :action => 'create_or_find', :via => :post, :as => :perform_search

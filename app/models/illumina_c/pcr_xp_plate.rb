@@ -1,4 +1,4 @@
-class IlluminaB::PcrXpPlate < Sequencescape::Plate
+class IlluminaC::PcrXpPlate < Sequencescape::Plate
   # We need to specialise the transfers where this plate is a source so that it handles
   # the correct types
   class Transfer < ::Sequencescape::Transfer
@@ -9,7 +9,7 @@ class IlluminaB::PcrXpPlate < Sequencescape::Plate
       send(
         :transfers_without_tube_mapping=, Hash[
           transfers.map do |well, tube_json|
-            [ well, ::IlluminaB::StockLibraryTube.new(api, tube_json, false) ]
+            [ well, ::IlluminaC::StockLibraryTube.new(api, tube_json, false) ]
           end
         ]
       )

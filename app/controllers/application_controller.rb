@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::Base
   include Sequencescape::Api::Rails::ApplicationController
-  delegate :api_connection_options, :to => 'IlluminaBPipeline::Application.config'
+  delegate :api_connection_options, :to => 'IlluminaCPipeline::Application.config'
 
   protect_from_forgery
-  
+
   def current_user_uuid
     session[:user_uuid]
   end

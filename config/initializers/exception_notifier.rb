@@ -1,4 +1,4 @@
-config = IlluminaBPipeline::Application.config
+config = IlluminaCPipeline::Application.config
 
 ActionMailer::Base.delivery_method = config.action_mailer.delivery_method || :sendmail
 

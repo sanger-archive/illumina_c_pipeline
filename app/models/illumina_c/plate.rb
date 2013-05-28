@@ -1,10 +1,10 @@
-class IlluminaB::Plate < Sequencescape::Plate
+class IlluminaC::Plate < Sequencescape::Plate
   # Returns a plate instance that has been coerced into the appropriate class if necessary.  Typically
   # this is only done at the end of the pipelines when extra functionality is required when dealing
   # with the transfers into tubes.
   def coerce
     return self unless qc_complete? and is_a_final_pooling_plate?
-    coerce_to(IlluminaB::PcrXpPlate)
+    coerce_to(IlluminaC::PcrXpPlate)
   end
 
   FINAL_POOLING_PLATE_PURPOSES = [

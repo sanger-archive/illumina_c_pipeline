@@ -1,2 +1,2 @@
-module Admin::IlluminaBPlatesHelper
+module Admin::IlluminaCPlatesHelper
 end

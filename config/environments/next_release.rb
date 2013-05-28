@@ -1,4 +1,4 @@
-IlluminaBPipeline::Application.configure do
+IlluminaCPipeline::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # The production environment is meant for finished, "live" apps.
@@ -49,7 +49,7 @@ IlluminaBPipeline::Application.configure do
 
   # Configure the Sequencescape API
   config.api_connection_options               = ActiveSupport::OrderedOptions.new
-  config.api_connection_options.namespace     = 'IlluminaB'
+  config.api_connection_options.namespace     = 'IlluminaC'
   config.api_connection_options.url           = 'http://psd-dev.internal.sanger.ac.uk:6801/api/1/'
   config.api_connection_options.authorisation = '372d4ece3d05deda9b5588dd9d2b23a0'
 end

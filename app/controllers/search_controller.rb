@@ -11,7 +11,7 @@ class SearchController < ApplicationController
     plate_search = api.search.find(Settings.searches[search])
 
     @search_results = plate_search.all(
-      IlluminaB::Plate,
+      IlluminaC::Plate,
       :state => [ 'pending', 'started', 'passed', 'started_fx', 'started_mj', 'qc_complete' ]
 
     )
@@ -31,7 +31,7 @@ class SearchController < ApplicationController
     plate_search    = api.search.find(Settings.searches['Find Illumina-B plates for user'])
 
     @search_results = plate_search.all(
-      IlluminaB::Plate,
+      IlluminaC::Plate,
      :state     => [ 'pending', 'started', 'passed', 'started_fx', 'started_mj', 'qc_complete' ],
      :user_uuid => current_user_uuid
     )
@@ -43,7 +43,7 @@ class SearchController < ApplicationController
     plate_search    = api.search.find(Settings.searches[search])
 
     @search_results = plate_search.all(
-      IlluminaB::Plate,
+      IlluminaC::Plate,
       :state     => [ 'pending', 'started', 'passed' ],
       :user_uuid => current_user_uuid
     )

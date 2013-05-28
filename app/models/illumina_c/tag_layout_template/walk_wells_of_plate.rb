@@ -1,4 +1,4 @@
-module IlluminaB::TagLayoutTemplate::WalkWellsOfPlate
+module IlluminaC::TagLayoutTemplate::WalkWellsOfPlate
   def generate_tag_layout(plate, tagged_wells)
     tags, group = tag_ids, []
     groups = group_wells_of_plate(plate).each { |g| group.concat(g) }

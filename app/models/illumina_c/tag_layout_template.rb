@@ -1,4 +1,4 @@
-class IlluminaB::TagLayoutTemplate < Sequencescape::TagLayoutTemplate
+class IlluminaC::TagLayoutTemplate < Sequencescape::TagLayoutTemplate
   # Performs the coercion of this instance so that it behaves appropriately given the direction
   # and walking algorithm information.
   def coerce
