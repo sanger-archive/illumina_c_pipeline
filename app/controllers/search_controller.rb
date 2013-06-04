@@ -7,39 +7,17 @@ class SearchController < ApplicationController
     @search_results = []
   end
 
-  def ongoing_plates(search='Find Illumina-B plates')
+  def ongoing_plates(search='Find Illumina-C plates')
     plate_search = api.search.find(Settings.searches[search])
 
     @search_results = plate_search.all(
       IlluminaC::Plate,
-      :state => [ 'pending', 'started', 'passed', 'started_fx', 'started_mj', 'qc_complete' ]
+      :state => [ 'pending', 'started', 'passed', 'qc_complete' ]
 
     )
   end
 
-  def ongoing_plates_illumina_a
-    ongoing_plates('Find Illumina-A plates')
-    render :ongoing_plates
-  end
-
-  def stock_plates_illumina_a
-    stock_plates('Find Illumina-A stock plates')
-    render :stock_plates
-  end
-
-  def my_plates
-    plate_search    = api.search.find(Settings.searches['Find Illumina-B plates for user'])
-
-    @search_results = plate_search.all(
-      IlluminaC::Plate,
-     :state     => [ 'pending', 'started', 'passed', 'started_fx', 'started_mj', 'qc_complete' ],
-     :user_uuid => current_user_uuid
-    )
-
-    render :my_plates
-  end
-
-  def stock_plates(search='Find Illumina-B stock plates')
+  def stock_plates(search='Find Illumina-C stock plates')
     plate_search    = api.search.find(Settings.searches[search])
 
     @search_results = plate_search.all(
