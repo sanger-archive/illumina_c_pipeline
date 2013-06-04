@@ -1,27 +1,20 @@
 class StateChangers::PlateToTubeStateChanger < StateChangers::QcCompletablePlateStateChanger
   def move_to!(state, reason)
     super
-    create_stock_tubes! if state == 'qc_complete'
+    transfer_to_tubes! if state == 'qc_complete'
   end
 
-  def create_stock_tubes!
-    child_stock_tubes = api.tube_creation.create!(
-      :user          => user_uuid,
-      :parent        => labware_uuid,
-      :child_purpose => labware.plate_purpose.children.first.uuid
-    ).children
-
+  def transfer_to_tubes!
     plate_to_tube_template.create!(
-      :user         => user_uuid,
-      :source       => labware_uuid,
-      :targets => child_stock_tubes.map(&:uuid)
-    )
+        :user   => user_uuid,
+        :source => labware_uuid
+      )
   end
-  private :create_stock_tubes!
+  private :transfer_to_tubes!
 
   def plate_to_tube_template
     api.transfer_template.find(
-      Settings.transfer_templates['Transfer wells to specific tubes by submission']
+      Settings.transfer_templates["Transfer wells to MX library tubes by submission"]
     )
   end
   private :plate_to_tube_template

@@ -30,7 +30,6 @@ IlluminaCPipeline::Application.routes.draw do
 
   # This is a hack untill I get tube coercion working
   resources :sequencescape_tubes, :controller => :tubes do
-    resources :children, :controller => :tube_creation
     resources :qc_files, :controller => :qc_files
   end
 
