@@ -36,26 +36,12 @@ module Presenters
               transition :passed => :qc_complete
             end
 
-            state :pending do
+            state :passed do
               include QcCreatableStep
             end
 
-            state :passed do
-              include StateDoesNotAllowChildCreation
-            end
-
             state :qc_complete, :human_name => 'QC Complete' do
-              # Yields to the block if there are child plates that can be created from the current one.
-              # It passes the valid child plate purposes to the block.
-              def control_additional_creation(&block)
-                yield unless default_child_purpose.nil?
-                nil
-              end
-
-              # Returns the child plate purposes that can be created in the qc_complete state.
-              def default_child_purpose
-                labware.plate_purpose.children.reject {|purpose| Settings.qc_purposes.include?(purpose.name) }.first
-              end
+              # Nope, we create the tubes in the state changer
             end
 
             event :fail do

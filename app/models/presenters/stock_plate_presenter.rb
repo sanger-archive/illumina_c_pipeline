@@ -5,10 +5,15 @@ module Presenters
     write_inheritable_attribute :authenticated_tab_states, {
         :pending    =>  [ 'labware-summary-button' ],
         :started    =>  [ 'labware-summary-button' ],
-        :passed     =>  [ 'labware-creation-button','labware-summary-button' ],
+        :passed     =>  [ 'labware-creation-button','labware-summary-button', 'well-failing-button' ],
         :cancelled  =>  [ 'labware-summary-button' ],
         :failed     =>  [ 'labware-summary-button' ]
     }
+
+    def default_child_purpose
+      child_name = Settings.request_types[labware.pools.values.first['request_type']]
+      api.plate_purpose.find(Settings.purpose_uuids[child_name])
+    end
 
     def control_state_change(&block)
       # You cannot change the state of the stock plate

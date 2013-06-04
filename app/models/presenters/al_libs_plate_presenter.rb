@@ -6,14 +6,9 @@ module Presenters
       :pending     => [ 'labware-summary-button', 'labware-creation-button', 'robot-verification-button' ],
       :started     => [ 'labware-summary-button', 'labware-creation-button', 'robot-verification-button' ],
       :passed      => [ 'labware-summary-button', 'labware-creation-button', 'well-failing-button' ],
-      :fx_transfer => [ 'labware-summary-button' ],
       :cancelled   => [ 'labware-summary-button' ],
       :failed      => [ 'labware-summary-button' ]
     }
-
-    def robot_name
-      labware.state == 'pending' ? 'fx' : 'fx-add-tags'
-    end
 
     state_machine :state, :initial => :pending do
       Statemachine::StateTransitions.inject(self)
@@ -38,10 +33,6 @@ module Presenters
         def default_child_purpose
           labware.plate_purpose.children.first
         end
-      end
-
-      state :fx_transfer do
-        include StateDoesNotAllowChildCreation
       end
 
       state :passed do
