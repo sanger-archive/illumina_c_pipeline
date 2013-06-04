@@ -18,7 +18,7 @@
         <% if current_user_uuid.present? -%>
           <li id="labware-state-button"><a href="#" class="navbar-link" rel="labware-state-button" data-icon="gear">Move plate to next state</a></li>
           <li id="well-failing-button"><a href="#" class="navbar-link" rel="well-failing-button" data-icon="delete">Fail Wells</a></li>
-          <li id="labware-creation-button"><a href="#" class="navbar-link" rel="labware-creation-button" data-icon="add">Create next plate</a></li>
+          <li id="labware-creation-button"><a href="#" class="navbar-link" rel="labware-creation-button" data-icon="add">Create next <%= @presenter.child_type %></a></li>
         <% end -%>
       </ul>
     </div>
@@ -73,7 +73,7 @@
           </div>
 
           <%= @presenter.control_additional_creation do %>
-            <h2>Create Child Plate</h2>
+            <h2>Create Child <%= @presenter.child_type.titleize %></h2>
             <%= render(:partial => @presenter.additional_creation_partial, :locals => { :presenter => @presenter }) %>
           <% end %>
         </div>

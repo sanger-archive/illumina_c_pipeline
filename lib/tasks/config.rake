@@ -5,7 +5,7 @@ namespace :config do
     'ILC Stock',
     'ILC AL Libs',
     'ILC Lib PCR',
-    'ILC Lib PCR-XP ',
+    'ILC Lib PCR-XP',
     'ILC AL Libs Tagged'
   ]
 
@@ -74,25 +74,31 @@ namespace :config do
           # Illumina-C plates
 
           presenters['ILC Stock'].merge!(
-
+            :presenter_class      => 'Presenters::StockPlatePresenter'
           )
           presenters['ILC AL Libs'].merge!(
-
+            :presenter_class      => 'Presenters::AlLibsPlatePresenter'
           )
           presenters['ILC Lib PCR'].merge!(
-
+            :form_class           => 'Forms::TaggingForm',
+            :presenter_class      => 'Presenters::TaggedPresenter'
           )
-          presenters['ILC Lib PCR-XP '].merge!(
-
+          presenters['ILC Lib PCR-XP'].merge!(
+            :state_changer_class  => 'StateChangers::PlateToTubeStateChanger',
+            :presenter_class      => 'Presenters::FinalPlatePresenter'
           )
           presenters['ILC AL Libs Tagged'].merge!(
-
+            :state_changer_class  => 'StateChangers::PlateToTubeStateChanger',
+            :form_class           => 'Forms::TaggingForm',
+            :presenter_class      => 'Presenters::QCTaggedPresenter'
           )
           presenters['ILC Lib Pool Norm'].merge!(
-
+            :form_class           => 'Forms::TubesForm',
+            :presenter_class      => 'Presenters::FinalTubePresenter'
           )
           presenters['ILC QC Pool'].merge!(
-
+            :form_class           => 'Forms::PooledTubesForm',
+            :presenter_class      => 'Presenters::QCTubePresenter'
           )
 
         end
@@ -114,6 +120,10 @@ namespace :config do
         qc_tube_purposes.each(&purpose_details_by_uuid)
       end
 
+      configuration[:request_types] = {}.tap do |request_types|
+        request_types['Illumina-C Library Creation PCR']    = 'ILC AL Libs'
+        request_types['Illumina-C Library Creation No PCR'] = 'ILC AL Libs Tagged'
+      end
 
 
       configuration[:purpose_uuids] = {}.tap do |purpose_uuids|
@@ -127,8 +137,7 @@ namespace :config do
         qc_plate_purposes.each(&store_purpose_uuids)
       end
 
-      configuration[:locations]   = LOCATION_PIPELINES
-      configuration[:qc_purposes] = QC_PLATE_PURPOSES
+      configuration[:qc_purposes] = QC_TUBE_PURPOSES
 
     end
 
