@@ -1,8 +1,6 @@
 namespace :config do
   desc 'Generates a configuration file for the current Rails environment'
 
-  require "#{Rails.root}/config/robots.rb"
-
   PLATE_PURPOSES = [
     'ILC Stock',
     'ILC AL Libs',
@@ -129,7 +127,6 @@ namespace :config do
         qc_plate_purposes.each(&store_purpose_uuids)
       end
 
-      configuration[:robots]      = ROBOT_CONFIG
       configuration[:locations]   = LOCATION_PIPELINES
       configuration[:qc_purposes] = QC_PLATE_PURPOSES
 

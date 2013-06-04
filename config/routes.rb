@@ -7,13 +7,6 @@ IlluminaCPipeline::Application.routes.draw do
     match '/retrieve_parent',             :action => :retrieve_parent
   end
 
-  # Robots help us batch work up by function, rather than plate
-  resources :robots, :controller => :robots do
-    match '/:location',        :on => :member, :action => 'show'
-    match '/:location/start',  :on => :member, :action => 'start'
-    match '/:location/verify', :on => :member, :action => 'verify'
-  end
-
   resources :illumina_c_plates, :controller => :plates do
     resources :children, :controller => :plate_creation
     resources :tubes,    :controller => :tube_creation
