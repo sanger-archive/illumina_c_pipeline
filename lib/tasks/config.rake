@@ -81,6 +81,7 @@ namespace :config do
           )
           presenters['ILC Lib PCR'].merge!(
             :form_class           => 'Forms::TaggingForm',
+            :tag_layout_templates => ['Illumina C - Sanger_168tags - 10 mer tags', 'Illumina C - TruSeq small RNA index tags - 6 mer tags','Illumina C - TruSeq mRNA Adapter Index Sequences'],
             :presenter_class      => 'Presenters::TaggedPresenter'
           )
           presenters['ILC Lib PCR-XP'].merge!(
@@ -90,6 +91,7 @@ namespace :config do
           presenters['ILC AL Libs Tagged'].merge!(
             :state_changer_class  => 'StateChangers::PlateToTubeStateChanger',
             :form_class           => 'Forms::TaggingForm',
+            :tag_layout_templates => ['Illumina C - Sanger_168tags - 10 mer tags', 'Illumina C - TruSeq small RNA index tags - 6 mer tags','Illumina C - TruSeq mRNA Adapter Index Sequences'],
             :presenter_class      => 'Presenters::QCTaggedPresenter'
           )
           presenters['ILC Lib Pool Norm'].merge!(
