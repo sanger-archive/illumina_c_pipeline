@@ -9,8 +9,8 @@ gem 'hashie', '~>1.0.0'
 gem 'exception_notification'
 
 gem 'sequencescape-client-api',
-  :git     => 'git+ssh://git@github.com/sanger/sequencescape-client-api.git',
-  :branch  => 'master',
+  :git     => 'git+ssh://git@github.com/JamesGlover/sequencescape-client-api.git',
+  :branch  => '553581_illumina_a_and_b_throughput_changes',
   :require => 'sequencescape'
 gem 'sanger_barcode',
   :git     => 'git+ssh://git@github.com/sanger/sanger_barcode.git'
