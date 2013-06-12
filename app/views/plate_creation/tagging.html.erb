@@ -10,8 +10,11 @@
         <%= f.input :purpose_uuid, :as => :hidden, :value =>@creation_form.purpose_uuid %>
         <%= f.input :parent_uuid, :as => :hidden, :value => @creation_form.parent_uuid %>
         <%= f.input :tag_layout_template_uuid, :label => false, :as => :select, :collection => @creation_form.tag_layout_templates, :include_blank => false %>
+        <label for='plate_offset'>Offset wells by:</label>
+        <%= f.input :offset, :label => false, :as => :select, :collection => @creation_form.offsets, :include_blank => false %>
       <%- end -%>
     <br/>
+    <div id='validation_report'></div>
         <%= f.submit 'Create Plate',
           :"data-theme"   => "b",
           :"data-icon"    => "plus",
@@ -57,7 +60,8 @@
   (function(exports, $, undefined){
      $.extend(SCAPE, {
       tag_layouts:  <%= @creation_form.tag_groups.to_json.html_safe %>,
-      tags_by_name: <%= @creation_form.tags_by_name.to_json.html_safe %>
+      tags_by_name: <%= @creation_form.tags_by_name.to_json.html_safe %>,
+      wells:        <%= @creation_form.wells_mapping.to_json.html_safe %>
      });
    })(window,jQuery);
 </script>

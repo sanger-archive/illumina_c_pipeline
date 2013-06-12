@@ -387,7 +387,7 @@
   });
 
 
-  $(document).on('pagecreate', '#tag-creation-page', function(){
+  $(document).on('pageinit', '#tag-creation-page', function(){
 
     $.extend(SCAPE, {
 
@@ -455,18 +455,38 @@
 
 
       update_layout : function () {
-        var tags = $(SCAPE.tag_layouts[$('#plate_tag_layout_template_uuid option:selected').text()]);
+        var tags, noTag, onComplete;
+        tags = $(SCAPE.tag_layouts[$('#plate_tag_layout_template_uuid option:selected').text()]);
+        onComplete = SCAPE.validLayout;
+        noTag = function(aliquot) {
+          if (aliquot.length>0) {
+            onComplete = SCAPE.invalidLayout;
+          }
+          return 'xx';
+        },
 
         tags.each(function(index) {
-          $('#tagging-plate #aliquot_'+this[0]).
-            hide('fast').text(this[1][1]).
+          var aliquot = $('#tagging-plate #aliquot_'+this[0]);
+          aliquot.
+            hide('fast').text(this[1][1]||noTag(aliquot)).
             addClass('aliquot colour-'+this[1][0]).
             addClass('tag-'+this[1][1]).
             show('fast');
         });
 
+        onComplete();
         SCAPE.resetHandler();
         SCAPE.resetSubstitutions();
+      },
+
+      validLayout : function() {
+        $('#plate_submit').button('enable');
+        SCAPE.message('','');
+      },
+
+      invalidLayout : function() {
+        $('#plate_submit').button('disable');
+        SCAPE.message('There are insufficient tags in the selected template to tag all the wells. Either reduce the offset or select a new template.','invalid');
       },
 
       resetSubstitutions : function() {
@@ -483,6 +503,31 @@
           done(function(){
           $('#instructions').fadeIn();
         });
+      },
+
+      wellAt : function(index) {
+        var column = Math.floor(index/8)+1;
+        var row    = String.fromCharCode(index%8+65);
+        return [row+column,column,row];
+      },
+
+      rearray : function() {
+        var offset = parseInt($('#plate_offset').val());
+        $('.aliquot').detach();
+        $.each(SCAPE.wells ,function(i){
+          var location, aliquot
+          location = SCAPE.wellAt(this[0]+offset);
+          aliquot = $(document.createElement('div')).
+            attr('id','aliquot_'+location[0]).
+            addClass('aliquot').
+            addClass(location[0]).
+            addClass(this[1]).
+            addClass('col-'+location[1]).
+            attr('rel','details_'+location[0]).
+            data('pool',this[2]).hide();
+          $('#well_'+location[0]).append(aliquot);
+        })
+        SCAPE.update_layout();
       }
 
     });
@@ -492,6 +537,7 @@
 
     SCAPE.update_layout();
     $('#plate_tag_layout_template_uuid').change(SCAPE.update_layout);
+    $('#plate_offset').change(SCAPE.rearray);
     $('#tagging-plate .aliquot').toggle(SCAPE.tagSubstitutionHandler, SCAPE.resetHandler);
 
   });
