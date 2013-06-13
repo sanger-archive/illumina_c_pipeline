@@ -3,13 +3,6 @@
   <div data-role="navbar">
     <ul>
       <li><a href="<%= search_path %>" class="ui-btn-active" >Search</a></li>
-      <li><a href="#popupInbox" data-rel="popup" data-inline="true" data-transition="flip">Inboxes</a></li>
+      <li><a href="<%= ongoing_plates_path %>" >All Ongoing Plates</a></li>
     </ul>
   </div>
-</div>
-  <div data-role="popup" id="popupInbox" data-theme="b">
-  <ul data-role="listview" data-inset="true" style="min-width:210px;">
-      <li data-role="divider" data-theme="b">Illumina-C</li>
-      <li><a href="<%= ongoing_plates_path %>" >All Ongoing Plates</a></li>
-  </ul>
-</div>
