@@ -21,7 +21,7 @@ module Forms
     end
 
     def full_wells_in_column_order
-      @wells_in_column_order ||= labware.wells.reject {|w| w.aliquots.empty? }.sort {|w,w2| index_by_column_of(w) <=> index_by_column_of(w2) }
+      @wells_in_column_order ||= full_wells.sort {|w,w2| index_by_column_of(w) <=> index_by_column_of(w2) }
     end
     private :full_wells_in_column_order
 
@@ -121,12 +121,12 @@ module Forms
     private :create_plate!
 
     def transfer_map
-      Hash[labware.wells.map{|w| [w.location, wells_by_column[index_by_column_of(w)+offset.to_i]||invalid_well(w)]}]
+      Hash[full_wells.map{|w| [w.location, wells_by_column[index_by_column_of(w)+offset.to_i]||invalid_well(w)]}]
     end
     private :transfer_map
 
     def invalid_well(well)
-      raise StandardError, "The well at #{w.location} will be transfered out the bounds of the target plate."
+      raise StandardError, "The well at #{well.location} will be transfered out the bounds of the target plate."
     end
     private :invalid_well
 
@@ -141,8 +141,13 @@ module Forms
     end
     private :create_objects!
 
+    def full_wells
+      @full_wells ||= labware.wells.reject {|w| w.aliquots.empty?}
+    end
+    private :full_wells
+
     def wells_mapping
-      labware.wells.reject {|w| w.aliquots.empty?}.map {|w| [index_by_column_of(w),w.state,w.pool['id']]}
+      full_wells.map {|w| [index_by_column_of(w),w.state,w.pool['id']]}
     end
   end
 end
