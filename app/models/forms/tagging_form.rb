@@ -17,13 +17,13 @@ module Forms
     end
 
     def offsets
-      (0...96-index_by_column_of(wells_in_column_order.last)).map{|i| [i,i]}
+      (0...96-index_by_column_of(full_wells_in_column_order.last)).map{|i| [i,i]}
     end
 
-    def wells_in_column_order
-      @wells_in_column_order ||= labware.wells.sort {|w,w2| index_by_column_of(w) <=> index_by_column_of(w2) }
+    def full_wells_in_column_order
+      @wells_in_column_order ||= labware.wells.reject {|w| w.aliquots.empty? }.sort {|w,w2| index_by_column_of(w) <=> index_by_column_of(w2) }
     end
-    private :wells_in_column_order
+    private :full_wells_in_column_order
 
     def index_by_column_of(well)
       wells_by_column.index(well.location)
@@ -142,7 +142,7 @@ module Forms
     private :create_objects!
 
     def wells_mapping
-      labware.wells.map {|w| [index_by_column_of(w),w.state,w.pool['id']]}
+      labware.wells.reject {|w| w.aliquots.empty?}.map {|w| [index_by_column_of(w),w.state,w.pool['id']]}
     end
   end
 end
