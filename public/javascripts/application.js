@@ -530,7 +530,8 @@
             attr('rel','details_'+location[0]).
             data('pool',this[2]).
             text(tagFor(this[0]+offset)).
-            addClass('tag-'+tagFor(this[0]+offset));
+            addClass('tag-'+tagFor(this[0]+offset)).
+            toggle(SCAPE.tagSubstitutionHandler, SCAPE.resetHandler);
           $('#well_'+location[0]).append(aliquot);
         });
 

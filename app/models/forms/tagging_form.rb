@@ -15,7 +15,11 @@ module Forms
     end
 
     def substitutions
-      base_layout.merge(@substitutions||{})
+      tag_substitutions = base_layout
+      (@substitutions||{}).each do |old_tag,new_tag|
+        tag_substitutions[tag_substitutions.key(old_tag)||old_tag] = new_tag
+      end
+      tag_substitutions
     end
 
     def skip?
