@@ -3,9 +3,11 @@ module Forms
     include Forms::Form::CustomPage
 
     write_inheritable_attribute :page, 'tagging'
-    write_inheritable_attribute :attributes, [:api, :purpose_uuid, :parent_uuid, :tag_layout_template_uuid, :user_uuid, :substitutions, :offset]
+    write_inheritable_attribute :attributes, [:api, :purpose_uuid, :parent_uuid, :tag_layout_template_uuid, :user_uuid, :substitutions, :offset, :tag_start, :skip]
 
     validates_presence_of *(self.attributes - [:substitutions])
+
+    class InvalidTagLayout < StandardError; end
 
     def initialize(*args, &block)
       super
@@ -13,17 +15,47 @@ module Forms
     end
 
     def substitutions
-      @substitutions ||= {}
+      base_layout.merge(@substitutions||{})
     end
+
+    def skip?
+      skip == '1'
+    end
+
+    def base_layout
+      base = {}
+      return base if tag_start=='0' && !skip?
+      wells_mapping.each do |i,_,_|
+        initial_tag = tags_by_name[tag_layout_template.name][i]
+        column      = (i/8)
+        raise InvalidTagLayout if skip? && column.odd? # Odd as we number from 0
+        target_tag = initial_tag + tag_start.to_i - ((skip? ? 4:0)*column)
+        base[initial_tag.to_s]=target_tag.to_s
+      end
+      base
+    end
+    private :base_layout
 
     def offsets
-      (0...96-index_by_column_of(full_wells_in_column_order.last)).map{|i| [i,i]}
+      last_filled_well = index_by_column_of(filled_wells_in_column_order.last)
+      first_filled_well = index_by_column_of(filled_wells_in_column_order.first)
+      (first_filled_well...96-index_by_column_of(filled_wells_in_column_order.last)).map{|i| [wells_by_column[i],i]}
     end
 
-    def full_wells_in_column_order
-      @wells_in_column_order ||= full_wells.sort {|w,w2| index_by_column_of(w) <=> index_by_column_of(w2) }
+
+    def tag_range
+      (0...tag_end).map{|i| [i+1,i]}
     end
-    private :full_wells_in_column_order
+
+    def tag_end
+      tag_layout_templates.inject(0){|c,t| c > t.tag_group.tags.count ? c : t.tag_group.tags.count }-index_by_column_of(filled_wells_in_column_order.last)
+    end
+    private :tag_end
+
+    def filled_wells_in_column_order
+      @wells_in_column_order ||= filled_wells.sort {|w,w2| index_by_column_of(w) <=> index_by_column_of(w2) }
+    end
+    private :filled_wells_in_column_order
 
     def index_by_column_of(well)
       wells_by_column.index(well.location)
@@ -121,7 +153,7 @@ module Forms
     private :create_plate!
 
     def transfer_map
-      Hash[full_wells.map{|w| [w.location, wells_by_column[index_by_column_of(w)+offset.to_i]||invalid_well(w)]}]
+      Hash[filled_wells.map{|w| [w.location, wells_by_column[index_by_column_of(w)+offset.to_i]||invalid_well(w)]}]
     end
     private :transfer_map
 
@@ -132,7 +164,7 @@ module Forms
 
     def create_objects!
       create_plate! do |plate|
-        api.tag_layout_template.find(tag_layout_template_uuid).create!(
+        tag_layout_template.create!(
           :plate => plate.uuid,
           :user  => user_uuid,
           :substitutions => substitutions.reject { |_,new_tag| new_tag.blank? }
@@ -141,13 +173,18 @@ module Forms
     end
     private :create_objects!
 
-    def full_wells
-      @full_wells ||= labware.wells.reject {|w| w.aliquots.empty?}
+    def tag_layout_template
+      @tag_layout_template ||= api.tag_layout_template.find(tag_layout_template_uuid)
     end
-    private :full_wells
+    private :tag_layout_template
+
+    def filled_wells
+      @filled_wells ||= labware.wells.reject {|w| w.aliquots.empty?}
+    end
+    private :filled_wells
 
     def wells_mapping
-      full_wells.map {|w| [index_by_column_of(w),w.state,w.pool['id']]}
+      filled_wells.map {|w| [index_by_column_of(w),w.state,w.pool['id']]}
     end
   end
 end
