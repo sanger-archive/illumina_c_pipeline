@@ -453,32 +453,6 @@
 
       },
 
-
-      update_layout : function () {
-        var tags, noTag, onComplete;
-        tags = $(SCAPE.tag_layouts[$('#plate_tag_layout_template_uuid option:selected').text()]);
-        onComplete = SCAPE.validLayout;
-        noTag = function(aliquot) {
-          if (aliquot.length>0) {
-            onComplete = SCAPE.invalidLayout;
-          }
-          return 'xx';
-        },
-
-        tags.each(function(index) {
-          var aliquot = $('#tagging-plate #aliquot_'+this[0]);
-          aliquot.
-            hide('fast').text(this[1][1]||noTag(aliquot)).
-            addClass('aliquot colour-'+this[1][0]).
-            addClass('tag-'+this[1][1]).
-            show('fast');
-        });
-
-        onComplete();
-        SCAPE.resetHandler();
-        SCAPE.resetSubstitutions();
-      },
-
       validLayout : function() {
         $('#plate_submit').button('enable');
         SCAPE.message('','');
@@ -486,7 +460,7 @@
 
       invalidLayout : function() {
         $('#plate_submit').button('disable');
-        SCAPE.message('There are insufficient tags in the selected template to tag all the wells. Either reduce the offset or select a new template.','invalid');
+        SCAPE.message('Some wells are missing tags. You may have insufficient tags availiable on your selected template, or have chosen to skip even columns when those wells contain material.','invalid');
       },
 
       resetSubstitutions : function() {
@@ -511,11 +485,41 @@
         return [row+column,column,row];
       },
 
+      indexOf : function(well) {
+        var row, col
+        row = well.charCodeAt(0)-65;
+        col = parseInt(well.slice(1))-1;
+        return (col*8)+row;
+      },
+
       rearray : function() {
-        var offset = parseInt($('#plate_offset').val());
-        $('.aliquot').detach();
+        var offset,tags, onComplete, noTag, start_tag, skip, tagFor;
+
+        offset = parseInt($('#plate_offset').val());
+        tags = $(SCAPE.tags_by_name[$('#plate_tag_layout_template_uuid option:selected').text()])
+        onComplete = SCAPE.validLayout;
+        start_tag = parseInt($('#plate_tag_start').val());
+        skip = $('#plate_skip').attr('checked')==='checked'
+
+        noTag = function() {
+          onComplete = SCAPE.invalidLayout;
+          return 'xx';
+        };
+
+        tagFor = function(well_index) {
+          var column,tag_index;
+          column = SCAPE.wellAt(well_index)[1];
+          if (skip && column%2===0) {
+            tag_index = null;
+          } else {
+            tag_index = well_index+start_tag-(skip*8*Math.floor(column/2))
+          };
+          return tags[tag_index]||noTag();
+        };
+
+        $('.aliquot').remove();
         $.each(SCAPE.wells ,function(i){
-          var location, aliquot
+          var location, aliquot;
           location = SCAPE.wellAt(this[0]+offset);
           aliquot = $(document.createElement('div')).
             attr('id','aliquot_'+location[0]).
@@ -524,10 +528,16 @@
             addClass(this[1]).
             addClass('col-'+location[1]).
             attr('rel','details_'+location[0]).
-            data('pool',this[2]).hide();
+            data('pool',this[2]).
+            text(tagFor(this[0]+offset)).
+            addClass('tag-'+tagFor(this[0]+offset)).
+            toggle(SCAPE.tagSubstitutionHandler, SCAPE.resetHandler);
           $('#well_'+location[0]).append(aliquot);
-        })
-        SCAPE.update_layout();
+        });
+
+      onComplete();
+      SCAPE.resetHandler();
+      SCAPE.resetSubstitutions();
       }
 
     });
@@ -535,9 +545,8 @@
 
     $('#tagging-plate .aliquot').removeClass('green orange red');
 
-    SCAPE.update_layout();
-    $('#plate_tag_layout_template_uuid').change(SCAPE.update_layout);
-    $('#plate_offset').change(SCAPE.rearray);
+    SCAPE.rearray();
+    $('#plate_tag_layout_template_uuid, #plate_tag_start, #plate_skip, #plate_offset').change(SCAPE.rearray);
     $('#tagging-plate .aliquot').toggle(SCAPE.tagSubstitutionHandler, SCAPE.resetHandler);
 
   });
