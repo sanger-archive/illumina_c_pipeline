@@ -3,8 +3,8 @@ module Presenters
     include Presenters::Statemachine
 
     write_inheritable_attribute :authenticated_tab_states, {
-      :pending     => [ 'labware-summary-button', 'labware-creation-button', 'robot-verification-button' ],
-      :started     => [ 'labware-summary-button', 'labware-creation-button', 'robot-verification-button' ],
+      :pending     => [ 'labware-summary-button', 'labware-creation-button' ],
+      :started     => [ 'labware-summary-button', 'labware-creation-button' ],
       :passed      => [ 'labware-summary-button', 'labware-creation-button', 'well-failing-button' ],
       :cancelled   => [ 'labware-summary-button' ],
       :failed      => [ 'labware-summary-button' ]
@@ -55,6 +55,10 @@ module Presenters
       state :cancelled do
         include StateDoesNotAllowChildCreation
       end
+    end
+
+    def control_state_change
+      # No state change
     end
 
 
