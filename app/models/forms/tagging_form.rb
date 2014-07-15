@@ -75,7 +75,7 @@ module Forms
       maximum_pool_size = plate.pools.map(&:last).map { |pool| pool['wells'].size }.max
 
       @tag_layout_templates = api.tag_layout_template.all.map(&:coerce).select { |template|
-        (template.tag_group.tags.size >= maximum_pool_size) && (Settings.purposes[purpose_uuid].tag_layout_templates.include?(template.name) )
+        (template.tag_group.tags.size >= maximum_pool_size)
       }.sort_by! {|template| Settings.purposes[purpose_uuid].tag_layout_templates.index(template.name) }
 
       @tag_groups = Hash[
