@@ -1,5 +1,5 @@
 class StateChangers::PlateToTubeStateChanger < StateChangers::QcCompletablePlateStateChanger
-  def move_to!(state, reason)
+  def move_to!(state, reason, customer_accepts_responsibility = false)
     super
     transfer_to_tubes! if state == 'qc_complete'
   end
