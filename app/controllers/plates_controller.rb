@@ -14,13 +14,14 @@ class PlatesController < LabwareController
       redirect_to(illumina_c_plate_path(params[:id]), :notice => 'No wells were selected to fail')
     else
       api.state_change.create!(
-        :user         => current_user_uuid,
-        :target       => params[:id],
-        :contents     => wells_to_fail,
-        :target_state => 'failed',
-        :reason       => 'Individual Well Failure'
+        :user                            => current_user_uuid,
+        :target                          => params[:id],
+        :contents                        => wells_to_fail,
+        :target_state                    => 'failed',
+        :reason                          => 'Individual Well Failure',
+        :customer_accepts_responsibility => params[:customer_accepts_responsibility]
       )
-      redirect_to(illumina_c_plate_path(params[:id]), :notice => 'Selected wells have been failed')
+      redirect_to(illumina_c_plate_path(params[:id]), :notice => "Selected wells have been failed.#{params[:customer_accepts_responsibility] ? ' The customer will still be charged.':''}")
     end
   end
 
