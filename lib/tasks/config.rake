@@ -81,7 +81,12 @@ namespace :config do
           )
           presenters['ILC Lib PCR'].merge!(
             :form_class           => 'Forms::TaggingForm',
-            :tag_layout_templates => ['Illumina C - Sanger_168tags - 10 mer tags', 'Illumina C - TruSeq small RNA index tags - 6 mer tags','Illumina C - TruSeq mRNA Adapter Index Sequences'],
+            :tag_layout_templates => [
+              'Illumina C - Sanger_168tags - 10 mer tags',
+              'Illumina C - TruSeq small RNA index tags - 6 mer tags',
+              'Illumina C - TruSeq mRNA Adapter Index Sequences',
+              'TruSeq mRNA Adapter and NEB Small RNA Index Sequences - 6mer',
+              'NEXTFLEX_48 - 6 mer tags in column major order (first oligo: CGATGT)'],
             :presenter_class      => 'Presenters::TaggedPresenter'
           )
           presenters['ILC Lib PCR-XP'].merge!(
@@ -91,7 +96,12 @@ namespace :config do
           presenters['ILC AL Libs Tagged'].merge!(
             :state_changer_class  => 'StateChangers::PlateToTubeStateChanger',
             :form_class           => 'Forms::TaggingForm',
-            :tag_layout_templates => ['Illumina C - Sanger_168tags - 10 mer tags', 'Illumina C - TruSeq small RNA index tags - 6 mer tags','Illumina C - TruSeq mRNA Adapter Index Sequences'],
+            :tag_layout_templates => [
+              'Illumina C - Sanger_168tags - 10 mer tags',
+              'Illumina C - TruSeq small RNA index tags - 6 mer tags',
+              'Illumina C - TruSeq mRNA Adapter Index Sequences',
+              'TruSeq mRNA Adapter and NEB Small RNA Index Sequences - 6mer',
+              'NEXTFLEX_48 - 6 mer tags in column major order (first oligo: CGATGT)'],
             :presenter_class      => 'Presenters::QCTaggedPresenter'
           )
           presenters['ILC Lib Pool Norm'].merge!(
