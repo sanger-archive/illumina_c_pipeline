@@ -76,7 +76,7 @@ module Forms
 
       @tag_layout_templates = api.tag_layout_template.all.map(&:coerce).select { |template|
         (template.tag_group.tags.size >= maximum_pool_size)
-      }.sort_by! {|template| Settings.purposes[purpose_uuid].tag_layout_templates.index(template.name) }
+      }.sort_by! {|template| Settings.purposes[purpose_uuid].tag_layout_templates.index(template.name)||Settings.purposes[purpose_uuid].tag_layout_templates.length }
 
       @tag_groups = Hash[
         tag_layout_templates.map do |layout|
