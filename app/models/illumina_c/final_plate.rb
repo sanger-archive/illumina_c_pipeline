@@ -20,7 +20,7 @@ class IlluminaC::FinalPlate < Sequencescape::Plate
   has_many :transfers_to_tubes, :class_name => 'FinalPlate::Transfer'
 
   def well_to_tube_transfers
-    @transfers ||= transfers_to_tubes.first.transfers
+    @transfers ||= transfers_to_tubes.inject({}) {|all,ttt| all.merge(ttt.transfers) }
   end
 
   # We know that if there are any transfers with this plate as a source then they are into

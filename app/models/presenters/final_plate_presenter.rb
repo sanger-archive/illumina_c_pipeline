@@ -18,7 +18,7 @@ module Presenters
       :failed      =>  [ 'labware-summary-button' ]
     }
 
-      write_inheritable_attribute :printing_partial, 'labware/plates/tube_printing'
+    write_inheritable_attribute :printing_partial, 'labware/plates/tube_printing'
 
     module StateDoesNotAllowTubePreviewing
       def control_tube_preview(&block)
@@ -34,6 +34,9 @@ module Presenters
         # Does nothing because you have no tubes
       end
       alias_method(:control_additional_printing, :control_tube_view)
+
+      def control_tube_create(&block)
+      end
 
       def transfers
         # Does nothing because you have no tubes
@@ -72,6 +75,13 @@ module Presenters
         # Yield tube view in :qc_complete state
         def control_tube_view(&block)
           yield if labware.has_transfers_to_tubes?
+          nil
+        end
+        alias_method(:control_additional_printing, :control_tube_view)
+
+        # Yield tube view in :qc_complete state
+        def control_tube_create(&block)
+          yield unless labware.has_transfers_to_tubes?
           nil
         end
         alias_method(:control_additional_printing, :control_tube_view)

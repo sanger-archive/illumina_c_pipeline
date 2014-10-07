@@ -13,3 +13,8 @@
      <%= render :partial => 'labware/pooled_tube.html.erb', :locals => {:tube => tube, :source => sources } %>
    <% end %>
 <% end %>
+
+<% @presenter.control_tube_create do %>
+  <h2>Next Step</h2>
+  <p>Make a multiplexing - sequencing submission from this plate.</P>
+<% end %>

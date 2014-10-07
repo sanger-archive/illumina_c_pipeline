@@ -1,7 +1,7 @@
 class StateChangers::PlateToTubeStateChanger < StateChangers::QcCompletablePlateStateChanger
   def move_to!(state, reason, customer_accepts_responsibility = false)
     super
-    transfer_to_tubes! if state == 'qc_complete'
+    transfer_to_tubes! if state == 'qc_complete' && poolable?
   end
 
   def transfer_to_tubes!
@@ -18,5 +18,10 @@ class StateChangers::PlateToTubeStateChanger < StateChangers::QcCompletablePlate
     )
   end
   private :plate_to_tube_template
+
+  def poolable?
+    Settings.request_types[labware.pools.values.first['request_type']].last
+  end
+  private :poolable?
 
 end

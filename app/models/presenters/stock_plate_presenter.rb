@@ -11,7 +11,7 @@ module Presenters
     }
 
     def default_child_purpose
-      child_name = Settings.request_types[labware.pools.values.first['request_type']]
+      child_name = Settings.request_types[labware.pools.values.first['request_type']].first
       api.plate_purpose.find(Settings.purpose_uuids[child_name])
     end
 
