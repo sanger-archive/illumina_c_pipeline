@@ -23,7 +23,6 @@ namespace :config do
 
   task :generate => :environment do
     api = Sequencescape::Api.new(IlluminaCPipeline::Application.config.api_connection_options)
-
     plate_purposes    = api.plate_purpose.all.select { |pp| PLATE_PURPOSES.include?(pp.name) }
     qc_plate_purposes = api.plate_purpose.all.select { |pp| QC_PLATE_PURPOSES.include?(pp.name) }
     tube_purposes     = api.tube_purpose.all.select  { |tp| TUBE_PURPOSES.include?(tp.name)  }
@@ -36,8 +35,19 @@ namespace :config do
       }
     end.(api.barcode_printer.all)
 
-    # Build the configuration file based on the server we are connected to.
     CONFIG = {}.tap do |configuration|
+
+       configuration[:tag_groups] = [].tap do |tag_groups|
+         puts "Preparing tag_groups ..."
+         api.tag_group.each do |tag_group|
+           tag_groups << { 
+             :uuid => tag_group.uuid,
+             :name => tag_group.name, 
+             :tags_keys => tag_group.tags.keys.map(&:to_i).sort
+           }
+         end
+       end
+
 
       configuration[:'large_insert_limit'] = 250
 

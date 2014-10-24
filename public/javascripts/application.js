@@ -1,3 +1,5 @@
+/*<div id="aliquot_E3" class="aliquot E3 col-3 col-all colour-1 colour-2" rel="details_E3" data-pool="afe51bd0-6309-11e3-b0ce-68b59976a382">&nbsp;</div>*/
+
 (function($, exports, undefined){
   "use strict";
 
@@ -113,6 +115,7 @@
 
     that.poolsArray = function(){
       var poolsArray = _.toArray(that.plate.pools);
+
 
       poolsArray = _.sortBy(poolsArray, function(pool){
         return pool.wells[0];
@@ -399,7 +402,7 @@
 
         tagpalette.empty();
 
-        var currentTagGroup   = $(SCAPE.tags_by_name[$('#plate_tag_layout_template_uuid option:selected').text()]);
+        var currentTagGroup   = $(SCAPE.tags_by_name[$('#plate_tag_group_uuid option:selected').text()]);
         var currentlyUsedTags = $('.aliquot').map(function(){ return parseInt($(this).text(), 10); });
         var unusedTags        = _.difference(currentTagGroup, currentlyUsedTags);
         var listItems         = unusedTags.reduce(
@@ -494,9 +497,8 @@
 
       rearray : function() {
         var offset,tags, onComplete, noTag, start_tag, skip, tagFor;
-
         offset = parseInt($('#plate_offset').val());
-        tags = $(SCAPE.tags_by_name[$('#plate_tag_layout_template_uuid option:selected').text()])
+        tags = $(SCAPE.tags_by_name[$('#plate_tag_group_uuid option:selected').text()])
         onComplete = SCAPE.validLayout;
         start_tag = parseInt($('#plate_tag_start').val());
         skip = $('#plate_skip').attr('checked')==='checked'
@@ -506,19 +508,47 @@
           return 'xx';
         };
 
-        tagFor = function(well_index) {
+        tagFor = function(well_index, position, poolId) {
           var column,tag_index;
           column = SCAPE.wellAt(well_index)[1];
           if (skip && column%2===0) {
             tag_index = null;
           } else {
-            tag_index = well_index+start_tag-(skip*8*Math.floor(column/2))
+            //tag_index = well_index+start_tag-(skip*8*Math.floor(column/2))
+            tag_index = position+start_tag;
           };
           return tags[tag_index]||noTag();
         };
 
         $('.aliquot').remove();
-        $.each(SCAPE.wells ,function(i){
+        var getTagIdentifier = function(wellsList) {
+          var tagsIdentifier = {};
+          var poolIds = $.unique(wellsList.map(function(well) { 
+            return well[2];
+          }).sort());
+          for (var i=0; i<poolIds.length; i++) {
+            var tagsList = $(wellsList).map(function(pos, well) {
+              if (well[2]===poolIds[i]) {
+                return { offset: well[0], position: pos };
+              } else {
+                return null;
+              }
+            }).filter(function(obj) { 
+              return obj !== null; 
+            }).sort(function(a,b) {
+              return (a.offset - b.offset);
+            }).map(function(pos, obj) {
+              return obj.position;
+            });
+            tagsIdentifier[poolIds[i]] = tagsList;
+          }
+
+          return function(pos, poolId) {
+            return Array.prototype.indexOf.call(tagsIdentifier[poolId], pos)
+          };
+        }(SCAPE.wells);
+        
+        $.each(SCAPE.wells ,function(i, well){
           var location, aliquot;
           location = SCAPE.wellAt(this[0]+offset);
           aliquot = $(document.createElement('div')).
@@ -529,8 +559,8 @@
             addClass('col-'+location[1]).
             attr('rel','details_'+location[0]).
             data('pool',this[2]).
-            text(tagFor(this[0]+offset)).
-            addClass('tag-'+tagFor(this[0]+offset)).
+            text(tagFor(this[0]+offset, getTagIdentifier(i, well[2]))).
+            addClass('tag-'+tagFor(this[0]+offset, getTagIdentifier(i, well[2]))).
             toggle(SCAPE.tagSubstitutionHandler, SCAPE.resetHandler);
           $('#well_'+location[0]).append(aliquot);
         });
@@ -546,7 +576,7 @@
     $('#tagging-plate .aliquot').removeClass('green orange red');
 
     SCAPE.rearray();
-    $('#plate_tag_layout_template_uuid, #plate_tag_start, #plate_skip, #plate_offset').change(SCAPE.rearray);
+    $('#plate_tag_group_uuid, #plate_tag_start, #plate_skip, #plate_offset').change(SCAPE.rearray);
     $('#tagging-plate .aliquot').toggle(SCAPE.tagSubstitutionHandler, SCAPE.resetHandler);
 
   });

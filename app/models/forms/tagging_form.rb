@@ -3,7 +3,7 @@ module Forms
     include Forms::Form::CustomPage
 
     write_inheritable_attribute :page, 'tagging'
-    write_inheritable_attribute :attributes, [:api, :purpose_uuid, :parent_uuid, :tag_layout_template_uuid, :user_uuid, :substitutions, :offset, :tag_start, :skip]
+    write_inheritable_attribute :attributes, [:direction, :walking_by, :api, :purpose_uuid, :parent_uuid, :tag_group_uuid, :user_uuid, :substitutions, :offset, :tag_start, :skip]
 
     validates_presence_of *(self.attributes - [:substitutions])
 
@@ -26,11 +26,12 @@ module Forms
       skip == '1'
     end
 
+    ## TODO: Review tags_by_name[tag_layout_template.name]
     def base_layout
       base = {}
       return base if tag_start=='0' && !skip?
       wells_mapping.each do |i,_,_|
-        initial_tag = tags_by_name[tag_layout_template.name][i]
+        initial_tag = tags_by_name[tag_group.name][i]
         column      = (i/8)
         raise InvalidTagLayout if skip? && column.odd? # Odd as we number from 0
         target_tag = initial_tag + tag_start.to_i - ((skip? ? 4:0)*column)
@@ -52,7 +53,9 @@ module Forms
     end
 
     def tag_end
-      tag_layout_templates.inject(0){|c,t| c > t.tag_group.tags.count ? c : t.tag_group.tags.count }-index_by_column_of(filled_wells_in_column_order.last)
+      (tag_groups.inject(0) do |c,tag_group| 
+        c > tag_group.tags_keys.length ? c : tag_group.tags_keys.length 
+      end) - index_by_column_of(filled_wells_in_column_order.last)
     end
     private :tag_end
 
@@ -71,38 +74,31 @@ module Forms
     end
     private :wells_by_column
 
+    ## TODO: sort_by! for tag_layout_templates
     def generate_layouts_and_groups
       maximum_pool_size = plate.pools.map(&:last).map { |pool| pool['wells'].size }.max
 
-      @tag_layout_templates = api.tag_layout_template.all.map(&:coerce).select { |template|
-        (template.tag_group.tags.size >= maximum_pool_size)
-      }.sort_by! {|template| Settings.purposes[purpose_uuid].tag_layout_templates.index(template.name)||Settings.purposes[purpose_uuid].tag_layout_templates.length }
-
-      @tag_groups = Hash[
-        tag_layout_templates.map do |layout|
-          catch(:unacceptable_tag_layout) { [ layout.name, tags_by_row(layout) ] }
-        end.compact
-      ]
-
-      @tag_layout_templates.delete_if { |template| not @tag_groups.key?(template.name) }
+      @tag_groups = Settings.tag_groups.select { |tag_group|
+        (tag_group.tags_keys.length >= maximum_pool_size)
+      }
     end
     private :generate_layouts_and_groups
 
-    def tag_layout_templates
-      generate_layouts_and_groups unless @tag_layout_templates.present?
-      @tag_layout_templates
+    def tag_groups
+      generate_layouts_and_groups
+      @tag_groups
+      #Settings.tag_groups
     end
 
-    def tag_groups
-      generate_layouts_and_groups unless @tag_groups.present?
-      @tag_groups
+    def tag_groups_with_uuid
+      tag_groups.map {|tag_group| [ tag_group.name, tag_group.uuid ]}
     end
 
     def tags_by_name
       @tags_by_name ||=
         Hash[
-          tag_layout_templates.map do |layout|
-            catch(:unacceptable_tag_layout) { [ layout.name, layout.tag_group.tags.keys.map(&:to_i).sort ] }
+          tag_groups.map do |tag_group|
+            catch(:unacceptable_tag_layout) { [ tag_group.name, tag_group.tags_keys ] }
           end
         ]
     end
@@ -133,7 +129,6 @@ module Forms
     private :tags_by_row
 
     def create_plate!(&block)
-
       # Build our transfer map first, so if something goes wrong we don't
       # create unwanted plates
       transfers = transfer_map
@@ -161,6 +156,10 @@ module Forms
     end
     private :transfer_map
 
+    def valid?
+      true
+    end
+
     def invalid_well(well)
       raise StandardError, "The well at #{well.location} will be transfered out the bounds of the target plate."
     end
@@ -168,19 +167,21 @@ module Forms
 
     def create_objects!
       create_plate! do |plate|
-        tag_layout_template.create!(
-          :plate => plate.uuid,
+        tag_layout = api.tag_layout.create!(
           :user  => user_uuid,
-          :substitutions => substitutions.reject { |_,new_tag| new_tag.blank? }
+          :plate=> plate.uuid,
+          :tag_group => self.tag_group_uuid,
+          :direction_algorithm =>  self.direction,
+          :walking_algorithm => self.walking_by
         )
       end
     end
     private :create_objects!
 
-    def tag_layout_template
-      @tag_layout_template ||= api.tag_layout_template.find(tag_layout_template_uuid)
+    def tag_group
+      @tag_group ||= api.tag_group.find(tag_group_uuid)
     end
-    private :tag_layout_template
+    private :tag_group
 
     def filled_wells
       @filled_wells ||= labware.wells.reject {|w| w.aliquots.empty?}

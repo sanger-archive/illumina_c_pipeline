@@ -9,13 +9,15 @@
       <%= f.inputs do %>
         <%= f.input :purpose_uuid, :as => :hidden, :value =>@creation_form.purpose_uuid %>
         <%= f.input :parent_uuid, :as => :hidden, :value => @creation_form.parent_uuid %>
-        <%= f.input :tag_layout_template_uuid, :label => false, :as => :select, :collection => @creation_form.tag_layout_templates, :include_blank => false %>
+        <%= f.input :tag_group_uuid, :label => false, :as => :select, :collection => @creation_form.tag_groups_with_uuid, :include_blank => false %>
         <label for='plate_offset'>Transfer first well to:</label>
         <%= f.input :offset, :label => false, :as => :select, :collection => @creation_form.offsets, :include_blank => false %>
         <label for='tag_start'>Start at tag:</label>
         <fieldset data-type="horizontal">
         <%= f.input :tag_start, :label => false, :as => :select, :collection => @creation_form.tag_range, :include_blank => false %>
         <%= f.input :skip, :as => :boolean, :label=>'Skip even columns?', :required=>false %>
+        <%= f.input :walking_by, :as => :hidden, :value => "manual by pool" %>
+        <%= f.input :direction, :as => :hidden, :value => "column" %>
         </fieldset>
       <%- end -%>
     <br/>
@@ -25,7 +27,7 @@
           :"data-icon"    => "plus",
           :'data-iconpos' => "right"
         %>
-      </div>
+        
 
       <div class="ui-block-b">
         <h2>Tag Replacement palette</h2>
