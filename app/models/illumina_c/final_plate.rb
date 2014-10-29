@@ -49,7 +49,7 @@ class IlluminaC::FinalPlate < Sequencescape::Plate
     @tubes_and_sources ||= case has_transfers_to_tubes?
      when false then []
      when true then
-       WELLS_IN_ROW_MAJOR_ORDER.map do |l|
+       WELLS_IN_COLUMN_MAJOR_ORDER.map do |l|
           [l, well_to_tube_transfers[l]]
         end.group_by do |_, t|
           t && t.uuid
