@@ -30,14 +30,15 @@ class IlluminaC::FinalPlate < Sequencescape::Plate
   end
 
   # Well locations ordered by rows.
-  WELLS_IN_ROW_MAJOR_ORDER = ('A'..'H').each_with_object([]) { |r,a| a.concat((1..12).map { |c| "#{r}#{c}" }) }
+  WELLS_IN_ROW_MAJOR_ORDER    = ('A'..'H').each_with_object([]) { |r,a| a.concat((1..12).map { |c| "#{r}#{c}" }) }
+  WELLS_IN_COLUMN_MAJOR_ORDER = (1..12).each_with_object([]) { |c,a| a.concat(('A'..'H').map { |r| "#{r}#{c}" }) }
 
   # Returns the tubes that an instance of this plate has been transferred into.
   def tubes
     @tubes ||= case has_transfers_to_tubes?
        when false then []
        when true  then
-         WELLS_IN_ROW_MAJOR_ORDER.
+         WELLS_IN_COLUMN_MAJOR_ORDER.
            map(&well_to_tube_transfers.method(:[])).
            compact.
            uniq
