@@ -17,6 +17,10 @@ module Presenters
       @default_printer_uuid ||= Settings.purposes[purpose.uuid].default_printer_uuid
     end
 
+    def label_type
+      nil
+    end
+
   end
 
   class PlatePresenter
@@ -67,6 +71,10 @@ module Presenters
 
     def plate_to_walk
       self.labware
+    end
+
+    def label_type
+      yield "custom-labels"
     end
 
     # Purpose returns the plate or tube purpose of the labware.
