@@ -1,5 +1,3 @@
-/*<div id="aliquot_E3" class="aliquot E3 col-3 col-all colour-1 colour-2" rel="details_E3" data-pool="afe51bd0-6309-11e3-b0ce-68b59976a382">&nbsp;</div>*/
-
 (function($, exports, undefined){
   "use strict";
 
@@ -395,7 +393,7 @@
     $.extend(SCAPE, {
 
       tagpaletteTemplate     : _.template(SCAPE.tag_palette_template),
-      substitutionTemplate  : _.template(SCAPE.substitution_tag_template),
+      substitutionTemplate   : _.template(SCAPE.substitution_tag_template),
 
       updateTagpalette  : function() {
         var tagpalette = $('#tag-palette');
@@ -482,7 +480,7 @@
         });
       },
 
-      wellAt : function(index) {
+      wellAt : function(index) { // Returns co-ordinates of well
         var column = Math.floor(index/8)+1;
         var row    = String.fromCharCode(index%8+65);
         return [row+column,column,row];
@@ -496,12 +494,12 @@
       },
 
       rearray : function() {
-        var offset,tags, onComplete, noTag, start_tag, skip, tagFor;
+        var offset,tags, onComplete, noTag, start_tag, by_plate, tagFor;
         offset = parseInt($('#plate_offset').val());
         tags = $(SCAPE.tags_by_name[$('#plate_tag_group_uuid option:selected').text()])
         onComplete = SCAPE.validLayout;
         start_tag = parseInt($('#plate_tag_start').val());
-        skip = $('#plate_skip').attr('checked')==='checked'
+        by_plate = ($('#plate_walking_by').val() == 'manual by plate')
 
         noTag = function() {
           onComplete = SCAPE.invalidLayout;
@@ -509,12 +507,10 @@
         };
 
         tagFor = function(well_index, position, poolId) {
-          var column,tag_index;
-          column = SCAPE.wellAt(well_index)[1];
-          if (skip && column%2===0) {
-            tag_index = null;
-          } else {
-            //tag_index = well_index+start_tag-(skip*8*Math.floor(column/2))
+          var tag_index;
+          if (by_plate) {
+            tag_index = well_index+start_tag;
+          } else { // by_pool
             tag_index = position+start_tag;
           };
           return tags[tag_index]||noTag();
@@ -523,9 +519,11 @@
         $('.aliquot').remove();
         var getTagIdentifier = function(wellsList) {
           var tagsIdentifier = {};
-          var poolIds = $.unique(wellsList.map(function(well) { 
+
+          var poolIds = $.unique(wellsList.map(function(well) {
             return well[2];
           }).sort());
+
           for (var i=0; i<poolIds.length; i++) {
             var tagsList = $(wellsList).map(function(pos, well) {
               if (well[2]===poolIds[i]) {
@@ -533,8 +531,8 @@
               } else {
                 return null;
               }
-            }).filter(function(obj) { 
-              return obj !== null; 
+            }).filter(function(obj) {
+              return obj !== null;
             }).sort(function(a,b) {
               return (a.offset - b.offset);
             }).map(function(pos, obj) {
@@ -547,10 +545,11 @@
             return Array.prototype.indexOf.call(tagsIdentifier[poolId], pos)
           };
         }(SCAPE.wells);
-        
+
         $.each(SCAPE.wells ,function(i, well){
-          var location, aliquot;
+          var location, aliquot, tag_for_well;
           location = SCAPE.wellAt(this[0]+offset);
+          tag_for_well = tagFor(i+offset, getTagIdentifier(i, well[2]));
           aliquot = $(document.createElement('div')).
             attr('id','aliquot_'+location[0]).
             addClass('aliquot').
@@ -559,8 +558,8 @@
             addClass('col-'+location[1]).
             attr('rel','details_'+location[0]).
             data('pool',this[2]).
-            text(tagFor(this[0]+offset, getTagIdentifier(i, well[2]))).
-            addClass('tag-'+tagFor(this[0]+offset, getTagIdentifier(i, well[2]))).
+            text(tag_for_well).
+            addClass(tag_for_well).
             toggle(SCAPE.tagSubstitutionHandler, SCAPE.resetHandler);
           $('#well_'+location[0]).append(aliquot);
         });
@@ -576,7 +575,7 @@
     $('#tagging-plate .aliquot').removeClass('green orange red');
 
     SCAPE.rearray();
-    $('#plate_tag_group_uuid, #plate_tag_start, #plate_skip, #plate_offset').change(SCAPE.rearray);
+    $('#plate_tag_group_uuid, #plate_tag_start, #plate_walking_by, #plate_offset').change(SCAPE.rearray);
     $('#tagging-plate .aliquot').toggle(SCAPE.tagSubstitutionHandler, SCAPE.resetHandler);
 
   });
