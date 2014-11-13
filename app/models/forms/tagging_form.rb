@@ -73,9 +73,18 @@ module Forms
     def generate_layouts_and_groups
       maximum_pool_size = plate.pools.map(&:last).map { |pool| pool['wells'].size }.max
 
-      @tag_groups = Settings.tag_groups.select { |tag_group|
-        (tag_group.tags_keys.length >= maximum_pool_size)
-      }
+      @tag_groups ||= [].tap do |tag_groups|
+        api.tag_group.each do |tag_group|
+           tag_groups << Hashie::Mash.new(
+             :uuid => tag_group.uuid,
+             :name => tag_group.name,
+             :tags_keys => tag_group.tags.keys.map(&:to_i).sort
+           )
+         end
+        @tag_groups = tag_groups.select! { |tag_group|
+          (tag_group.tags_keys.length >= maximum_pool_size)
+        }
+      end
     end
     private :generate_layouts_and_groups
 
