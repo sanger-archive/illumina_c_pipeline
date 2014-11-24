@@ -105,6 +105,11 @@ module Presenters
       labware.state
     end
 
+    def has_repeated_tag?
+      map_ids = labware.wells.map {|w| w.aliquots.first.tag.identifier }
+      map_ids.length != map_ids.uniq.length
+    end
+
     def default_tube_printer_uuid
       Settings.purposes[default_child_purpose.uuid].default_printer_uuid
     end
