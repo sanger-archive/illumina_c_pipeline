@@ -113,6 +113,12 @@ module Presenters
       labware
     end
 
+    def has_repeated_tag?
+      false
+    end
+
+
+
     # Split a location string into an array containing the row letter
     # and the column number (as a integer) so that they can be sorted.
     def split_location(location_string)
