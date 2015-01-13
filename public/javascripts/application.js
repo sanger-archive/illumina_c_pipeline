@@ -559,7 +559,7 @@
             attr('rel','details_'+location[0]).
             data('pool',this[2]).
             text(tag_for_well).
-            addClass(tag_for_well).
+            addClass('tag-'+tag_for_well).
             toggle(SCAPE.tagSubstitutionHandler, SCAPE.resetHandler);
           $('#well_'+location[0]).append(aliquot);
         });
