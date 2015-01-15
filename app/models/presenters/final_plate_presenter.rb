@@ -106,7 +106,7 @@ module Presenters
     end
 
     def has_repeated_tag?
-      map_ids = labware.wells.map {|w| w.aliquots.first.tag.identifier }
+      map_ids = labware.wells.select {|w| w.aliquots.present? }.map {|w| w.aliquots.first.tag.identifier }
       map_ids.length != map_ids.uniq.length
     end
 
