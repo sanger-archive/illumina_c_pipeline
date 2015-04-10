@@ -13,10 +13,10 @@ GIT
 
 GIT
   remote: git+ssh://git@github.com/sanger/sequencescape-client-api.git
-  revision: a0ddcc7b84ec1d457dcaab5b456801233084d283
-  branch: production
+  revision: c8576f1c8881846a80a319d2cbf8e193f2671c6b
+  branch: next_release
   specs:
-    sequencescape-client-api (0.2.3)
+    sequencescape-client-api (0.2.5)
       activemodel (~> 3.0.0)
       activesupport (~> 3.0.0)
       i18n
