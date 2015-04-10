@@ -8,6 +8,7 @@ module Presenters
 
     include Presenter
     include Statemachine::Shared
+    include Commentable::Uncommented
 
     class_inheritable_reader :labware_class
     write_inheritable_attribute :labware_class, :tube

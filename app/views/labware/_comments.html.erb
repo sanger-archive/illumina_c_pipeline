@@ -1,0 +1,20 @@
+<!-- _comments.html.erb start -->
+<% presenter.control_comments do |comments| %>
+
+
+   <ul id="comment_shower" data-role="listview" data-inset="true">
+      <li data-role="list-divider"><h2>Comments</h2></li>
+      <% comments.each do |comment| %>
+        <li><%= comment %></li>
+      <% end %>
+      <li>
+        <%= form_tag(illumina_c_plate_comments_path(presenter.labware)) do |f| %>
+          <label for="comment-description">New comment:</label>
+          <textarea name="comment-description" id="comment-description"></textarea>
+          <%= submit_tag 'Add Comment', :class => 'add-comment-button', :'data-theme' => 'b', :'data-icon' => 'plus' %>
+        <% end %>
+      </li>
+    </ul>
+
+<% end %>
+<!-- _comments.html.erb end -->
