@@ -1,6 +1,11 @@
 module LabwareHelper
+
   def state_change_form(presenter)
     render :partial => 'labware/state_change', :locals => { :presenter => presenter }
+  end
+
+  def comments_form(presenter)
+    render :partial => 'labware/comments', :locals => { :presenter => presenter }
   end
 
   STANDARD_COLOURS = (1..96).map { |i| "colour-#{i}" }
@@ -116,7 +121,7 @@ module LabwareHelper
     container.state == 'failed' ? 'permanent-failure' : container.state
   end
 
-  def labware_type_and_state 
+  def labware_type_and_state
     "#{@presenter.purpose.name}.#{@presenter.labware.state.downcase}"
   end
 end

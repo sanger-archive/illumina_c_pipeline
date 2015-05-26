@@ -8,8 +8,8 @@ gem 'state_machine', '~>1.0.1'
 gem 'hashie', '~>1.0.0'
 gem 'exception_notification'
 
-gem 'sequencescape-client-api',
-  :git     => 'git+ssh://git@github.com/sanger/sequencescape-client-api.git',
+gem 'sequencescape-client-api', '>=0.2.6',
+  :github  => 'sanger/sequencescape-client-api',
   :branch  => 'production',
   :require => 'sequencescape'
 gem 'sanger_barcode', '>= 0.2.0',
