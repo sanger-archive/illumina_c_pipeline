@@ -25,6 +25,7 @@ module Presenters
 
   class PlatePresenter
     include Presenter
+    include Commentable::Commented
     include PlateWalking
 
     class_inheritable_reader :labware_class
