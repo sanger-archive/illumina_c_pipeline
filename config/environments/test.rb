@@ -25,6 +25,12 @@ IlluminaCPipeline::Application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
+  config.api_connection_options               = ActiveSupport::OrderedOptions.new
+  config.api_connection_options.namespace     = 'IlluminaC'
+  config.api_connection_options.url           = 'http://localhost:3000/api/1/'
+  config.api_connection_options.authorisation = 'development'
+
+
   # Use SQL instead of Active Record's schema dumper when creating the test database.
   # This is necessary if your schema can't be completely dumped by the schema dumper,
   # like if you have constraints or database-specific column types
