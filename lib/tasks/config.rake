@@ -40,9 +40,9 @@ namespace :config do
        configuration[:tag_groups] = [].tap do |tag_groups|
          puts "Preparing tag_groups ..."
          api.tag_group.each do |tag_group|
-           tag_groups << { 
+           tag_groups << {
              :uuid => tag_group.uuid,
-             :name => tag_group.name, 
+             :name => tag_group.name,
              :tags_keys => tag_group.tags.keys.map(&:to_i).sort
            }
          end
@@ -111,7 +111,9 @@ namespace :config do
              'Illumina C - TruSeq small RNA index tags - 6 mer tags',
              'Illumina C - TruSeq mRNA Adapter Index Sequences',
              'TruSeq mRNA Adapter and NEB Small RNA Index Sequences - 6mer',
-             'NEXTFLEX_48 - 6 mer tags in column major order (first oligo: CGATGT)'],
+             'NEXTFLEX_48 - 6 mer tags in column major order (first oligo: CGATGT)',
+             'NEXTflex-96 barcoded adapters tags in rows (first oligo: AACGTGAT)'
+             ],
             :presenter_class      => 'Presenters::QCTaggedPresenter'
           )
           presenters['ILC Lib Pool Norm'].merge!(
