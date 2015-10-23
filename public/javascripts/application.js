@@ -489,16 +489,16 @@
       indexOf : function(well) {
         var row, col
         row = well.charCodeAt(0)-65;
-        col = parseInt(well.slice(1))-1;
+        col = parseInt(well.slice(1), 10)-1;
         return (col*8)+row;
       },
 
       rearray : function() {
         var offset,tags, onComplete, noTag, start_tag, by_plate, tagFor;
-        offset = parseInt($('#plate_offset').val());
+        offset = parseInt($('#plate_offset').val(), 10);
         tags = $(SCAPE.tags_by_name[$('#plate_tag_group_uuid option:selected').text()])
         onComplete = SCAPE.validLayout;
-        start_tag = parseInt($('#plate_tag_start').val());
+        start_tag = parseInt($('#plate_tag_start').val(), 10);
         by_plate = ($('#plate_walking_by').val() == 'manual by plate')
 
         noTag = function() {
