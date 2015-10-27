@@ -19,6 +19,9 @@ module NavigationHelpers
     when /^the plate search page$/
       '/search'
 
+    when /^the plate page$/
+      illumina_c_plates_path
+
     else
       begin
         page_name =~ /^the (.*) page$/
