@@ -16,6 +16,11 @@ module NavigationHelpers
     #
     #   when /^(.*)'s profile page$/i
     #     user_profile_path(User.find_by_login($1))
+    when /^the plate search page$/
+      '/search'
+
+    when /^the plate page$/
+      illumina_c_plates_path
 
     else
       begin

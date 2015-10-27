@@ -47,6 +47,32 @@
 
 
   $.extend(SCAPE, {
+  sortByDirection: function(list, direction) {
+    var ctx = this;
+    var wells = list;
+    if (direction === 'column') {
+      return $(wells);
+      //$(wells).each(handler);
+    }
+    if (direction === 'row') {
+      var numRows = $("#tagging-plate tbody tr").length;
+      var numColumns = $("tbody tr:first td").length;
+
+      function getTransposedPositionNumber(position) {
+        return (((position % numRows) * numRows) + Math.floor(position / numColumns));
+      }
+
+      return $(wells).map(function(pos, node) {
+        return { position: getTransposedPositionNumber(pos), node: node };
+      }).sort(function(a,b) {
+        return (a.position - b.position);
+      }).map(function(pos, obj) {
+        // jQuery performs flatten() of map if they are arrays... Bugfix
+        return [obj.node];
+      });
+    }
+  },
+
   //temporarily used until page ready event sorted... :(
   //This is a copy of the template held in the tagging page.
   tag_palette_template:
@@ -489,17 +515,27 @@
       indexOf : function(well) {
         var row, col
         row = well.charCodeAt(0)-65;
-        col = parseInt(well.slice(1))-1;
+        col = parseInt(well.slice(1), 10)-1;
         return (col*8)+row;
       },
 
       rearray : function() {
-        var offset,tags, onComplete, noTag, start_tag, by_plate, tagFor;
-        offset = parseInt($('#plate_offset').val());
+        var offset,tags, onComplete, noTag, start_tag, by_plate, tagFor, byColumn;
+        offset = parseInt($('#plate_offset').val(), 10);
+        byColumn = ($('#plate_direction').val()==='column');
         tags = $(SCAPE.tags_by_name[$('#plate_tag_group_uuid option:selected').text()])
         onComplete = SCAPE.validLayout;
-        start_tag = parseInt($('#plate_tag_start').val());
+        start_tag = parseInt($('#plate_tag_start').val(), 10);
         by_plate = ($('#plate_walking_by').val() == 'manual by plate')
+
+        if (!byColumn && !by_plate) {
+          $('#plate_direction').val('column');
+          $('#plate_direction').selectmenu("refresh");
+          $('#plate_walking_by').val('manual by plate');
+          $('#plate_walking_by').selectmenu("refresh");
+          setTimeout(SCAPE.rearray, 0);
+        }
+
 
         noTag = function() {
           onComplete = SCAPE.invalidLayout;
@@ -538,7 +574,7 @@
             }).map(function(pos, obj) {
               return obj.position;
             });
-            tagsIdentifier[poolIds[i]] = tagsList;
+            tagsIdentifier[poolIds[i]] = SCAPE.sortByDirection(tagsList, $('#plate_direction').val());
           }
 
           return function(pos, poolId) {
@@ -546,18 +582,18 @@
           };
         }(SCAPE.wells);
 
-        $.each(SCAPE.wells ,function(i, well){
+        SCAPE.sortByDirection(SCAPE.wells, $('#plate_direction').val()).each(function(i, well){
           var location, aliquot, tag_for_well;
-          location = SCAPE.wellAt(this[0]+offset);
-          tag_for_well = tagFor(i+offset, getTagIdentifier(i, well[2]));
+          location = SCAPE.wellAt(well[0]+offset);
+          tag_for_well = tagFor(i+offset, getTagIdentifier(well[0], well[2]));
           aliquot = $(document.createElement('div')).
             attr('id','aliquot_'+location[0]).
             addClass('aliquot').
             addClass(location[0]).
-            addClass(this[1]).
+            addClass(well[1]).
             addClass('col-'+location[1]).
             attr('rel','details_'+location[0]).
-            data('pool',this[2]).
+            data('pool',well[2]).
             text(tag_for_well).
             addClass('tag-'+tag_for_well).
             toggle(SCAPE.tagSubstitutionHandler, SCAPE.resetHandler);
@@ -575,7 +611,7 @@
     $('#tagging-plate .aliquot').removeClass('green orange red');
 
     SCAPE.rearray();
-    $('#plate_tag_group_uuid, #plate_tag_start, #plate_walking_by, #plate_offset').change(SCAPE.rearray);
+    $('#plate_tag_group_uuid, #plate_tag_start, #plate_walking_by, #plate_offset, #plate_direction').change(SCAPE.rearray);
     $('#tagging-plate .aliquot').toggle(SCAPE.tagSubstitutionHandler, SCAPE.resetHandler);
 
   });
