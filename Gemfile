@@ -19,10 +19,17 @@ gem 'sanger_barcode', '>= 0.2.0',
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :test do
-  gem 'capybara'
+  gem 'capybara', '>=1.1.2'
   gem 'cucumber-rails', :require => false
   gem 'launchy'
 end
+
+group :cucumber do
+  gem "cucumber-rails"
+  #gem "launchy"
+  gem "poltergeist"
+end
+
 group :development do
   gem 'ruby-debug19', :require => 'ruby-debug'
 end
