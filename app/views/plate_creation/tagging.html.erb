@@ -11,13 +11,14 @@
         <%= f.input :parent_uuid, :as => :hidden, :value => @creation_form.parent_uuid %>
         <%= f.input :tag_group_uuid, :label => false, :as => :select, :collection => @creation_form.tag_groups_with_uuid, :include_blank => false %>
         <%= f.input :walking_by, :label => false, :as => :select, :collection => [["By Plate","manual by plate"],["By Pool","manual by pool"]], :include_blank => false %>
+        <%= f.input :direction, :label => false, :as => :select, :collection => [["In columns", "column"], ["In rows", "row"]], :include_blank => false %>
         <label for='plate_offset'>Transfer first well to:</label>
         <%= f.input :offset, :label => false, :as => :select, :collection => @creation_form.offsets, :include_blank => false %>
         <label for='tag_start'>Start at tag:</label>
         <fieldset data-type="horizontal">
           <%= f.input :tag_start, :label => false, :as => :select, :collection => @creation_form.tag_range, :include_blank => false %>
         </fieldset>
-        <%= f.input :direction, :as => :hidden, :value => "column" %>
+        <!-- %= f.input :direction, :as => :hidden, :value => "column" % -->
       <%- end -%>
     <br/>
     <div id='validation_report'></div>
