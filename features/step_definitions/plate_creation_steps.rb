@@ -1,5 +1,6 @@
 When /^I enter a valid user barcode$/ do
-  fill_in("User Swipecard", :with => "12343456454543")
+  #fill_in("User Swipecard", :with => "12343456454543")
+  fill_in("User Swipecard", :with => "abcdef")
 end
 
 When /^I enter a valid Source Plate barcode$/ do

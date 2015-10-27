@@ -8,6 +8,11 @@ require 'cucumber/rails'
 require 'ruby-debug'
 
 require 'capybara'
+require 'cucumber/rails'
+
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
+
 # Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
 # order to ease the transition to Capybara we set the default here. If you'd
 # prefer to use XPath just remove this line and adjust any selectors in your
@@ -15,6 +20,8 @@ require 'capybara'
 Capybara.default_selector = :css
 
 Capybara.save_and_open_page_path = "tmp/capybara"
+Capybara.default_wait_time = 10
+
 
 # By default, any exception happening in your Rails application will bubble up
 # to Cucumber so that your scenario will fail. This is a different from how
