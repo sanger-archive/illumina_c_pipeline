@@ -59,6 +59,10 @@ module Forms
     end
     private :filled_wells_in_column_order
 
+    def index_by_row_of(well)
+      wells_by_row.index(well.location)
+    end
+
     def index_by_column_of(well)
       wells_by_column.index(well.location)
     end
@@ -68,6 +72,12 @@ module Forms
       @wells_by_column ||= (1..12).map {|column| ('A'..'H').map {|row| "#{row}#{column}"}}.flatten
     end
     private :wells_by_column
+
+    def wells_by_row
+      @wells_by_row ||= ('A'..'H').map {|row| (1..12).map {|column| "#{row}#{column}"}}.flatten
+    end
+    private :wells_by_row
+
 
     ## TODO: sort_by! for tag_layout_templates
     def generate_layouts_and_groups
@@ -194,8 +204,11 @@ module Forms
     end
     private :filled_wells
 
-    def wells_mapping
+    def wells_by_column_mapping
       filled_wells.sort_by {|w| index_by_column_of(w) }.map {|w| [index_by_column_of(w),w.state,w.pool['id']]}
+    end
+    def wells_by_row_mapping
+      filled_wells.sort_by {|w| index_by_row_of(w) }.map {|w| [index_by_row_of(w),w.state,w.pool['id']]}
     end
   end
 end
