@@ -39,7 +39,7 @@ module Forms
     def offsets
       last_filled_well = index_by_column_of(filled_wells_in_column_order.last)
       first_filled_well = index_by_column_of(filled_wells_in_column_order.first)
-      (first_filled_well..96-last_filled_well).map{|i| [wells_by_column[i],i-first_filled_well]}
+      (first_filled_well..96-last_filled_well).map{|i| [well_location_by_column[i],i-first_filled_well]}
     end
 
 
@@ -60,23 +60,23 @@ module Forms
     private :filled_wells_in_column_order
 
     def index_by_row_of(well)
-      wells_by_row.index(well.location)
+      well_location_by_row.index(well.location)
     end
 
     def index_by_column_of(well)
-      wells_by_column.index(well.location)
+      well_location_by_column.index(well.location)
     end
     private :index_by_column_of
 
-    def wells_by_column
-      @wells_by_column ||= (1..12).map {|column| ('A'..'H').map {|row| "#{row}#{column}"}}.flatten
+    def well_location_by_column
+      @well_location_by_column ||= (1..12).map {|column| ('A'..'H').map {|row| "#{row}#{column}"}}.flatten
     end
-    private :wells_by_column
+    private :well_location_by_column
 
-    def wells_by_row
-      @wells_by_row ||= ('A'..'H').map {|row| (1..12).map {|column| "#{row}#{column}"}}.flatten
+    def well_location_by_row
+      @well_location_by_row ||= ('A'..'H').map {|row| (1..12).map {|column| "#{row}#{column}"}}.flatten
     end
-    private :wells_by_row
+    private :well_location_by_row
 
 
     ## TODO: sort_by! for tag_layout_templates
@@ -166,7 +166,7 @@ module Forms
     private :create_plate!
 
     def transfer_map
-      Hash[filled_wells.map{|w| [w.location, wells_by_column[index_by_column_of(w)+offset.to_i]||invalid_well(w)]}]
+      Hash[filled_wells.map{|w| [w.location, well_location_by_column[index_by_column_of(w)+offset.to_i]||invalid_well(w)]}]
     end
     private :transfer_map
 

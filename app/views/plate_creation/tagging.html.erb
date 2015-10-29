@@ -68,7 +68,7 @@
   (function(exports, $, undefined){
      $.extend(SCAPE, {
       tags_by_name: <%= @creation_form.tags_by_name.to_json.html_safe %>,
-      wells_by_column:   <%= @creation_form.wells_by_column_mapping.to_json.html_safe %>
+      wells_by_column:   <%= @creation_form.wells_by_column_mapping.to_json.html_safe %>,
       wells_by_row:      <%= @creation_form.wells_by_row_mapping.to_json.html_safe %>
      });
    })(window,jQuery);
