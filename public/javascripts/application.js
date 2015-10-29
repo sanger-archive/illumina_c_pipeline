@@ -496,10 +496,20 @@
       rearray : function() {
         var offset,tags, onComplete, noTag, start_tag, by_plate, tagFor;
         offset = parseInt($('#plate_offset').val(), 10);
+        byColumn = ($('#plate_direction').val()==='column');
         tags = $(SCAPE.tags_by_name[$('#plate_tag_group_uuid option:selected').text()])
         onComplete = SCAPE.validLayout;
         start_tag = parseInt($('#plate_tag_start').val(), 10);
         by_plate = ($('#plate_walking_by').val() == 'manual by plate')
+
+        if (!byColumn && !by_plate) {
+          $('#plate_direction').val('column');
+          $('#plate_direction').selectmenu("refresh");
+          $('#plate_walking_by').val('manual by plate');
+          $('#plate_walking_by').selectmenu("refresh");
+          setTimeout(SCAPE.rearray, 0);
+        }
+
 
         noTag = function() {
           onComplete = SCAPE.invalidLayout;
@@ -538,7 +548,7 @@
             }).map(function(pos, obj) {
               return obj.position;
             });
-            tagsIdentifier[poolIds[i]] = tagsList;
+            tagsIdentifier[poolIds[i]] = SCAPE.sortByDirection(tagsList, $('#plate_direction').val());
           }
 
           return function(pos, poolId) {
