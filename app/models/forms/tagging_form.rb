@@ -26,7 +26,7 @@ module Forms
     def base_layout
       base = {}
       return base if tag_start=='0'
-      wells_mapping.each do |i,_,_|
+      send("wells_by_#{direction}_mapping").each do |i,_,_|
         initial_tag = tags_by_name[tag_group.name][i]
         column      = (i/8)
         target_tag = initial_tag + tag_start.to_i
