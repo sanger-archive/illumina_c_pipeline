@@ -188,7 +188,8 @@ module Forms
           :tag_group   => tag_group_uuid,
           :direction   => direction,
           :walking_by  => walking_by,
-          :initial_tag => tag_start
+          :initial_tag => tag_start,
+          :substitutions => substitutions
         )
       end
     end
