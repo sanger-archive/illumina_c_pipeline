@@ -39,5 +39,18 @@ IlluminaCPipeline::Application.configure do
   config.admin_email          = "nnnnnnnnnnnnnnnn"
   config.exception_recipients = "nnnnnnnnnnnnnnnn"
 
+
+  config.qc_submission_name = "MiSeq for QC"
+  # By default used first study/project
+  # config.study_uuid = ""
+  # config.project_uuid = ""
+  config.request_options = {
+    "read_length" => 25,
+    "fragment_size_required" => {
+      "from" => 100,
+      "to"   => 100
+    }
+  }
+
 end
 

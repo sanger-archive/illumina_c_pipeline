@@ -122,7 +122,8 @@ namespace :config do
           )
           presenters['ILC QC Pool'].merge!(
             :form_class           => 'Forms::PooledTubesForm',
-            :presenter_class      => 'Presenters::QCTubePresenter'
+            :presenter_class      => 'Presenters::QCTubePresenter',
+            :state_changer_class  => 'StateChangers::QcTubeStateChanger'
           )
 
         end
@@ -163,6 +164,20 @@ namespace :config do
       end
 
       configuration[:qc_purposes] = QC_TUBE_PURPOSES
+
+      configuration[:submission_templates] = {}.tap do |submission_templates|
+        puts "Preparing submission templates..."
+        submission_templates['miseq']= api.order_template.all.detect {|ot| ot.name==IlluminaCPipeline::Application.config.qc_submission_name }.uuid
+      end
+
+      puts "Setting study..."
+      configuration[:study] = IlluminaCPipeline::Application.config.study_uuid||
+        puts("No study specified, using first study")||
+        api.study.first.uuid
+      puts "Setting project..."
+      configuration[:project] = IlluminaCPipeline::Application.config.project_uuid||
+        puts("No project specified, using first project")||
+        api.project.first.uuid
 
     end
 
