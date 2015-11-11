@@ -479,27 +479,49 @@
           $('#instructions').fadeIn();
         });
       },
+      colourPools: {},
+      colourPoolsIndex: 1,
+      coloursByPool: function(poolId) {
+        if (typeof SCAPE.colourPools[poolId] === 'undefined') {
+          SCAPE.colourPools[poolId] = 'colour-' + SCAPE.colourPoolsIndex;
+          SCAPE.colourPoolsIndex += 1;
+        }
+        return SCAPE.colourPools[poolId];
+      },
+      wellAt : function(index, byRow) { // Returns co-ordinates of well
+        var column, row;
+        if (byRow) {
+          column = Math.floor(index/8)+1;
+          row    = String.fromCharCode(index%8+65);
 
-      wellAt : function(index) { // Returns co-ordinates of well
-        var column = Math.floor(index/8)+1;
-        var row    = String.fromCharCode(index%8+65);
+        } else {
+          column = (index % 12)+1;
+          row    = String.fromCharCode(Math.floor(index / 12) + 65);
+
+        }
         return [row+column,column,row];
       },
 
       indexOf : function(well) {
         var row, col
         row = well.charCodeAt(0)-65;
-        col = parseInt(well.slice(1))-1;
+        col = parseInt(well.slice(1), 10)-1;
         return (col*8)+row;
       },
 
       rearray : function() {
-        var offset,tags, onComplete, noTag, start_tag, by_plate, tagFor;
-        offset = parseInt($('#plate_offset').val());
+        var offset,tags, onComplete, noTag, start_tag, by_plate, tagFor, byColumn;
+        offset = parseInt($('#plate_offset').val(), 10);
+        byColumn = ($('#plate_direction').val()==='column');
+
+        SCAPE.wells = byColumn ? SCAPE.wells_by_column : SCAPE.wells_by_row;
+        SCAPE.byColumn = byColumn;
+
         tags = $(SCAPE.tags_by_name[$('#plate_tag_group_uuid option:selected').text()])
         onComplete = SCAPE.validLayout;
-        start_tag = parseInt($('#plate_tag_start').val());
+        start_tag = parseInt($('#plate_tag_start').val(), 10);
         by_plate = ($('#plate_walking_by').val() == 'manual by plate')
+        SCAPE.by_plate = by_plate;
 
         noTag = function() {
           onComplete = SCAPE.invalidLayout;
@@ -548,7 +570,7 @@
 
         $.each(SCAPE.wells ,function(i, well){
           var location, aliquot, tag_for_well;
-          location = SCAPE.wellAt(this[0]+offset);
+          location = SCAPE.wellAt(this[0]+offset, SCAPE.byColumn);
           tag_for_well = tagFor(i+offset, getTagIdentifier(i, well[2]));
           aliquot = $(document.createElement('div')).
             attr('id','aliquot_'+location[0]).
@@ -561,6 +583,9 @@
             text(tag_for_well).
             addClass('tag-'+tag_for_well).
             toggle(SCAPE.tagSubstitutionHandler, SCAPE.resetHandler);
+          if (!SCAPE.by_plate) {
+            aliquot.addClass(SCAPE.coloursByPool(this[2]));
+          }
           $('#well_'+location[0]).append(aliquot);
         });
 
@@ -575,7 +600,7 @@
     $('#tagging-plate .aliquot').removeClass('green orange red');
 
     SCAPE.rearray();
-    $('#plate_tag_group_uuid, #plate_tag_start, #plate_walking_by, #plate_offset').change(SCAPE.rearray);
+    $('#plate_tag_group_uuid, #plate_tag_start, #plate_walking_by, #plate_offset, #plate_direction').change(SCAPE.rearray);
     $('#tagging-plate .aliquot').toggle(SCAPE.tagSubstitutionHandler, SCAPE.resetHandler);
 
   });
