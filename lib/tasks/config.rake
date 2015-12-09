@@ -179,6 +179,11 @@ namespace :config do
         puts("No project specified, using first project")||
         api.project.first.uuid
 
+      configuration[:printers] = {}.tap do |printers|
+        printers['limit'] = 5
+        printers['default_count'] = 2
+      end
+
     end
 
 
