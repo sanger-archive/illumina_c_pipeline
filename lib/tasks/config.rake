@@ -78,7 +78,7 @@ namespace :config do
             :form_class           => 'Forms::CreationForm',
             :presenter_class      => 'Presenters::StandardPresenter',
             :state_changer_class  => 'StateChangers::DefaultStateChanger',
-            :default_printer_uuid => barcode_printer_uuid.('g312bc2')
+            :default_printer_uuid => barcode_printer_uuid.('h105bc2')
           }
         end.tap do |presenters|
           # Illumina-C plates
@@ -118,12 +118,14 @@ namespace :config do
           )
           presenters['ILC Lib Pool Norm'].merge!(
             :form_class           => 'Forms::TubesForm',
-            :presenter_class      => 'Presenters::FinalTubePresenter'
+            :presenter_class      => 'Presenters::FinalTubePresenter',
+            :default_printer_uuid => barcode_printer_uuid.('h105bc2')
           )
           presenters['ILC QC Pool'].merge!(
             :form_class           => 'Forms::PooledTubesForm',
             :presenter_class      => 'Presenters::QCTubePresenter',
-            :state_changer_class  => 'StateChangers::QcTubeStateChanger'
+            :state_changer_class  => 'StateChangers::QcTubeStateChanger',
+            :default_printer_uuid => barcode_printer_uuid.('h105bc')
           )
 
         end
@@ -178,6 +180,11 @@ namespace :config do
       configuration[:project] = IlluminaCPipeline::Application.config.project_uuid||
         puts("No project specified, using first project")||
         api.project.first.uuid
+
+      configuration[:printers] = {}.tap do |printers|
+        printers['limit'] = 5
+        printers['default_count'] = 2
+      end
 
     end
 
