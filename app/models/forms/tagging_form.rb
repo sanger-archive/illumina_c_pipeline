@@ -15,18 +15,14 @@ module Forms
     end
 
     def substitutions
-      tag_substitutions = base_layout
-      (@substitutions||{}).each do |old_tag,new_tag|
-        tag_substitutions[tag_substitutions.key(old_tag)||old_tag] = new_tag
-      end
-      tag_substitutions
+      @substitutions
     end
 
     ## TODO: Review tags_by_name[tag_layout_template.name]
     def base_layout
       base = {}
       return base if tag_start=='0'
-      wells_mapping.each do |i,_,_|
+      send("wells_by_#{direction}_mapping").each do |i,_,_|
         initial_tag = tags_by_name[tag_group.name][i]
         column      = (i/8)
         target_tag = initial_tag + tag_start.to_i
@@ -39,7 +35,7 @@ module Forms
     def offsets
       last_filled_well = index_by_column_of(filled_wells_in_column_order.last)
       first_filled_well = index_by_column_of(filled_wells_in_column_order.first)
-      (first_filled_well..96-last_filled_well).map{|i| [wells_by_column[i],i-first_filled_well]}
+      (first_filled_well..96-last_filled_well).map{|i| [well_location_by_column[i],i-first_filled_well]}
     end
 
 
@@ -59,15 +55,25 @@ module Forms
     end
     private :filled_wells_in_column_order
 
+    def index_by_row_of(well)
+      well_location_by_row.index(well.location)
+    end
+
     def index_by_column_of(well)
-      wells_by_column.index(well.location)
+      well_location_by_column.index(well.location)
     end
     private :index_by_column_of
 
-    def wells_by_column
-      @wells_by_column ||= (1..12).map {|column| ('A'..'H').map {|row| "#{row}#{column}"}}.flatten
+    def well_location_by_column
+      @well_location_by_column ||= (1..12).map {|column| ('A'..'H').map {|row| "#{row}#{column}"}}.flatten
     end
-    private :wells_by_column
+    private :well_location_by_column
+
+    def well_location_by_row
+      @well_location_by_row ||= ('A'..'H').map {|row| (1..12).map {|column| "#{row}#{column}"}}.flatten
+    end
+    private :well_location_by_row
+
 
     ## TODO: sort_by! for tag_layout_templates
     def generate_layouts_and_groups
@@ -156,7 +162,7 @@ module Forms
     private :create_plate!
 
     def transfer_map
-      Hash[filled_wells.map{|w| [w.location, wells_by_column[index_by_column_of(w)+offset.to_i]||invalid_well(w)]}]
+      Hash[filled_wells.map{|w| [w.location, well_location_by_column[index_by_column_of(w)+offset.to_i]||invalid_well(w)]}]
     end
     private :transfer_map
 
@@ -178,7 +184,8 @@ module Forms
           :tag_group   => tag_group_uuid,
           :direction   => direction,
           :walking_by  => walking_by,
-          :initial_tag => tag_start
+          :initial_tag => tag_start,
+          :substitutions => substitutions
         )
       end
     end
@@ -194,8 +201,11 @@ module Forms
     end
     private :filled_wells
 
-    def wells_mapping
+    def wells_by_column_mapping
       filled_wells.sort_by {|w| index_by_column_of(w) }.map {|w| [index_by_column_of(w),w.state,w.pool['id']]}
+    end
+    def wells_by_row_mapping
+      filled_wells.sort_by {|w| index_by_row_of(w) }.map {|w| [index_by_row_of(w),w.state,w.pool['id']]}
     end
   end
 end
