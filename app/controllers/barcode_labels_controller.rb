@@ -5,6 +5,7 @@ class BarcodeLabelsController < ApplicationController
 
     @printer = api.barcode_printer.find(params[:printer])
     @service = Sanger::Barcode::Printing::Service.new(@printer.service.url)
+    @copies = params[:number].to_i
   end
   private :initialize_printer_and_barcode_service
 
@@ -16,7 +17,7 @@ class BarcodeLabelsController < ApplicationController
 
   # Does the actual printing of the labels passed
   def print(labels)
-    @service.print_labels(Array(labels), @printer.name, @printer.type.layout)
+    @service.print_labels(Array(labels)*@copies, @printer.name, @printer.type.layout)
   end
   private :print
 
