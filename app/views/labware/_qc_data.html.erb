@@ -11,7 +11,7 @@
       <li data-role="list-divider">Add New Qc Files</li>
       <li>
         <%= form_tag("#{@presenter.qc_owner.uuid}/qc_files/",:multipart=>true, :method=>'post', :authenticity_token=>true) do %>
-          <input type="file" id="qc_file" name="qc_file"/>
+          <input type="file" id="qc_file" name="qc_file" required="required"/>
           <input type="submit" value="Upload" />
         <% end %>
       </li>
