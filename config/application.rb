@@ -45,6 +45,8 @@ module IlluminaCPipeline
 
     config.study_uuid = nil
     config.project_uuid = nil
+    config.details_root = '#'
+    config.summary_root = '#'
 
     # Allow state_machine to override methods like Object#fail in models
     StateMachine::Machine.ignore_method_conflicts = true
