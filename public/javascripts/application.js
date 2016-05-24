@@ -57,7 +57,7 @@
   //temporarily used until page ready event sorted... :(
   //This is a copy of the template held in the tagging page.
   substitution_tag_template:
-    '<li class="ui-li ui-li-static ui-body-c" data-split-icon="delete">'+
+    '<li class="ui-li ui-li-static ui-body-c original-tag-<%= original_tag_id %>" data-split-icon="delete">'+
     '<div class="substitute-tag palette-tag"><%= original_tag_id %></div>&nbsp;&nbsp;Tag <%= original_tag_id %> replaced with Tag <%= replacement_tag_id %>&nbsp;&nbsp;<div class="available-tag palette-tag"><%= replacement_tag_id %></div>'+
     '<input id="plate-substitutions-<%= original_tag_id %>" name="plate[substitutions][<%= original_tag_id %>]" type="hidden" value="<%= replacement_tag_id %>" />'+
     '</li>',
@@ -413,7 +413,7 @@
 
       tagSubstitutionHandler : function() {
         var sourceAliquot = $(this);
-        var originalTag   = sourceAliquot.text();
+        var originalTag   = sourceAliquot.data('originalTag');
 
         // Dim other tags...
         $('.aliquot').not('.tag-'+originalTag).addClass('dimmed');
@@ -437,13 +437,12 @@
           // swap their tag classes and text
           $('.aliquot.tag-'+originalTag).
             hide().
-            removeClass('tag-'+originalTag).
-            addClass('tag-'+newTag).
             text(newTag).
             addClass('selected-aliquot').
             show('fast');
 
           // Add the substitution as a hidden field and li
+          $('#substitutions ul').children('.original-tag-'+originalTag).detach();
           $('#substitutions ul').append(SCAPE.substitutionTemplate({original_tag_id: originalTag, replacement_tag_id: newTag}));
           $('#substitutions ul').listview('refresh');
 
@@ -461,7 +460,7 @@
 
       invalidLayout : function() {
         $('#plate_submit').button('disable');
-        SCAPE.message('Some wells are missing tags. You may have insufficient tags availiable on your selected template, or have chosen to skip even columns when those wells contain material.','invalid');
+        SCAPE.message('Some wells are missing tags. You may have insufficient tags available on your selected template, or have chosen to skip even columns when those wells contain material.','invalid');
       },
 
       resetSubstitutions : function() {
@@ -510,7 +509,7 @@
       },
 
       rearray : function() {
-        var offset,tags, onComplete, noTag, start_tag, by_plate, tagFor, byColumn;
+        var offset,tags, onComplete, noTag, start_tag, byPlate, tagFor, byColumn, walkProcess;
         offset = parseInt($('#plate_offset').val(), 10);
         byColumn = ($('#plate_direction').val()==='column');
 
@@ -520,21 +519,34 @@
         tags = $(SCAPE.tags_by_name[$('#plate_tag_group_uuid option:selected').text()])
         onComplete = SCAPE.validLayout;
         start_tag = parseInt($('#plate_tag_start').val(), 10);
-        by_plate = ($('#plate_walking_by').val() == 'manual by plate')
-        SCAPE.by_plate = by_plate;
+
+        walkProcess = $('#plate_walking_by').val()
+
+        byPlate = (
+          (walkProcess == 'manual by plate')||(walkProcess == 'wells of plate')
+        )
 
         noTag = function() {
           onComplete = SCAPE.invalidLayout;
           return 'xx';
         };
 
-        tagFor = function(well_index, position, poolId) {
-          var tag_index;
-          if (by_plate) {
-            tag_index = well_index+start_tag;
-          } else { // by_pool
-            tag_index = position+start_tag;
-          };
+        tagFor = function(well_index, position, well_plate_index) {
+          var tag_index, walk_method;
+          switch (walkProcess) {
+            case 'wells of plate':
+              tag_index = well_plate_index + start_tag;
+              break;
+            case 'manual by plate':
+              tag_index = well_index+start_tag;
+              break;
+            case 'manual by pool':
+              tag_index = position+start_tag;
+              break;
+            default:
+              alert('Unknown tagging strategy');
+              break;
+          }
           return tags[tag_index]||noTag();
         };
 
@@ -571,7 +583,7 @@
         $.each(SCAPE.wells ,function(i, well){
           var location, aliquot, tag_for_well;
           location = SCAPE.wellAt(this[0]+offset, SCAPE.byColumn);
-          tag_for_well = tagFor(i+offset, getTagIdentifier(i, well[2]));
+          tag_for_well = tagFor(i+offset, getTagIdentifier(i, well[2]), this[0]+offset);
           aliquot = $(document.createElement('div')).
             attr('id','aliquot_'+location[0]).
             addClass('aliquot').
@@ -580,10 +592,14 @@
             addClass('col-'+location[1]).
             attr('rel','details_'+location[0]).
             data('pool',this[2]).
+            data('originalTag',tag_for_well).
             text(tag_for_well).
             addClass('tag-'+tag_for_well).
             toggle(SCAPE.tagSubstitutionHandler, SCAPE.resetHandler);
-          if (!SCAPE.by_plate) {
+          aliquot.removeClass('pending started passed');
+          if (byPlate) {
+            aliquot.addClass(SCAPE.coloursByPool('0'));
+          } else {
             aliquot.addClass(SCAPE.coloursByPool(this[2]));
           }
           $('#well_'+location[0]).append(aliquot);

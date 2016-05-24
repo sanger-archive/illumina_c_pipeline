@@ -35,7 +35,7 @@ module Forms
     def offsets
       last_filled_well = index_by_column_of(filled_wells_in_column_order.last)
       first_filled_well = index_by_column_of(filled_wells_in_column_order.first)
-      (first_filled_well..96-last_filled_well).map{|i| [well_location_by_column[i],i-first_filled_well]}
+      (first_filled_well..95-last_filled_well).map{|i| [well_location_by_column[i],i-first_filled_well]}
     end
 
 
