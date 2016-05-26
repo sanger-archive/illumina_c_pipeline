@@ -35,4 +35,13 @@ module ApplicationHelper
     yield 'nonproduction' unless Rails.env == 'production'
   end
 
+  def details_path(labware)
+    IlluminaCPipeline::Application.config.details_root+labware.uuid
+  end
+
+  def summary_path(labware)
+    stock_barcode = labware.stock_plate.barcode.prefix + labware.stock_plate.barcode.number
+    IlluminaCPipeline::Application.config.summary_root+stock_barcode
+  end
+
 end
