@@ -27,6 +27,19 @@ class SearchController < ApplicationController
     )
   end
 
+  def my_plates(search = 'Find Illumina-C plates for user')
+    plate_search    = api.search.find(Settings.searches[search])
+    states = [ 'pending', 'started', 'passed', 'started_fx', 'started_mj', 'qc_complete', 'nx_in_progress']
+
+    @search_results = plate_search.all(
+      IlluminaC::Plate,
+     :state     => states,
+     :user_uuid => current_user_uuid
+    )
+
+    render :my_plates
+  end
+
   def create_or_find
     params['show-my-plates'] == 'true' ? my_plates : create
 
