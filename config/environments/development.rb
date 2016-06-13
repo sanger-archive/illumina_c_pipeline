@@ -25,8 +25,11 @@ IlluminaCPipeline::Application.configure do
 
   config.api_connection_options               = ActiveSupport::OrderedOptions.new
   config.api_connection_options.namespace     = 'IlluminaC'
-  config.api_connection_options.url           = 'http://localhost:3000/api/1/'
-  config.api_connection_options.authorisation = 'development'
+  config.api_connection_options.url           = ENV.fetch('API_URL','http://localhost:3000/api/1/')
+  config.api_connection_options.authorisation = ENV.fetch('AUTHORISATION_TOKEN','development')
+
+  config.details_root = ENV.fetch('DETAILS_ROOT','http://localhost:3000/uuids/')
+  config.summary_root = ENV.fetch('SUMMARY_ROOT','http://localhost:3000/plate_summaries/')
 
 
   # Email settings...
