@@ -151,6 +151,7 @@ namespace :config do
         request_types['Illumina-C Library Creation PCR']    = ['ILC AL Libs',true]
         request_types['Illumina-C Library Creation PCR No Pooling']    = ['ILC AL Libs',false]
         request_types['Illumina-C Library Creation No PCR'] = ['ILC AL Libs Tagged',true]
+        request_types['Illumina-C Library Creation No PCR No Pooling'] = ['ILC AL Libs Tagged',false]
       end
 
 
