@@ -1,0 +1,7 @@
+POST /state_changes HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+Cookie: WTSISignOn=single-sign-on-cookie
+X-Sequencescape-Client-Id: testing
+
+{"state_change":{"reason":"Used in library creation","target_state":"exhausted","user":"user-uuid","target":"tag-2-tube-uuid"}}

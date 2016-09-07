@@ -3,11 +3,26 @@ module Forms
     include Forms::Form::CustomPage
 
     write_inheritable_attribute :page, 'tagging'
-    write_inheritable_attribute :attributes, [:direction, :walking_by, :api, :purpose_uuid, :parent_uuid, :tag_group_uuid, :user_uuid, :substitutions, :offset, :tag_start]
+    write_inheritable_attribute :attributes, [
+      :direction, :walking_by, :api, :purpose_uuid,
+      :parent_uuid, :tag_group_uuid, :user_uuid,
+      :substitutions, :offset, :tag_start,
+      :tag2_tube_barcode, :tag2_tube
+    ]
 
-    validates_presence_of *(self.attributes - [:substitutions])
+    validates_presence_of *(self.attributes - [:substitutions,:tag2_tube_barcode,:tag2_tube])
 
     class InvalidTagLayout < StandardError; end
+
+    QcableObject = Struct.new(:asset_uuid,:template_uuid)
+
+    def tag2_tube=(params)
+      return nil if params.blank?
+      @tag2_tube = QcableObject.new(params[:asset_uuid],params[:template_uuid])
+    end
+
+
+
 
     def initialize(*args, &block)
       super
@@ -166,10 +181,6 @@ module Forms
     end
     private :transfer_map
 
-    def valid?
-      true
-    end
-
     def invalid_well(well)
       raise StandardError, "The well at #{well.location} will be transfered out the bounds of the target plate."
     end
@@ -186,6 +197,21 @@ module Forms
           :walking_by  => walking_by,
           :initial_tag => tag_start,
           :substitutions => substitutions
+        )
+
+        return true unless tag2_tube_barcode.present?
+
+        api.state_change.create!(
+          :user => user_uuid,
+          :target => tag2_tube.asset_uuid,
+          :reason => 'Used in library creation',
+          :target_state => 'exhausted'
+        )
+
+        api.tag2_layout_template.find(tag2_tube.template_uuid).create!(
+          :source => tag2_tube.asset_uuid,
+          :plate => plate.uuid,
+          :user  => user_uuid
         )
       end
     end

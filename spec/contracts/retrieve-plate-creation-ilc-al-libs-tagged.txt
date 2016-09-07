@@ -1,0 +1,7 @@
+POST /plate_creations HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+Cookie: WTSISignOn=single-sign-on-cookie
+X-Sequencescape-Client-Id: testing
+
+{"plate_creation":{"parent":"ilc-stock-plate-uuid","child_purpose":"ilc-al-libs-tagged-uuid","user":"user-uuid"}}
