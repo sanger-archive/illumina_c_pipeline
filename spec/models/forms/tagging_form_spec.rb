@@ -61,10 +61,49 @@ describe Forms::TaggingForm do
       it 'describes the tag_range' do
         expect(tagging_form.tag_range).to eq((0..maximum_tag_offset).map {|i| [i+1,i] } )
       end
+      it 'describes tags by name' do
+        expect(tagging_form.tags_by_name).to eq({"Suitably big group"=>(1..largest_tag_group).to_a})
+      end
+    end
+
+    it 'describes wells by column' do
+      expect(tagging_form.wells_by_column_mapping).to eq([[0, "passed", "pool-1-uuid"], [1, "passed", "pool-1-uuid"], [2, "passed", "pool-1-uuid"], [3, "passed", "pool-1-uuid"], [4, "passed", "pool-1-uuid"], [5, "passed", "pool-1-uuid"], [6, "passed", "pool-1-uuid"], [7, "passed", "pool-1-uuid"], [8, "passed", "pool-1-uuid"], [9, "passed", "pool-1-uuid"], [10, "passed", "pool-1-uuid"], [11, "passed", "pool-1-uuid"], [12, "passed", "pool-1-uuid"], [13, "passed", "pool-1-uuid"], [14, "passed", "pool-1-uuid"], [15, "passed", "pool-2-uuid"], [16, "passed", "pool-2-uuid"], [17, "passed", "pool-2-uuid"], [18, "passed", "pool-2-uuid"], [19, "passed", "pool-2-uuid"], [20, "passed", "pool-2-uuid"], [21, "passed", "pool-2-uuid"], [22, "passed", "pool-2-uuid"], [23, "passed", "pool-2-uuid"], [24, "passed", "pool-2-uuid"], [25, "passed", "pool-2-uuid"], [26, "passed", "pool-2-uuid"], [27, "passed", "pool-2-uuid"], [28, "passed", "pool-2-uuid"], [29, "passed", "pool-2-uuid"]])
+    end
+    it 'describes wells by row' do
+      expect(tagging_form.wells_by_row_mapping).to eq([[0, "passed", "pool-1-uuid"], [1, "passed", "pool-1-uuid"], [2, "passed", "pool-2-uuid"], [3, "passed", "pool-2-uuid"], [12, "passed", "pool-1-uuid"], [13, "passed", "pool-1-uuid"], [14, "passed", "pool-2-uuid"], [15, "passed", "pool-2-uuid"], [24, "passed", "pool-1-uuid"], [25, "passed", "pool-1-uuid"], [26, "passed", "pool-2-uuid"], [27, "passed", "pool-2-uuid"], [36, "passed", "pool-1-uuid"], [37, "passed", "pool-1-uuid"], [38, "passed", "pool-2-uuid"], [39, "passed", "pool-2-uuid"], [48, "passed", "pool-1-uuid"], [49, "passed", "pool-1-uuid"], [50, "passed", "pool-2-uuid"], [51, "passed", "pool-2-uuid"], [60, "passed", "pool-1-uuid"], [61, "passed", "pool-1-uuid"], [62, "passed", "pool-2-uuid"], [63, "passed", "pool-2-uuid"], [72, "passed", "pool-1-uuid"], [73, "passed", "pool-1-uuid"], [74, "passed", "pool-2-uuid"], [84, "passed", "pool-1-uuid"], [85, "passed", "pool-2-uuid"], [86, "passed", "pool-2-uuid"]])
     end
 
     it 'describes the offsets' do
       expect(tagging_form.offsets).to eq(wells_in_column_order.slice(0,maximum_well_offset).each_with_index.map {|w,i| [w,i]} )
+    end
+
+    context 'when a submission is split over multiple plates' do
+
+      stub_request_from("retrieve-ilc-stock-plate-submission-pools") { response('ilc-stock-plate-submission-pools-dual') }
+
+      it 'does not require tag2' do
+        expect(tagging_form.requires_tag2?).to be true
+      end
+
+      context 'with advertised tag2 templates' do
+
+        stub_request_and_response('tag2-layout-templates')
+
+        it 'describes only the unused tube' do
+          expect(tagging_form.tag2s.keys).to eq(['unused-tag2-template-uuid'])
+          expect(tagging_form.tag2_names).to eq(['Unused template'])
+        end
+      end
+    end
+
+    context 'when a submission is not split over multiple plates' do
+
+      stub_request_from("retrieve-ilc-stock-plate-submission-pools") { response('ilc-stock-plate-submission-pools-single') }
+
+      it 'does not require tag2' do
+        expect(tagging_form.requires_tag2?).to be false
+      end
+
     end
 
   end

@@ -21,9 +21,6 @@ module Forms
       @tag2_tube = QcableObject.new(params[:asset_uuid],params[:template_uuid])
     end
 
-
-
-
     def initialize(*args, &block)
       super
       plate.populate_wells_with_pool
@@ -175,6 +172,46 @@ module Forms
       true
     end
     private :create_plate!
+
+    def requires_tag2?
+      plate.submission_pools.detect {|pool| pool.plates_in_submission > 1 }.present?
+    end
+
+    def tag2_field
+      yield if requires_tag2?
+      nil
+    end
+
+    def acceptable_template?(template)
+      acceptable_templates.blank? ||
+      acceptable_templates.include?(template.name)
+    end
+
+    def acceptable_templates
+      Settings.purposes[purpose_uuid].fetch('tag_layout_templates',[])
+    end
+
+    def tag2s
+      @tag2s ||= available_tag2s
+    end
+
+    def tag2_names
+      tag2s.values.flatten.map(&:name)
+    end
+
+    def available_tag2s
+      api.tag2_layout_template.all.reject do |template|
+        used_tag2s.include?(template.uuid)
+      end.group_by(&:uuid)
+    end
+    private :available_tag2s
+
+    def used_tag2s
+      @used_tag2s ||= plate.submission_pools.map {|pool| pool.used_tag2_layout_templates.map {|used| used["uuid"] } }.flatten.uniq
+    end
+    private :used_tag2s
+
+
 
     def transfer_map
       Hash[filled_wells.map{|w| [w.location, well_location_by_column[index_by_column_of(w)+offset.to_i]||invalid_well(w)]}]
