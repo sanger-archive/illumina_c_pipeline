@@ -1,7 +1,7 @@
 POST /tag-2-layout-template-uuid HTTP/1.1
 Accept: application/json
 Content-Type: application/json
-Cookie: WTSISignOn=single-sign-on-cookie
+Cookie: WTSISignOn=
 X-Sequencescape-Client-Id: testing
 
 {"tag2_layout":{"plate":"ilc-al-libs-tagged-plate-uuid","user":"user-uuid"}}

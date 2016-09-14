@@ -88,7 +88,7 @@ module ContractHelper
       stub_request_from('retrieve-api-root') { response('api-root') }
       let(:api) do
         Sequencescape::Api.new(
-          :url => 'http://localhost:3000/', :cookie => 'single-sign-on-cookie',
+          :url => 'http://localhost:3000/', :cookie => nil,
           :namespace => IlluminaC, :authorisation => 'testing'
         )
       end

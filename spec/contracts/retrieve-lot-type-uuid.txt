@@ -1,5 +1,4 @@
-GET /ilc-stock-plate-uuid HTTP/1.1
+GET /lot-type-uuid HTTP/1.1
 Accept: application/json
 Cookie: WTSISignOn=
 X-Sequencescape-Client-Id: testing
-

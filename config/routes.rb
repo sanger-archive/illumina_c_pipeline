@@ -1,10 +1,12 @@
 IlluminaCPipeline::Application.routes.draw do
+
   scope 'search', :controller => :search do
-    match '/',                            :action => 'new',            :via => :get,  :as => :search
-    match '/',                            :action => 'create_or_find', :via => :post, :as => :perform_search
+    match '/',                 :action => :new,            :via => :get,  :as => :search
+    match '/',                 :action => :create_or_find, :via => :post, :as => :perform_search
     match '/ongoing_plates',   :action => :ongoing_plates
     match '/all_stock_plates', :action => :stock_plates
-    match '/retrieve_parent',             :action => :retrieve_parent
+    match '/retrieve_parent',  :action => :retrieve_parent
+    match '/qcables',          :action => :qcables,        :via => :post
   end
 
   resources :illumina_c_plates, :controller => :plates do
@@ -29,6 +31,7 @@ IlluminaCPipeline::Application.routes.draw do
     resources :qc_files, :controller => :qc_files
   end
 
+  resources :tag_plates, only: :show
 
   # This is a hack untill I get tube coercion working
   resources :sequencescape_tubes, :controller => :tubes do

@@ -22,8 +22,8 @@ IlluminaCPipeline::Application.configure do
 
   config.api_connection_options               = ActiveSupport::OrderedOptions.new
   config.api_connection_options.namespace     = 'IlluminaC'
-  config.api_connection_options.url           = ENV.fetch('API_URL','http://localhost:3000/api/1/')
-  config.api_connection_options.authorisation = 'development'
+  config.api_connection_options.url           = ENV.fetch('API_URL','http://localhost:3000/')
+  config.api_connection_options.authorisation = 'testing'
 
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the

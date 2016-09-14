@@ -18,6 +18,13 @@
         <fieldset data-type="horizontal">
           <%= f.input :tag_start, :label => false, :as => :select, :collection => @creation_form.tag_range, :include_blank => false %>
         </fieldset>
+        <% @creation_form.tag2_field do -%>
+          <div data-role="fieldcontain">
+            <p><em>Available templates:</em> <%= @creation_form.tag2_names.join(', ') %></p>
+            <%= f.input :tag2_tube_barcode, :input_html => {'data-info-panel'=>'tag2-tube-info', 'data-qcable-type'=>'Tag 2 Tubes', 'data-approved-list'=>'tag2s', :required=>true} %>
+          </div>
+          <%= render :partial => 'plate_creation/tag_information_panel', :locals => {:panel_type => 'tag2 tube', :form=>f } %>
+        <% end -%>
         <!-- %= f.input :direction, :as => :hidden, :value => "column" % -->
       <%- end -%>
     <br/>
@@ -69,7 +76,9 @@
      $.extend(SCAPE, {
       tags_by_name: <%= @creation_form.tags_by_name.to_json.html_safe %>,
       wells_by_column:   <%= @creation_form.wells_by_column_mapping.to_json.html_safe %>,
-      wells_by_row:      <%= @creation_form.wells_by_row_mapping.to_json.html_safe %>
+      wells_by_row:      <%= @creation_form.wells_by_row_mapping.to_json.html_safe %>,
+      tag2s:  <%= @creation_form.tag2s.to_json.html_safe %>,
+      tags_by_name: <%= @creation_form.tags_by_name.to_json.html_safe %>
      });
    })(window,jQuery);
 </script>

@@ -81,7 +81,7 @@ describe Forms::TaggingForm do
 
       stub_request_from("retrieve-ilc-stock-plate-submission-pools") { response('ilc-stock-plate-submission-pools-dual') }
 
-      it 'does not require tag2' do
+      it 'requires tag2' do
         expect(tagging_form.requires_tag2?).to be true
       end
 
