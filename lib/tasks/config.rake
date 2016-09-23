@@ -78,7 +78,7 @@ namespace :config do
             :form_class           => 'Forms::CreationForm',
             :presenter_class      => 'Presenters::StandardPresenter',
             :state_changer_class  => 'StateChangers::DefaultStateChanger',
-            :default_printer_uuid => barcode_printer_uuid.('h105bc2')
+            :default_printer_uuid => barcode_printer_uuid.('g311bc1')
           }
         end.tap do |presenters|
           # Illumina-C plates
@@ -119,13 +119,13 @@ namespace :config do
           presenters['ILC Lib Pool Norm'].merge!(
             :form_class           => 'Forms::TubesForm',
             :presenter_class      => 'Presenters::FinalTubePresenter',
-            :default_printer_uuid => barcode_printer_uuid.('h105bc2')
+            :default_printer_uuid => barcode_printer_uuid.('g311bc1')
           )
           presenters['ILC QC Pool'].merge!(
             :form_class           => 'Forms::PooledTubesForm',
             :presenter_class      => 'Presenters::QCTubePresenter',
             :state_changer_class  => 'StateChangers::QcTubeStateChanger',
-            :default_printer_uuid => barcode_printer_uuid.('h105bc')
+            :default_printer_uuid => barcode_printer_uuid.('g311bc1')
           )
 
         end
