@@ -20,7 +20,7 @@ RSpec.describe "Pass all tubes", type: :feature, js: true do
 
     describe "some tubes are not passed " do
 
-      stub_request_and_response('final-plate-transfers-to-tubes-all-pending')
+      stub_request_and_response('final-plate-transfers-to-tubes-all-pending-or-started')
       stub_request_and_response('multiplexed-library-tube-uuid')
       stub_request_and_response('multiplexed-library-tube-2-uuid')
       stub_request_and_response('state-change-tube-to-passed')
@@ -76,7 +76,7 @@ RSpec.describe "Pass all tubes", type: :feature, js: true do
     stub_request_and_response('ilc-al-libs-tagged-uuid')
     stub_request_and_response('ilc-al-libs-tagged-children')
     stub_request_and_response('final-plate-comments')
-    stub_request_and_response('final-plate-transfers-to-tubes-all-pending')
+    stub_request_and_response('final-plate-transfers-to-tubes-all-pending-or-started')
 
     it "does not allow to pass all tubes" do
       visit illumina_c_plate_path("final-plate-uuid")

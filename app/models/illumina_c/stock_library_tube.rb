@@ -1,7 +1,7 @@
 class IlluminaC::StockLibraryTube < Sequencescape::MultiplexedLibraryTube
 
   def can_be_passed?
-    state == ("pending" || "started")
+    ["pending", "started"].include? state
   end
 
 end

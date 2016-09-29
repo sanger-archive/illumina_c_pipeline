@@ -1,6 +1,6 @@
 class MultipleTargetStateChangeController < ApplicationController
 
-  def state_change
+  def create
 
     if params[:tubes]
       tubes_uuid = params[:tubes].keys
