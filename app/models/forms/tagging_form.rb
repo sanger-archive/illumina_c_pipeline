@@ -100,6 +100,7 @@ module Forms
            )
          end
         @tag_groups = tag_groups.select! { |tag_group|
+          acceptable_template?(tag_group) &&
           (tag_group.tags_keys.length >= maximum_pool_size)
         }
       end
@@ -109,7 +110,6 @@ module Forms
     def tag_groups
       generate_layouts_and_groups
       @tag_groups
-      #Settings.tag_groups
     end
 
     def tag_groups_with_uuid

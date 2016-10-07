@@ -55,14 +55,33 @@ describe Forms::TaggingForm do
 
     context 'with tag groups available' do
       stub_request_and_response('tag-groups')
-      it 'describes the available tag groups' do
-        expect(tagging_form.tag_groups_with_uuid).to eq([["Suitably big group", "tag-group-c-uuid"]])
+
+      before(:each) do
+        Settings.purposes['ilc-al-libs-tagged-uuid']= purpose_config
       end
-      it 'describes the tag_range' do
-        expect(tagging_form.tag_range).to eq((0..maximum_tag_offset).map {|i| [i+1,i] } )
+
+      context 'with no tag groups defined' do
+
+        let(:purpose_config) { {} }
+
+        it 'describes the available tag groups' do
+          expect(tagging_form.tag_groups_with_uuid).to eq([["Suitably big group", "tag-group-c-uuid"], ["Other big group", "tag-group-d-uuid"]])
+        end
+        it 'describes the tag_range' do
+          expect(tagging_form.tag_range).to eq((0..maximum_tag_offset).map {|i| [i+1,i] } )
+        end
+        it 'describes tags by name' do
+          expect(tagging_form.tags_by_name).to eq({"Suitably big group"=>(1..largest_tag_group).to_a,"Other big group"=>(1..largest_tag_group).to_a})
+        end
       end
-      it 'describes tags by name' do
-        expect(tagging_form.tags_by_name).to eq({"Suitably big group"=>(1..largest_tag_group).to_a})
+
+      context 'with only some tag groups permitted' do
+
+        let(:purpose_config) { {'tag_layout_templates'=>"Suitably big group"} }
+
+        it 'only lists the acceptable tags' do
+          expect(tagging_form.tag_groups_with_uuid).to eq([["Suitably big group", "tag-group-c-uuid"]])
+        end
       end
     end
 

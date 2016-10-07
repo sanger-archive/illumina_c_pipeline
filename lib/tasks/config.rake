@@ -6,7 +6,8 @@ namespace :config do
     'ILC AL Libs',
     'ILC Lib PCR',
     'ILC Lib PCR-XP',
-    'ILC AL Libs Tagged'
+    'ILC AL Libs Tagged',
+    'ILC Lib Chromium'
   ]
 
   QC_PLATE_PURPOSES = [
@@ -71,9 +72,32 @@ namespace :config do
         # Setup a hash that will enable us to lookup the form, presenter, and state changing classes
         # based on the name of the plate purpose.  We can then use that to generate the information for
         # the mapping from UUID.
+
+        # :form_class
+        # The class used to create a plate: Form::CreationForm is a direct stamp and immediate redirect
+
+        # :presenter_class
+        # The class used to display a plate. Mainly determines which tabs are shown
+
+        # state_changer_class
+        # The class created on state change. Can perform additional actions
+
+        # :default_printer_uuid
+        # The uuid of the default printer.
+        # Use eg. barcode_printer_uuid.('h105bc2') to lookup by name
+
+        # :tag_layout_templates [Optional]
+        # Used by tagging form. Filters list in drop down.
+        # Shows all if empty or not specified.
+
+        # :tags_per_well [Optional]
+        # Used by tagging form.  Determines values of tags per
+        # well dropdown/fixed field. Defaults to 1 if not defined.
+
         #
         # The inner block is laid out so that the class names align, not so it's readable!
         name_to_details = Hash.new do |h,k|
+          # The default values
           h[k] = {
             :form_class           => 'Forms::CreationForm',
             :presenter_class      => 'Presenters::StandardPresenter',
@@ -82,7 +106,6 @@ namespace :config do
           }
         end.tap do |presenters|
           # Illumina-C plates
-
           presenters['ILC Stock'].merge!(
             :presenter_class      => 'Presenters::StockPlatePresenter'
           )
@@ -91,12 +114,6 @@ namespace :config do
           )
           presenters['ILC Lib PCR'].merge!(
             :form_class           => 'Forms::TaggingForm',
-            :tag_layout_templates => [
-             'Illumina C - Sanger_168tags - 10 mer tags',
-             'Illumina C - TruSeq small RNA index tags - 6 mer tags',
-             'Illumina C - TruSeq mRNA Adapter Index Sequences',
-             'TruSeq mRNA Adapter and NEB Small RNA Index Sequences - 6mer',
-             'NEXTFLEX_48 - 6 mer tags in column major order (first oligo: CGATGT)'],
             :presenter_class      => 'Presenters::TaggedPresenter'
           )
           presenters['ILC Lib PCR-XP'].merge!(
@@ -106,15 +123,17 @@ namespace :config do
           presenters['ILC AL Libs Tagged'].merge!(
             :state_changer_class  => 'StateChangers::PlateToTubeStateChanger',
             :form_class           => 'Forms::TaggingForm',
-            :tag_layout_templates => [
-             'Illumina C - Sanger_168tags - 10 mer tags',
-             'Illumina C - TruSeq small RNA index tags - 6 mer tags',
-             'Illumina C - TruSeq mRNA Adapter Index Sequences',
-             'TruSeq mRNA Adapter and NEB Small RNA Index Sequences - 6mer',
-             'NEXTFLEX_48 - 6 mer tags in column major order (first oligo: CGATGT)',
-             'NEXTflex-96 barcoded adapters tags in rows (first oligo: AACGTGAT)'
-             ],
             :presenter_class      => 'Presenters::QCTaggedPresenter'
+          )
+          presenters['ILC Lib Chromium'].merge!(
+            :state_changer_class  => 'StateChangers::PlateToTubeStateChanger',
+            :form_class           => 'Forms::TaggingForm',
+            :tag_layout_templates => [
+              'Chromium Genome 96',
+              'Chromium Single Cell'
+             ],
+            :presenter_class      => 'Presenters::QCTaggedPresenter',
+            :tags_per_well        => [4]
           )
           presenters['ILC Lib Pool Norm'].merge!(
             :form_class           => 'Forms::TubesForm',
@@ -148,10 +167,13 @@ namespace :config do
       end
 
       configuration[:request_types] = {}.tap do |request_types|
+        # Array is [child_purpose,poolable]
+        # poolable: automatically pool tubes on qc_complete.
         request_types['Illumina-C Library Creation PCR']    = ['ILC AL Libs',true]
         request_types['Illumina-C Library Creation PCR No Pooling']    = ['ILC AL Libs',false]
         request_types['Illumina-C Library Creation No PCR'] = ['ILC AL Libs Tagged',true]
         request_types['Illumina-C Library Creation No PCR No Pooling'] = ['ILC AL Libs Tagged',false]
+        request_types['Illumina-C Chromium library creation'] = ['ILC Lib Chromium',true]
       end
 
 
