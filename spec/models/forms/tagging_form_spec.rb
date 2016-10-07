@@ -20,6 +20,12 @@ describe Forms::TaggingForm do
       )
     }
 
+    let(:purpose_config) { {} }
+
+    before(:each) do
+      Settings.purposes['ilc-al-libs-tagged-uuid']= purpose_config
+    end
+
     # These values all describe the returned json.
     # They are used to prevent magic numbers from appearing in the specs
     let(:plate_size) { 96 }
@@ -56,13 +62,7 @@ describe Forms::TaggingForm do
     context 'with tag groups available' do
       stub_request_and_response('tag-groups')
 
-      before(:each) do
-        Settings.purposes['ilc-al-libs-tagged-uuid']= purpose_config
-      end
-
       context 'with no tag groups defined' do
-
-        let(:purpose_config) { {} }
 
         it 'describes the available tag groups' do
           expect(tagging_form.tag_groups_with_uuid).to eq([["Suitably big group", "tag-group-c-uuid"], ["Other big group", "tag-group-d-uuid"]])
@@ -82,6 +82,19 @@ describe Forms::TaggingForm do
         it 'only lists the acceptable tags' do
           expect(tagging_form.tag_groups_with_uuid).to eq([["Suitably big group", "tag-group-c-uuid"]])
         end
+      end
+    end
+
+    context 'with no tag_per_well defined' do
+      it 'returns [1] for tags_per_well' do
+        expect(tagging_form.tags_per_well).to eq([1])
+      end
+    end
+
+    context 'with tags_per_well defined' do
+      let(:purpose_config) { {'tags_per_well'=>[4] } }
+      it 'returns [4] for tags_per_well' do
+        expect(tagging_form.tags_per_well).to eq([4])
       end
     end
 

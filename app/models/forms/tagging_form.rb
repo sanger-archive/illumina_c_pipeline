@@ -199,6 +199,10 @@ module Forms
       tag2s.values.flatten.map(&:name)
     end
 
+    def tags_per_well
+      Settings.purposes[purpose_uuid].fetch('tags_per_well',[1])
+    end
+
     def available_tag2s
       api.tag2_layout_template.all.reject do |template|
         used_tag2s.include?(template.uuid)
