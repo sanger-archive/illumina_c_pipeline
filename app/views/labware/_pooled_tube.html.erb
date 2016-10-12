@@ -1,10 +1,7 @@
 <div class="tube">
 
   <div class="tube-view">
-  <!-- colour circles are not in place as tube.aliquots.empty? is true, as this is not the 'full' tube -->
-    <% unless tube.aliquots.empty? -%>
-      <div id="<%= "aliquot_#{tube.uuid}" %>" class="aliquot <%= pooling_colour(tube, tube.uuid) %>">&nbsp;</div>
-    <% end -%>
+    <div id="<%= "aliquot_#{tube.uuid}" %>" class="aliquot <%= pooling_colour(tube, tube.uuid) %>">&nbsp;</div>
     <%= check_box_tag "tubes[#{tube.uuid}]", tube.barcode.ean13, tube.can_be_passed?, disabled: !tube.can_be_passed?%>
   </div>
 
