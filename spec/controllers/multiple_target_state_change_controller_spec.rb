@@ -11,6 +11,10 @@ describe MultipleTargetStateChangeController, type: :controller do
     stub_request_and_response('state-change-tube-to-passed')
     stub_request_and_response('state-change-tube-2-to-passed')
 
+    before(:each) do
+      Settings.purposes['ilc-lib-pool-norm-uuid']= {state_changer_class: 'StateChangers::DefaultStateChanger'}
+    end
+
     it "creates state changes if tubes to pass were chosen" do
       req = post :create, {tubes: {"multiplexed-library-tube-uuid" => "multiplexed-library-tube-ean13-barcode", "multiplexed-library-tube-2-uuid" => "multiplexed-library-tube-2-ean13-barcode"}}, user_uuid: "user-uuid", format: :json
       expect(response).to redirect_to(search_path)

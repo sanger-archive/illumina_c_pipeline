@@ -2,21 +2,24 @@ require 'rails_helper'
 
 RSpec.describe "Pass all tubes", type: :feature, js: true do
 
-  has_a_working_api
-
   describe "user logged in" do
+
+    has_a_working_api(5)
 
     stub_request_and_response('find-user-by-swipecard-uuid')
     stub_request_and_response('find-user-by-swipecard-first')
     stub_request_and_response('find-assets-by-barcode-uuid')
     stub_request_and_response('find-assets-by-barcode-first')
-    stub_request_and_response('final-plate-uuid')
+    stub_request_and_response('final-plate-uuid', 2)
     stub_request_and_response('final-plate-wells')
     stub_request_and_response('barcode-printers')
     stub_request_and_response('final-plate-qc-files')
     stub_request_and_response('ilc-al-libs-tagged-uuid')
     stub_request_and_response('ilc-al-libs-tagged-children')
     stub_request_and_response('final-plate-comments')
+
+    Settings.searches['Find user by swipecard code'] = 'find-user-by-swipecard-uuid'
+    Settings.searches['Find assets by barcode'] = 'find-assets-by-barcode-uuid'
 
     describe "some tubes are not passed " do
 
@@ -25,6 +28,13 @@ RSpec.describe "Pass all tubes", type: :feature, js: true do
       stub_request_and_response('multiplexed-library-tube-2-uuid')
       stub_request_and_response('state-change-tube-to-passed')
       stub_request_and_response('state-change-tube-2-to-passed')
+
+      before(:each) do
+        Settings.purposes['ilc-lib-pool-norm-uuid']= {state_changer_class: 'StateChangers::DefaultStateChanger'}
+        Settings.purposes['ilc-al-libs-tagged-uuid']= {presenter_class: 'Presenters::QCTaggedPresenter'}
+        Settings.purposes['ilc-qc-pool-uuid'] = {}
+        Settings.qc_purposes = ['ILC QC Pool']
+      end
 
       it "allows to pass several tubes" do
 
@@ -69,7 +79,9 @@ RSpec.describe "Pass all tubes", type: :feature, js: true do
 
   describe "user didn't log in" do
 
-    stub_request_and_response('final-plate-uuid')
+    has_a_working_api
+
+    stub_request_and_response('final-plate-uuid', 2)
     stub_request_and_response('final-plate-wells')
     stub_request_and_response('barcode-printers')
     stub_request_and_response('final-plate-qc-files')
