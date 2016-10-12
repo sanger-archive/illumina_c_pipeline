@@ -22,7 +22,6 @@ group :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'webmock'
-  gem 'pry'
 
   gem 'capybara'
   gem 'selenium-webdriver'
