@@ -4,6 +4,6 @@ namespace :test_settings do
                 transfer_templates: {'Transfer columns' => nil},
                 purposes: {'purpose-uuid' => nil},
                 printers: {'limit' => 5, 'default_count' => 2}}
-    File.open("config/settings/test.yml", "w") {|f| f.write(settings.to_yaml)}
+    File.open(File.join(Rails.root, %w{config settings}, "test.yml"), "w") {|f| f.write(settings.to_yaml)}
   end
 end
