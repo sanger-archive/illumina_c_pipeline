@@ -1,0 +1,30 @@
+HTTP/1.1 201 OK
+Content-Type: application/json
+
+{
+  "process_metadatum_collection": {
+    "created_at": "2016-10-20 10:49:05 +0100",
+    "updated_at": "2016-10-20 10:49:05 +0100",
+    "asset": {
+      "actions": {
+        "read": "http://localhost:3000/asset-uuid"
+      },
+      "uuid": "asset-uuid"
+    },
+    "user": {
+      "actions": {
+        "read": "http://localhost:3000/user-uuid",
+        "update": "http://localhost:3000/user-uuid"
+      },
+      "uuid": "user-uuid"
+    },
+    "actions": {
+      "read": "http://localhost:3000/process-metadatum-collection-uuid",
+      "update": "http://localhost:3000/process-metadatum-collection-uuid"
+    },
+    "uuid": "process-metadatum-collection-uuid",
+    "metadata": {
+      "Key1": "Value1"
+    }
+  }
+}

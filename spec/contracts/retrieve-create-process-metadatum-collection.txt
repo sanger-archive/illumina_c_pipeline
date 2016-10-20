@@ -1,0 +1,7 @@
+POST /process_metadatum_collections HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+Cookie: WTSISignOn=
+X-Sequencescape-Client-Id: testing
+
+{"process_metadatum_collection":{"metadata":{"Key1":"Value1"},"user":"user-uuid","asset":"asset-uuid"}}

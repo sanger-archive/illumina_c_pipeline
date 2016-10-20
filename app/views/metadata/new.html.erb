@@ -1,0 +1,7 @@
+<%= form_tag(metadata_path, method: "post") do%>
+  <%= label_tag(:key) %>
+  <%= text_field_tag(:key) %>
+  <%= label_tag(:value) %>
+  <%= text_field_tag(:value) %>
+  <%= submit_tag "Save" %>
+<% end %>

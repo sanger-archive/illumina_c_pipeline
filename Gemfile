@@ -9,8 +9,8 @@ gem 'hashie', '~>1.0.0'
 gem 'exception_notification'
 
 gem 'sequencescape-client-api', '>=0.2.7',
-  :github  => 'sanger/sequencescape-client-api',
-  :branch  => 'production',
+  :github  => 'proskurina/sequencescape-client-api',
+  :branch  => 'ss534_add_metadata',
   :require => 'sequencescape'
 gem 'sanger_barcode', '>= 0.2.0',
   :git     => 'git+ssh://git@github.com/sanger/sanger_barcode.git'
@@ -22,9 +22,15 @@ group :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'webmock'
+
+  gem 'capybara'
+  gem 'phantomjs'
+  gem 'poltergeist'
+  gem 'pry'
 end
 group :development do
   gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'ruby-debug-base19x'
   gem 'pry'
 end
 
