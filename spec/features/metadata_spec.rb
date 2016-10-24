@@ -23,14 +23,20 @@ RSpec.describe "Show metadata", type: :feature do
 
     it "can create process metadatum collection for a plate" do
       visit new_metadatum_path
-      fill_in "Key", with: "Key1"
-      fill_in "Value", with: "Value1"
-      # click_link("Add metadata")
-      # fill_in "Key", with: "Key2"
-      # fill_in "Value", with: "Value2"
-      # click_link("Add metadata")
-      # fill_in "Key", with: "Key3"
-      # fill_in "Value", with: "Value3"
+      within('#metadatum1') do
+        fill_in "metadata__key", with: "Key1"
+        fill_in "metadata__value", with: "Value1"
+      end
+      click_link("Add metadatum")
+      within('#metadatum2') do
+        fill_in "metadata__key", with: "Key2"
+        fill_in "metadata__value", with: "Value2"
+      end
+      click_link("Add metadatum")
+      within('#metadatum3') do
+        fill_in "metadata__key", with: "Key3"
+        fill_in "metadata__value", with: "Value3"
+      end
       click_button "Save"
       expect(page).to have_content("Metadata was added successfully")
     end

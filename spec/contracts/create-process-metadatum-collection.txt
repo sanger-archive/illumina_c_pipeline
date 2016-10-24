@@ -24,7 +24,9 @@ Content-Type: application/json
     },
     "uuid": "process-metadatum-collection-uuid",
     "metadata": {
-      "Key1": "Value1"
+      "Key1": "Value1",
+      "Key2": "Value2",
+      "Key3": "Value3"
     }
   }
 }
