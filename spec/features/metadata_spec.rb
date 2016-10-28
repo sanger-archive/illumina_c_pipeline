@@ -1,28 +1,48 @@
 require 'rails_helper'
 
-RSpec.describe "Show metadata", type: :feature do
+RSpec.describe "Show metadata in labware tab", type: :feature do
 
-  describe "show" do
+  describe 'creates metadata if plate does not have one', js: :true do
 
-    has_a_working_api
-    stub_request_and_response('process-metadatum-collection')
-
-    it "shows metadata for a plate" do
-      visit metadatum_path('process-metadatum-collection-uuid')
-      expect(page).to have_content("Metadata")
-      expect(page).to have_content("Key1: Value1 Key2: Value2 Key3: Value3")
-    end
-
-  end
-
-  describe "#create", js: :true do
-
-    has_a_working_api(3)
+    has_a_working_api(5)
+    stub_request_and_response('find-user-by-swipecard-uuid')
+    stub_request_and_response('find-user-by-swipecard-first')
+    stub_request_and_response('find-assets-by-barcode-uuid')
+    stub_request_and_response('find-assets-by-barcode-first-ilc-stock-plate')
+    stub_request_and_response('ilc-stock-plate')
+    stub_request_and_response('ilc-stock-plate-wells')
+    stub_request_and_response('barcode-printers', 2)
+    stub_request_and_response('ilc-stock-plate-comments')
+    stub_request_and_response('ilc-al-libs-uuid', 6)
     stub_request_and_response('create-process-metadatum-collection')
+    stub_request_and_response('ilc-stock-plate-with-metadata')
+    stub_request_and_response('ilc-stock-plate-with-metadata-wells')
     stub_request_and_response('process-metadatum-collection')
+    stub_request_and_response('ilc-stock-plate-with-metadata-comments')
 
-    it "can create process metadatum collection for a plate" do
-      visit new_metadatum_path
+    Settings.searches['Find user by swipecard code'] = 'find-user-by-swipecard-uuid'
+    Settings.searches['Find assets by barcode'] = 'find-assets-by-barcode-uuid'
+    Settings.purposes['ilc-stock-plate-purpose-uuid'] = {name: 'ILC Stock'}
+    Settings.purposes['ilc-stock-plate-purpose-uuid']= {presenter_class: 'Presenters::StockPlatePresenter'}
+    Settings.large_insert_limit = 250
+    Settings.request_types["Illumina-C Library Creation PCR"] = [ 'ILC AL Libs', true]
+    Settings.purpose_uuids['ILC AL Libs'] = 'ilc-al-libs-uuid'
+
+    it "creates new metadata and shows it on page" do
+
+      visit search_path
+      fill_in 'User Swipecard:', with: 'abcdef'
+      fill_in 'Plate or Tube Barcode:', :with => '1111111111111'
+      find('.plate-barcode').native.send_key(:Enter)
+      expect(page).to have_content('Plate')
+      expect(page).to have_content("Metadata")
+
+      click_link("Metadata")
+
+      within('.metadata') do
+        expect(all('div[id^=metadatum]').count).to eq 1
+      end
+
       within('#metadatum1') do
         fill_in "metadata__key", with: "Key1"
         fill_in "metadata__value", with: "Value1"
@@ -37,9 +57,44 @@ RSpec.describe "Show metadata", type: :feature do
         fill_in "metadata__key", with: "Key3"
         fill_in "metadata__value", with: "Value3"
       end
+
+      first('input#asset_id', visible: false).set "ilc-stock-plate-with-metadata-uuid"
+
       click_button "Save"
       expect(page).to have_content("Metadata was added successfully")
+      expect(current_path).to eq illumina_c_plate_path('ilc-stock-plate-with-metadata-uuid')
+
+      click_link("Metadata")
+      within('.metadata') do
+        expect(all('div[id^=metadatum]').count).to eq 3
+      end
+
     end
+
+    # it "does not allow to remove the last metadatum" do
+    #   visit new_metadatum_path
+    #   click_link("Add metadatum")
+    #   click_link("Add metadatum")
+    #   within('#metadatum1') do
+    #     click_link('remove')
+    #   end
+    #   within('#metadatum3') do
+    #     click_link('remove')
+    #   end
+    #   within('.metadata') do
+    #     expect(all('div[id^=metadatum]').count).to eq 1
+    #   end
+    #   within('#metadatum2') do
+    #     click_link('remove')
+    #   end
+    #   within('.metadata') do
+    #     expect(all('div[id^=metadatum]').count).to eq 1
+    #   end
+    #   click_link("Add metadatum")
+    #   within('.metadata') do
+    #     expect(all('div[id^=metadatum]').count).to eq 2
+    #   end
+    # end
 
   end
 

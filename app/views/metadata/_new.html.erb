@@ -1,4 +1,5 @@
 <%= form_tag(metadata_path, method: "post") do%>
+  <%= hidden_field_tag 'asset_id', @presenter.labware.uuid %>
   <div id="metadatum_title" class="ui-grid-b">
     <%= label_tag :key, nil, class: 'ui-block-a' %>
     <%= label_tag :value, nil, class: 'ui-block-b' %>

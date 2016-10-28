@@ -1,0 +1,28 @@
+<%= form_tag(metadatum_path(@presenter.labware.process_metadatum_collection.uuid), method: "put") do%>
+  <%= hidden_field_tag 'asset_id', @presenter.labware.id %>
+  <div id="metadatum_title" class="ui-grid-b">
+    <%= label_tag :key, nil, class: 'ui-block-a' %>
+    <%= label_tag :value, nil, class: 'ui-block-b' %>
+  </div>
+  <div class='metadata'>
+    <% @presenter.labware.process_metadatum_collection.metadata.each_with_index do |metadatum, index| %>
+      <div id="metadatum<%=index+1%>" class="ui-grid-b">
+        <div class='ui-block-a'>
+          <%= text_field_tag 'metadata[][key]', metadatum[0]  %>
+        </div>
+        <div class='ui-block-b'>
+          <%= text_field_tag 'metadata[][value]', metadatum[1]  %>
+        </div>
+        <div class='ui-block-c'>
+          <%= link_to 'remove', "#", class: "remove_metadatum" %>
+        </div>
+      </div>
+    <%end%>
+    <%= link_to "Add metadatum", "#", class: "add_metadatum" %>
+  </div>
+  <div class="ui-grid-b">
+    <div class='ui-block-b'>
+      <%= submit_tag "Save" %>
+    </div>
+  </div>
+<% end %>

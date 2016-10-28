@@ -149,6 +149,7 @@ Content-Type: application/json
   "process_metadatum_collection": {
     "actions": {
       "read": "http://localhost:3000/process_metadatum_collection",
+      "update": "http://localhost:3000/process_metadatum_collection",
       "create": "http://localhost:3000/process_metadatum_collections"
     }
   },

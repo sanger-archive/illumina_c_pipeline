@@ -11,9 +11,13 @@ $(document).ready(function() {
       id++
   };
 
+  // function lastMetadatum(metadata){
+  //   metadata.childNodes().count() == 1
+  // }
+
+
   function remove(){
-      console.log("here")
-      $(this).parent().parent().remove()
+    $(this).parent().parent().remove()
   };
 
   $(".add_metadatum").on("click", add);

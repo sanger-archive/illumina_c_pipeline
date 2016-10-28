@@ -1,19 +1,19 @@
 class MetadataController < ApplicationController
 
-  def index
-  end
-
-  def show
-    @metadata = api.process_metadatum_collection.find(params[:id]).metadata
-  end
-
-  def new
-  end
-
   def create
-    metadata = params[:metadata].inject({}) {|result, metadatum| result[metadatum[:key]] = metadatum[:value]; result}
-    response = api.process_metadatum_collection.create!(user: "user-uuid", asset: "asset-uuid", metadata: metadata)
-    redirect_to(metadatum_path(response.uuid), notice: "Metadata was added successfully")
+    metadata = metadata_hash(params[:metadata])
+    response = api.process_metadatum_collection.create!(user: current_user_uuid, asset: params[:asset_id], metadata: metadata)
+    redirect_to(illumina_c_plate_path(params[:asset_id]), notice: "Metadata was added successfully")
+  end
+
+  def update
+    metadata = metadata_hash(params[:metadata])
+    api.process_metadatum_collection.find(params[:id]).update_attributes!(metadata: metadata)
+    redirect_to(illumina_c_plate_path(params[:asset_id]), notice: "Metadata was updated successfully")
+  end
+
+  def metadata_hash(metadata)
+    metadata.inject({}) {|result, metadatum| result[metadatum[:key]] = metadatum[:value] unless metadatum[:key].blank?; result}
   end
 
 end

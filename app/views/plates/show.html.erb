@@ -16,6 +16,7 @@
       <ul id="navbar">
         <li id="labware-summary-button"><a href="#" class="navbar-link" rel="labware-summary-button" data-transition="none" data-icon="info">Summary and Printing</a></li>
         <% if current_user_uuid.present? -%>
+          <li id="labware-metadata-button"><a href="#" class="navbar-link" rel="labware-metadata-button" data-icon="add">Metadata</a></li>
           <li id="labware-state-button"><a href="#" class="navbar-link" rel="labware-state-button" data-icon="gear">Move plate to next state</a></li>
           <li id="well-failing-button"><a href="#" class="navbar-link" rel="well-failing-button" data-icon="delete">Fail Wells</a></li>
           <li id="labware-creation-button"><a href="#" class="navbar-link <%= 'ui-disabled' if @presenter.has_repeated_tag? %>" rel="labware-creation-button" data-icon="add">Create next <%= @presenter.child_type %></a></li>
@@ -33,6 +34,16 @@
           <%= render(:partial => @presenter.summary_partial, :locals => { :presenter => @presenter }) %>
         </div>
           <%#= link_to "Download Worksheet CSV", "#{illumina_c_plate_path(@presenter.labware.uuid)}.csv", :rel => "external" %>
+
+        <div id="labware-metadata" class="scape-ui-block" style="display:none;">
+          <h2>Metadata</h2>
+          <% if @presenter.has_metadata %>
+            <%= render(:partial => 'metadata/edit', :locals => { :presenter => @presenter}) %>
+          <% else %>
+            <%= render(:partial => 'metadata/new', :locals => { :presenter => @presenter}) %>
+          <% end %>
+
+        </div>
 
         <div id="well-failing" class="scape-ui-block" style="display:none;">
 

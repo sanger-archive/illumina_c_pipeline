@@ -18,10 +18,10 @@ Content-Type: application/json
       "uuid": "user-uuid"
     },
     "actions": {
-      "read": "http://localhost:3000/process-metadatum-collection-uuid",
-      "update":"http://localhost:3000/process-metadatum-collection-uuid"
+      "read": "http://localhost:3000/process-metadatum-collection-2-uuid",
+      "update":"http://localhost:3000/process-metadatum-collection-2-uuid"
     },
-    "uuid": "process-metadatum-collection-uuid",
+    "uuid": "process-metadatum-collection-2-uuid",
     "metadata": {
       "Key1": "Value1",
       "Key2": "Value2",

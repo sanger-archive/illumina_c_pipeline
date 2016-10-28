@@ -8,49 +8,49 @@ Content-Type: application/json
     "comments": {
       "size": 3,
       "actions": {
-        "read": "http://localhost:3000/ilc-stock-plate-uuid/comments"
+        "read": "http://localhost:3000/ilc-stock-plate-with-metadata-uuid/comments"
       }
     },
     "wells": {
       "size": 30,
       "actions": {
-        "read": "http://localhost:3000/ilc-stock-plate-uuid/wells"
+        "read": "http://localhost:3000/ilc-stock-plate-with-metadata-uuid/wells"
       }
     },
     "submission_pools": {
       "size": 2,
       "actions": {
-        "read": "http://localhost:3000/ilc-stock-plate-uuid/submission_pools"
+        "read": "http://localhost:3000/ilc-stock-plate-with-metadata-uuid/submission_pools"
       }
     },
     "requests": {
       "size": 0,
       "actions": {
-        "read": "http://localhost:3000/ilc-stock-plate-uuid/requests"
+        "read": "http://localhost:3000/ilc-stock-plate-with-metadata-uuid/requests"
       }
     },
     "qc_files": {
       "size": 0,
       "actions": {
-        "read": "http://localhost:3000/ilc-stock-plate-uuid/qc_files"
+        "read": "http://localhost:3000/ilc-stock-plate-with-metadata-uuid/qc_files"
       }
     },
     "source_transfers": {
       "size": 0,
       "actions": {
-        "read": "http://localhost:3000/ilc-stock-plate-uuid/source_transfers"
+        "read": "http://localhost:3000/ilc-stock-plate-with-metadata-uuid/source_transfers"
       }
     },
     "transfers_to_tubes": {
       "size": 0,
       "actions": {
-        "read": "http://localhost:3000/ilc-stock-plate-uuid/transfers_to_tubes"
+        "read": "http://localhost:3000/ilc-stock-plate-with-metadata-uuid/transfers_to_tubes"
       }
     },
     "creation_transfers": {
       "size": 0,
       "actions": {
-        "read": "http://localhost:3000/ilc-stock-plate-uuid/creation_transfers"
+        "read": "http://localhost:3000/ilc-stock-plate-with-metadata-uuid/creation_transfers"
       }
     },
     "plate_purpose": {
@@ -61,10 +61,17 @@ Content-Type: application/json
       "lifespan": null,
       "name": "ILC Stock"
     },
-    "actions": {
-      "read": "http://localhost:3000/ilc-stock-plate-uuid"
+    "process_metadatum_collection": {
+      "actions": {
+        "read": "http://localhost:3000/process-metadatum-collection-uuid",
+        "update": "http://localhost:3000/process-metadatum-collection-uuid"
+      },
+      "uuid": "process-metadatum-collection-uuid"
     },
-    "uuid": "ilc-stock-plate-uuid",
+    "actions": {
+      "read": "http://localhost:3000/ilc-stock-plate-with-metadata-uuid"
+    },
+    "uuid": "ilc-stock-plate-with-metadata-uuid",
     "name": "Cherrypicked 427444",
     "qc_state": null,
     "barcode": {
@@ -148,7 +155,7 @@ Content-Type: application/json
         "two_dimensional": null,
         "type": 1
       },
-      "uuid": "ilc-stock-plate-uuid"
+      "uuid": "ilc-stock-plate-with-metadata-uuid"
     }
   }
 }
