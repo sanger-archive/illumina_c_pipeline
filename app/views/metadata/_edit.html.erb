@@ -1,11 +1,11 @@
-<%= form_tag(metadatum_path(@presenter.labware.process_metadatum_collection.uuid), method: "put", id: 'metadata-form') do%>
-  <%= hidden_field_tag 'asset_id', @presenter.labware.id %>
+<%= form_tag(metadatum_path(presenter.labware.process_metadatum_collection.uuid), method: "put", id: 'metadata-form') do%>
+  <%= hidden_field_tag 'path', path %>
 
   <%= render(partial: 'metadata/header', :locals => { :presenter => @presenter}) %>
 
   <div class='metadata'>
-    <%unless @presenter.labware.process_metadatum_collection.metadata.blank?%>
-      <% @presenter.labware.process_metadatum_collection.metadata.each_with_index do |metadatum, index| %>
+    <%unless presenter.labware.process_metadatum_collection.metadata.blank?%>
+      <% presenter.labware.process_metadatum_collection.metadata.each_with_index do |metadatum, index| %>
         <div id="metadatum<%=index+1%>" class="ui-grid-b">
           <div class='ui-block-a'>
             <%= text_field_tag 'metadata[][key]', metadatum[0]  %>

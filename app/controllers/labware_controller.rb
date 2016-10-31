@@ -29,6 +29,7 @@ class LabwareController < ApplicationController
   def show
     begin
       @presenter = presenter_for(@labware)
+      @path = request.path
       respond_to do |format|
         format.html { render @presenter.page }
         format.csv

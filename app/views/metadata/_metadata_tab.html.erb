@@ -1,0 +1,7 @@
+<h2>Metadata</h2>
+
+<% if @presenter.has_metadata %>
+  <%= render(:partial => 'metadata/edit', locals: { presenter: presenter, path: path}) %>
+<% else %>
+  <%= render(:partial => 'metadata/new', :locals => { presenter: presenter, path: path}) %>
+<% end %>

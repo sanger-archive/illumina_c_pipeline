@@ -13,7 +13,7 @@ GIT
 
 GIT
   remote: git://github.com/proskurina/sequencescape-client-api.git
-  revision: fdc1dab7dc22dae93088e33aa0ab80da6d32dd9b
+  revision: 1785e2199de551b0e7e2926b9ce6fe6dd6dda28c
   branch: ss534_add_metadata
   specs:
     sequencescape-client-api (0.2.7)

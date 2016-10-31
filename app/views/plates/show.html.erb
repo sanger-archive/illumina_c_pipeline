@@ -36,13 +36,7 @@
           <%#= link_to "Download Worksheet CSV", "#{illumina_c_plate_path(@presenter.labware.uuid)}.csv", :rel => "external" %>
 
         <div id="labware-metadata" class="scape-ui-block" style="display:none;">
-          <h2>Metadata</h2>
-          <% if @presenter.has_metadata %>
-            <%= render(:partial => 'metadata/edit', :locals => { :presenter => @presenter}) %>
-          <% else %>
-            <%= render(:partial => 'metadata/new', :locals => { :presenter => @presenter}) %>
-          <% end %>
-
+          <%= render(:partial => 'metadata/metadata_tab', locals: { presenter: @presenter, path: @path}) %>
         </div>
 
         <div id="well-failing" class="scape-ui-block" style="display:none;">

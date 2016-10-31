@@ -13,7 +13,8 @@ describe MetadataController, type: :controller do
       stub_request_and_response('update-process-metadatum-collection')
 
       it 'adds metadata' do
-        put :update, id: "process-metadatum-collection-uuid", "metadata"=>[{"key"=>"Key1", "value"=>"Value1"}, {"key"=>"Key2", "value"=>"Value2"}, {"key"=>"Key3", "value"=>"Value3"}, {"key"=>"Key4", "value"=>"Value4"}], "asset_id"=>"ilc-stock-plate-uuid"
+        put :update, id: "process-metadatum-collection-uuid", "metadata"=>[{"key"=>"Key1", "value"=>"Value1"}, {"key"=>"Key2", "value"=>"Value2"}, {"key"=>"Key3", "value"=>"Value3"}, {"key"=>"Key4", "value"=>"Value4"}],
+                                                              "asset_id"=>"ilc-stock-plate-uuid", "path" => "/illumina_c_plates/ilc-stock-plate-uuid"
         expect(response).to redirect_to(illumina_c_plate_path('ilc-stock-plate-uuid'))
       end
 
@@ -28,7 +29,8 @@ describe MetadataController, type: :controller do
       stub_request_and_response('update-process-metadatum-collection-2')
 
       it 'removes metadata' do
-        put :update, id: "process-metadatum-collection-2-uuid", "metadata"=>[{"key"=>"Key1", "value"=>"Value1"}, {"key"=>"Key3", "value"=>"Value3"}], "asset_id"=>"ilc-stock-plate-uuid"
+        put :update, id: "process-metadatum-collection-2-uuid", "metadata"=>[{"key"=>"Key1", "value"=>"Value1"}, {"key"=>"Key3", "value"=>"Value3"}],
+                                                                "asset_id"=>"ilc-stock-plate-uuid", "path" => "/illumina_c_plates/ilc-stock-plate-uuid"
         expect(response).to redirect_to(illumina_c_plate_path('ilc-stock-plate-uuid'))
       end
 
@@ -43,7 +45,8 @@ describe MetadataController, type: :controller do
       stub_request_and_response('update-process-metadatum-collection-3')
 
       it 'updates metadata' do
-        put :update, id: "process-metadatum-collection-3-uuid", "metadata"=>[{"key"=>"Key1", "value"=>"Value1"}, {"key"=>"Key2", "value"=>"Value4"}, {"key"=>"Key3", "value"=>"Value3"}], "asset_id"=>"ilc-stock-plate-uuid"
+        put :update, id: "process-metadatum-collection-3-uuid", "metadata"=>[{"key"=>"Key1", "value"=>"Value1"}, {"key"=>"Key2", "value"=>"Value4"}, {"key"=>"Key3", "value"=>"Value3"}],
+                                                                "asset_id"=>"ilc-stock-plate-uuid", "path" => "/illumina_c_plates/ilc-stock-plate-uuid"
         expect(response).to redirect_to(illumina_c_plate_path('ilc-stock-plate-uuid'))
       end
 

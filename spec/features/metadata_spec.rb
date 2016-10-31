@@ -59,6 +59,8 @@ RSpec.describe "Show metadata in labware tab", type: :feature do
       end
 
       first('input#asset_id', visible: false).set "ilc-stock-plate-with-metadata-uuid"
+      first('input#path', visible: false).set "/illumina_c_plates/ilc-stock-plate-with-metadata-uuid"
+
 
       click_button "Save"
       expect(page).to have_content("Metadata was added successfully")
