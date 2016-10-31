@@ -71,31 +71,6 @@ RSpec.describe "Show metadata in labware tab", type: :feature do
 
     end
 
-    # it "does not allow to remove the last metadatum" do
-    #   visit new_metadatum_path
-    #   click_link("Add metadatum")
-    #   click_link("Add metadatum")
-    #   within('#metadatum1') do
-    #     click_link('remove')
-    #   end
-    #   within('#metadatum3') do
-    #     click_link('remove')
-    #   end
-    #   within('.metadata') do
-    #     expect(all('div[id^=metadatum]').count).to eq 1
-    #   end
-    #   within('#metadatum2') do
-    #     click_link('remove')
-    #   end
-    #   within('.metadata') do
-    #     expect(all('div[id^=metadatum]').count).to eq 1
-    #   end
-    #   click_link("Add metadatum")
-    #   within('.metadata') do
-    #     expect(all('div[id^=metadatum]').count).to eq 2
-    #   end
-    # end
-
   end
 
 end

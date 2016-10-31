@@ -1,28 +1,38 @@
-<%= form_tag(metadatum_path(@presenter.labware.process_metadatum_collection.uuid), method: "put") do%>
+<%= form_tag(metadatum_path(@presenter.labware.process_metadatum_collection.uuid), method: "put", id: 'metadata-form') do%>
   <%= hidden_field_tag 'asset_id', @presenter.labware.id %>
-  <div id="metadatum_title" class="ui-grid-b">
-    <%= label_tag :key, nil, class: 'ui-block-a' %>
-    <%= label_tag :value, nil, class: 'ui-block-b' %>
-  </div>
+
+  <%= render(partial: 'metadata/header', :locals => { :presenter => @presenter}) %>
+
   <div class='metadata'>
-    <% @presenter.labware.process_metadatum_collection.metadata.each_with_index do |metadatum, index| %>
-      <div id="metadatum<%=index+1%>" class="ui-grid-b">
+    <%unless @presenter.labware.process_metadatum_collection.metadata.blank?%>
+      <% @presenter.labware.process_metadatum_collection.metadata.each_with_index do |metadatum, index| %>
+        <div id="metadatum<%=index+1%>" class="ui-grid-b">
+          <div class='ui-block-a'>
+            <%= text_field_tag 'metadata[][key]', metadatum[0]  %>
+          </div>
+          <div class='ui-block-b'>
+            <%= text_field_tag 'metadata[][value]', metadatum[1]  %>
+          </div>
+          <div class='ui-block-c'>
+            <%= link_to 'remove', "#", class: "remove_metadatum" %>
+          </div>
+        </div>
+      <%end%>
+    <%else%>
+      <div id="metadatum1" class="ui-grid-b">
         <div class='ui-block-a'>
-          <%= text_field_tag 'metadata[][key]', metadatum[0]  %>
+          <%= text_field_tag 'metadata[][key]' %>
         </div>
         <div class='ui-block-b'>
-          <%= text_field_tag 'metadata[][value]', metadatum[1]  %>
+          <%= text_field_tag 'metadata[][value]' %>
         </div>
         <div class='ui-block-c'>
           <%= link_to 'remove', "#", class: "remove_metadatum" %>
         </div>
       </div>
     <%end%>
-    <%= link_to "Add metadatum", "#", class: "add_metadatum" %>
   </div>
-  <div class="ui-grid-b">
-    <div class='ui-block-b'>
-      <%= submit_tag "Save" %>
-    </div>
-  </div>
+
+  <%= render(partial: 'metadata/footer') %>
+
 <% end %>

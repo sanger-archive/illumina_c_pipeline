@@ -1,0 +1,18 @@
+
+  <div id="metadatum_title" class="ui-grid-b">
+    <%= label_tag :key, nil, class: 'ui-block-a' %>
+    <%= label_tag :value, nil, class: 'ui-block-b' %>
+  </div>
+  <div style="display: none;">
+    <div id="metadatum-template" class="ui-grid-b">
+      <div class='ui-block-a'>
+        <%= text_field_tag 'metadata[][key]' %>
+      </div>
+      <div class='ui-block-b'>
+        <%= text_field_tag 'metadata[][value]' %>
+      </div>
+      <div class='ui-block-c'>
+        <%= link_to 'remove', "#", class: "remove_metadatum" %>
+      </div>
+    </div>
+  </div>
