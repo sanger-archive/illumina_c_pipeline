@@ -3,13 +3,19 @@ $(document).ready(function() {
   var id = $(".metadata").children().length+1;
 
   function add(){
+
       $('#metadatum-template').clone()
           .insertBefore(this)
           .attr("id", "metadatum" +  id)
           .on('click', '.remove_metadatum', remove)
           .find('input').attr('required', 'true');
 
+      $('#metadatum' +  id).find('select')
+          .attr('id', "metadata__key__" + id)
+      $('#metadata__key__'+id).selectmenu();
+
       id++
+
   };
 
   function remove(){
@@ -18,7 +24,7 @@ $(document).ready(function() {
 
   function keysDuplicated(){
       var stored  =   [];
-      var inputs  =   $('input[id^="metadata__key"');
+      var inputs  =   $('select[id^="metadata__key__"');
       var keysDup = false;
 
       $.each(inputs,function(k,v){

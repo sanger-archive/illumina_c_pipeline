@@ -6,7 +6,7 @@
   <div style="display: none;">
     <div id="metadatum-template" class="ui-grid-b">
       <div class='ui-block-a'>
-        <%= text_field_tag 'metadata[][key]' %>
+        <%= select_tag 'metadata[][key]', options_for_select(presenter.metadata_key_options), 'data-role' => 'none' %>
       </div>
       <div class='ui-block-b'>
         <%= text_field_tag 'metadata[][value]' %>

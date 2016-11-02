@@ -2,20 +2,9 @@
   <%= hidden_field_tag 'asset_id', presenter.labware.uuid %>
   <%= hidden_field_tag 'path', path %>
 
-  <%= render(partial: 'metadata/header', :locals => { :presenter => presenter}) %>
+  <%= render(partial: 'metadata/header', locals: { presenter: presenter}) %>
 
   <div class="metadata">
-    <div id="metadatum1" class="ui-grid-b">
-      <div class='ui-block-a'>
-        <%= text_field_tag 'metadata[][key]' %>
-      </div>
-      <div class='ui-block-b'>
-        <%= text_field_tag 'metadata[][value]' %>
-      </div>
-      <div class='ui-block-c'>
-        <%= link_to 'remove', "#", class: "remove_metadatum" %>
-      </div>
-    </div>
   </div>
 
   <%= render(partial: 'metadata/footer') %>

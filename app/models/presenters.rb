@@ -25,6 +25,10 @@ module Presenters
       @printer_limit ||= Settings.printers['limit']
     end
 
+    def metadata_key_options
+      @key_options ||= Settings.metadata_key_options
+    end
+
     def label_type
       nil
     end

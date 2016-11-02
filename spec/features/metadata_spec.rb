@@ -28,7 +28,7 @@ RSpec.describe "Show metadata in labware tab", type: :feature do
     Settings.request_types["Illumina-C Library Creation PCR"] = [ 'ILC AL Libs', true]
     Settings.purpose_uuids['ILC AL Libs'] = 'ilc-al-libs-uuid'
 
-    it "creates new metadata and shows it on page" do
+    it "creates new metadata and shows it on page", js: :true do
 
       visit search_path
       fill_in 'User Swipecard:', with: 'abcdef'
@@ -40,21 +40,23 @@ RSpec.describe "Show metadata in labware tab", type: :feature do
       click_link("Metadata")
 
       within('.metadata') do
-        expect(all('div[id^=metadatum]').count).to eq 1
+        expect(all('div[id^=metadatum]').count).to eq 0
       end
 
+      click_link("Add metadatum")
       within('#metadatum1') do
-        fill_in "metadata__key", with: "Key1"
+        #the element is visible but capybara does not see it (jquery mobile selectmenu() not run?)
+        select 'Key1', from: 'metadata__key__1', visible: false
         fill_in "metadata__value", with: "Value1"
       end
       click_link("Add metadatum")
       within('#metadatum2') do
-        fill_in "metadata__key", with: "Key2"
+        select 'Key2', from: 'metadata__key__2', visible: false
         fill_in "metadata__value", with: "Value2"
       end
       click_link("Add metadatum")
       within('#metadatum3') do
-        fill_in "metadata__key", with: "Key3"
+        select 'Key3', from: 'metadata__key__3', visible: false
         fill_in "metadata__value", with: "Value3"
       end
 
