@@ -73,6 +73,14 @@ RSpec.describe "Show metadata in labware tab", type: :feature do
         expect(all('div[id^=metadatum]').count).to eq 3
       end
 
+      within('#metadatum3') do
+        find(".remove_metadatum").click
+      end
+
+      within('.metadata') do
+        expect(all('div[id^=metadatum]').count).to eq 2
+      end
+
     end
 
   end

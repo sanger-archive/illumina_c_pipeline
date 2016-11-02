@@ -7,13 +7,13 @@
     <% presenter.labware.process_metadatum_collection.metadata.each_with_index do |metadatum, index| %>
       <div id="metadatum<%=index+1%>" class="ui-grid-b">
         <div class='ui-block-a'>
-          <%= select_tag 'metadata[][key]', options_for_select(presenter.metadata_key_options, metadatum[0]), id: "metadata__key__#{index+1}" %>
+          <%= select_tag 'metadata[][key]', options_for_select(presenter.metadata_key_options, metadatum[0]), id: "metadata__key__#{index+1}", 'data-mini'=>'true'  %>
         </div>
         <div class='ui-block-b'>
-          <%= text_field_tag 'metadata[][value]', metadatum[1]  %>
+          <%= text_field_tag 'metadata[][value]', metadatum[1],'data-mini'=>'true'  %>
         </div>
         <div class='ui-block-c'>
-          <%= link_to 'remove', "#", class: "remove_metadatum" %>
+          <%= link_to 'remove', "#", class: "remove_metadatum", 'data-role' => 'button', 'data-mini'=>'true', 'data-icon'=>"delete", 'data-iconpos'=>"notext" %>
         </div>
       </div>
     <%end%>

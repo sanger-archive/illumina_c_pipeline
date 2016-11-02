@@ -6,13 +6,13 @@
   <div style="display: none;">
     <div id="metadatum-template" class="ui-grid-b">
       <div class='ui-block-a'>
-        <%= select_tag 'metadata[][key]', options_for_select(presenter.metadata_key_options), 'data-role' => 'none' %>
+        <%= select_tag 'metadata[][key]', options_for_select(presenter.metadata_key_options), 'data-role' => 'none', 'data-mini'=>'true'  %>
       </div>
       <div class='ui-block-b'>
-        <%= text_field_tag 'metadata[][value]' %>
+        <%= text_field_tag 'metadata[][value]', nil, 'data-mini'=>'true' %>
       </div>
       <div class='ui-block-c'>
-        <%= link_to 'remove', "#", class: "remove_metadatum" %>
+        <%= link_to 'remove', "#", class: "remove_metadatum", 'data-role' => 'button', 'data-mini'=>'true', 'data-icon'=>"delete", 'data-iconpos'=>"notext" %>
       </div>
     </div>
   </div>
