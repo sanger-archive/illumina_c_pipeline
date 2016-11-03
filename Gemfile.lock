@@ -12,9 +12,9 @@ GIT
       savon (= 0.9.2)
 
 GIT
-  remote: git://github.com/proskurina/sequencescape-client-api.git
-  revision: 1785e2199de551b0e7e2926b9ce6fe6dd6dda28c
-  branch: ss534_add_metadata
+  remote: git://github.com/sanger/sequencescape-client-api.git
+  revision: d280d90340dc03f7ef64ff55ee0e9960bee574ab
+  branch: production
   specs:
     sequencescape-client-api (0.2.7)
       activemodel (~> 3.0.0)
@@ -247,7 +247,7 @@ DEPENDENCIES
   ruby-debug-base19x
   ruby-debug19
   sanger_barcode (>= 0.2.0)!
-  sequencescape-client-api (>= 0.2.7)!
+  sequencescape-client-api (>= 0.2.6)!
   state_machine (~> 1.0.1)
   thin
   webmock

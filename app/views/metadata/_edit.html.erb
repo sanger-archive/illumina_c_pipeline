@@ -1,7 +1,7 @@
 <%= form_tag(metadatum_path(presenter.labware.process_metadatum_collection.uuid), method: "put", id: 'metadata-form') do%>
   <%= hidden_field_tag 'path', path %>
 
-  <%= render(partial: 'metadata/header', locals: { presenter: @presenter}) %>
+  <%= render(partial: 'metadata/header', locals: { presenter: presenter}) %>
 
   <div class='metadata'>
     <% presenter.labware.process_metadatum_collection.metadata.each_with_index do |metadatum, index| %>
