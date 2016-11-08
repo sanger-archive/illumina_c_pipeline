@@ -38,7 +38,7 @@
             <%= render :partial => 'labware/tube', :locals => { :tube => @presenter.labware } %>
           </div>
           <div id="labware-metadata" class="scape-ui-block" style="display:none;">
-            <%= render(:partial => 'metadata/metadata_tab', locals: { presenter: @presenter, path: @path}) %>
+            <%= render(:partial => 'metadata/metadata_tab', locals: { presenter: @presenter }) %>
           </div>
         </div>
 

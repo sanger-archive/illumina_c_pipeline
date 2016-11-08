@@ -33,9 +33,14 @@ module Presenters
       nil
     end
 
-    def has_metadata
-      @labware.process_metadatum_collection.uuid
+    def metadata
+      @labware.custom_metadatum_collection.metadata
     end
+
+    def custom_metadatum_collection_uuid
+      @labware.custom_metadatum_collection.uuid
+    end
+    alias_method :has_metadata?, :custom_metadatum_collection_uuid
 
   end
 

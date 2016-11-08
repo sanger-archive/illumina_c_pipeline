@@ -146,11 +146,11 @@ Content-Type: application/json
       "read": "http://localhost:3000/projects"
     }
   },
-  "process_metadatum_collection": {
+  "custom_metadatum_collection": {
     "actions": {
-      "read": "http://localhost:3000/process_metadatum_collection",
-      "update": "http://localhost:3000/process_metadatum_collection",
-      "create": "http://localhost:3000/process_metadatum_collections"
+      "read": "http://localhost:3000/custom_metadatum_collection",
+      "update": "http://localhost:3000/custom_metadatum_collection",
+      "create": "http://localhost:3000/custom_metadatum_collections"
     }
   },
   "qc_decisions": {

@@ -1,7 +1,0 @@
-PUT /process-metadatum-collection-2-uuid HTTP/1.1
-Accept: application/json
-Content-Type: application/json
-Cookie: WTSISignOn=
-X-Sequencescape-Client-Id: testing
-
-{"process_metadatum_collection":{"metadata":{"Key1":"Value1","Key3":"Value3"}}}

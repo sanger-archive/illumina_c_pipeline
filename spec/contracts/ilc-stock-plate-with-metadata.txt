@@ -61,12 +61,12 @@ Content-Type: application/json
       "lifespan": null,
       "name": "ILC Stock"
     },
-    "process_metadatum_collection": {
+    "custom_metadatum_collection": {
       "actions": {
-        "read": "http://localhost:3000/process-metadatum-collection-uuid",
-        "update": "http://localhost:3000/process-metadatum-collection-uuid"
+        "read": "http://localhost:3000/custom-metadatum-collection-2-uuid",
+        "update": "http://localhost:3000/custom-metadatum-collection-2-uuid"
       },
-      "uuid": "process-metadatum-collection-uuid"
+      "uuid": "custom-metadatum-collection-2-uuid"
     },
     "actions": {
       "read": "http://localhost:3000/ilc-stock-plate-with-metadata-uuid"

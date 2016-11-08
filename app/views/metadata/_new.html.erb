@@ -1,6 +1,5 @@
 <%= form_tag(metadata_path, method: "post", id: 'metadata-form') do%>
   <%= hidden_field_tag 'asset_id', presenter.labware.uuid %>
-  <%= hidden_field_tag 'path', path %>
 
   <%= render(partial: 'metadata/header', locals: { presenter: presenter}) %>
 

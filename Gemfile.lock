@@ -12,9 +12,9 @@ GIT
       savon (= 0.9.2)
 
 GIT
-  remote: git://github.com/sanger/sequencescape-client-api.git
-  revision: d280d90340dc03f7ef64ff55ee0e9960bee574ab
-  branch: production
+  remote: git://github.com/proskurina/sequencescape-client-api.git
+  revision: f231ab8d4a552c2cd2bfe0dd0fbf2cdf245a32ae
+  branch: ss534_add_metadata
   specs:
     sequencescape-client-api (0.2.7)
       activemodel (~> 3.0.0)
