@@ -214,6 +214,13 @@ namespace :config do
         printers['default_count'] = 2
       end
 
+      configuration[:metadata_key_options] = [
+        'example 1',
+        'example 2',
+        'example 3',
+        'example 4'
+      ]
+
     end
 
 
