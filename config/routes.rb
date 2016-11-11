@@ -32,7 +32,7 @@ IlluminaCPipeline::Application.routes.draw do
   end
 
   resources :tag_plates, only: :show
-
+  resources :multiple_target_state_change, only: :create
   resources :metadata
 
   # This is a hack untill I get tube coercion working

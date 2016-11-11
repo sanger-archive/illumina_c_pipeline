@@ -85,7 +85,7 @@ module ContractHelper
       stub_request_from("retrieve-#{contract_name}") { response(contract_name, num) }
     end
 
-   def has_a_working_api(num=1)
+    def has_a_working_api(num=1)
       stub_request_from('retrieve-api-root') { response('api-root', num) }
       let(:api) do
         Sequencescape::Api.new(
