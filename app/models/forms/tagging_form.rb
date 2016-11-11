@@ -2,15 +2,28 @@ module Forms
   class TaggingForm < CreationForm
     include Forms::Form::CustomPage
 
+    DEFAULT_WALKING_BY = ["manual by plate","manual by pool","wells of plate"]
+    MULTI_TAGGING_STRATEGIES = ['as group by plate']
+
     write_inheritable_attribute :page, 'tagging'
     write_inheritable_attribute :attributes, [
       :direction, :walking_by, :api, :purpose_uuid,
       :parent_uuid, :tag_group_uuid, :user_uuid,
       :substitutions, :offset, :tag_start,
-      :tag2_tube_barcode, :tag2_tube
+      :tag2_tube_barcode, :tag2_tube, :tags_per_well
     ]
 
     validates_presence_of *(self.attributes - [:substitutions,:tag2_tube_barcode,:tag2_tube])
+
+    validate :walking_by, inclusion: { in: MULTI_TAGGING_STRATEGIES }, if: :multiple_tags_per_well?
+    validate :absense_of_substitutions, if: :multiple_tags_per_well?
+
+    # Update to actual validator when rails updates
+    def absense_of_substitutions
+      return true if substitutions.blank?
+      errors.add(:substitutions,'are not supported with multiple tags per well')
+      false
+    end
 
     class InvalidTagLayout < StandardError; end
 
@@ -199,8 +212,17 @@ module Forms
       tag2s.values.flatten.map(&:name)
     end
 
-    def tags_per_well
+    def available_tags_per_well
       Settings.purposes[purpose_uuid].fetch('tags_per_well',[1])
+    end
+
+    def multiple_tags_per_well?
+      tags_per_well.to_i > 1
+    end
+
+    def available_walking_by
+      awb = Settings.purposes[purpose_uuid].fetch('walking_by',DEFAULT_WALKING_BY)
+      awb.map {|walking_by| [I18n.t(walking_by,scope:'walking_by'),walking_by] }
     end
 
     def available_tag2s
@@ -231,13 +253,14 @@ module Forms
       create_plate! do |plate|
 
         api.tag_layout.create!(
-          :user        => user_uuid,
-          :plate       => plate.uuid,
-          :tag_group   => tag_group_uuid,
-          :direction   => direction,
-          :walking_by  => walking_by,
-          :initial_tag => tag_start,
-          :substitutions => substitutions
+          user:          user_uuid,
+          plate:         plate.uuid,
+          tag_group:     tag_group_uuid,
+          direction:     direction,
+          walking_by:    walking_by,
+          initial_tag:   tag_start,
+          substitutions: substitutions,
+          tags_per_well: tags_per_well.to_i
         )
 
         return true unless tag2_tube_barcode.present?

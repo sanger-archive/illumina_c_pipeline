@@ -54,9 +54,12 @@ class CreationController < ApplicationController
 
     respond_to do |format|
       format.html do
+        alert = [ "Cannot create the plate: #{exception.message}"]
+        alert.concat << exception.resource.errors.full_messages.join('; ') if exception.respond_to?(:resource)
+
         redirect_to(
           illumina_c_plate_path(@creation_form.parent),
-          :alert => [ "Cannot create the plate: #{exception.message}", *exception.resource.errors.full_messages ]
+          :alert => alert
         )
       end
     end

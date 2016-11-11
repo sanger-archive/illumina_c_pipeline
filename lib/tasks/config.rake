@@ -94,6 +94,10 @@ namespace :config do
         # Used by tagging form.  Determines values of tags per
         # well dropdown/fixed field. Defaults to 1 if not defined.
 
+        # :walking_by [Optional]
+        # Filter the available walking by options.
+        # default: ['manual by plate', 'manual by pool', 'wells of plate']
+
         #
         # The inner block is laid out so that the class names align, not so it's readable!
         name_to_details = Hash.new do |h,k|
@@ -133,7 +137,8 @@ namespace :config do
               'Chromium Single Cell'
              ],
             :presenter_class      => 'Presenters::QCTaggedPresenter',
-            :tags_per_well        => [4]
+            :tags_per_well        => [4],
+            :walking_by           => ['as group by plate']
           )
           presenters['ILC Lib Pool Norm'].merge!(
             :form_class           => 'Forms::TubesForm',

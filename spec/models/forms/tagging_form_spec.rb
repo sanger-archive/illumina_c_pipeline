@@ -86,15 +86,23 @@ describe Forms::TaggingForm do
     end
 
     context 'with no tag_per_well defined' do
-      it 'returns [1] for tags_per_well' do
-        expect(tagging_form.tags_per_well).to eq([1])
+      it 'returns [1] for available_tags_per_well' do
+        expect(tagging_form.available_tags_per_well).to eq([1])
+      end
+      it "returns the default array for available_walking_by" do
+        expect(tagging_form.available_walking_by).to eq([["By Plate [Sequential Numbering]","manual by plate"],
+              ["By Pool","manual by pool"],
+              ["By Plate [Fixed numbering]","wells of plate"]])
       end
     end
 
     context 'with tags_per_well defined' do
-      let(:purpose_config) { {'tags_per_well'=>[4] } }
-      it 'returns [4] for tags_per_well' do
-        expect(tagging_form.tags_per_well).to eq([4])
+      let(:purpose_config) { {'tags_per_well'=>[4], 'walking_by' => ['as group by plate'] } }
+      it 'returns [4] for available_tags_per_well' do
+        expect(tagging_form.available_tags_per_well).to eq([4])
+      end
+      it "returns ['Apply multiple tags','as group by plate'] for available_walking_by" do
+        expect(tagging_form.available_walking_by).to eq([['Apply multiple tags','as group by plate']])
       end
     end
 
@@ -153,7 +161,8 @@ describe Forms::TaggingForm do
           :offset=>"0",
           :tag_start=>"1",
           :api       => api,
-          :user_uuid => "user-uuid"
+          :user_uuid => "user-uuid",
+          :tags_per_well=>"1"
         )
       }
 
@@ -188,6 +197,54 @@ describe Forms::TaggingForm do
       end
     end
 
+    context "With multiple tags per well" do
+
+      let(:tagging_form) {
+        Forms::TaggingForm.new(
+          :purpose_uuid=>"ilc-al-libs-tagged-uuid",
+          :parent_uuid=>"ilc-stock-plate-uuid",
+          :tag_group_uuid=>"tag-group-uuid",
+          :walking_by=>"manual by plate",
+          :direction=>"column",
+          :offset=>"0",
+          :tag_start=>"1",
+          :api       => api,
+          :user_uuid => "user-uuid",
+          :tags_per_well=>"4"
+        )
+      }
+
+      it 'can be created' do
+        expect(tagging_form).to be_a Forms::TaggingForm
+      end
+
+      it 'renders the "tagging" page' do
+        controller = CreationController.new
+        expect(controller).to receive(:render).with('tagging')
+        tagging_form.render(controller)
+      end
+
+      context 'on save!' do
+        # Create the al-libs-tagged plate
+        stub_request_and_response('plate-creation-ilc-al-libs-tagged')
+        # Fetch the custom transfer template
+        stub_request_and_response('custom-plate-transfer-template')
+        # Then create a new transfer using it
+        stub_request_and_response('custom-plate-transfer-to-ilc-al-libs-tagged')
+        # Apply the tag-group to the whole plate with no offset, starting at 1, 4 tags per well
+        stub_request_and_response('tag-layout-creation-b')
+
+        it 'creates a tag plate' do
+          tagging_form.save!
+        end
+
+        it 'has the correct child (and uuid)' do
+          tagging_form.save!
+          expect(tagging_form.child.uuid).to eq('ilc-al-libs-tagged-plate-uuid')
+        end
+      end
+    end
+
     context "With tag 2" do
 
       let(:tagging_form) {
@@ -202,7 +259,8 @@ describe Forms::TaggingForm do
           :api       => api,
           :user_uuid => "user-uuid",
           :tag2_tube_barcode => "tag2-tube-barcode",
-          :tag2_tube => { :asset_uuid => "tag-2-tube-uuid", :template_uuid => "tag-2-template-uuid" }
+          :tag2_tube => { :asset_uuid => "tag-2-tube-uuid", :template_uuid => "tag-2-template-uuid" },
+          :tags_per_well=>"1"
         )
       }
 

@@ -211,6 +211,19 @@
 
     var viewModel = new SCAPE.PlateViewModel(plate, plateElement, control);
 
+    $('.aliquot').each(function() {
+      if ($(this).children().length < 2) { return; }
+
+      var aliquot = this;
+
+      this.slide = function() {
+        aliquot.appendChild( aliquot.children[0] );
+        window.setTimeout(aliquot.slide,1000);
+      };
+
+      this.slide();
+    })
+
 
 
     control.on('change', 'input:radio', function(event){
@@ -659,7 +672,7 @@
       },
 
       rearray : function() {
-        var offset,tags, onComplete, noTag, start_tag, byPlate, tagFor, byColumn, walkProcess;
+        var offset,tags, onComplete, noTag, start_tag, byPlate, tagFor, byColumn, walkProcess,tags_per_well;
         offset = parseInt($('#plate_offset').val(), 10);
         byColumn = ($('#plate_direction').val()==='column');
 
@@ -669,6 +682,7 @@
         tags = $(SCAPE.tags_by_name[$('#plate_tag_group_uuid option:selected').text()])
         onComplete = SCAPE.validLayout;
         start_tag = parseInt($('#plate_tag_start').val(), 10);
+        tags_per_well = parseInt($('#plate_tags_per_well').val(), 10);
 
         walkProcess = $('#plate_walking_by').val()
 
@@ -693,8 +707,11 @@
             case 'manual by pool':
               tag_index = position+start_tag;
               break;
+            case 'as group by plate':
+              tag_index = well_index * tags_per_well + start_tag;
+              return (tags[tag_index]||noTag())+'..';
             default:
-              alert('Unknown tagging strategy');
+              alert('Unknown tagging strategy: ' + walkProcess);
               break;
           }
           return tags[tag_index]||noTag();

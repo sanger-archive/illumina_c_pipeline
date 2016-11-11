@@ -4,4 +4,4 @@ Content-Type: application/json
 Cookie: WTSISignOn=
 X-Sequencescape-Client-Id: testing
 
-{"tag_layout":{"tag_group":"tag-group-uuid","direction":"column","walking_by":"manual by plate","initial_tag":"1","substitutions":null,"user":"user-uuid","plate":"ilc-al-libs-tagged-plate-uuid"}}
+{"tag_layout":{"tag_group":"tag-group-uuid","direction":"column","walking_by":"manual by plate","initial_tag":"1","substitutions":null,"tags_per_well":1,"user":"user-uuid","plate":"ilc-al-libs-tagged-plate-uuid"}}
