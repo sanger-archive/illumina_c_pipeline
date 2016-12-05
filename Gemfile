@@ -10,7 +10,7 @@ gem 'exception_notification'
 
 gem 'sequencescape-client-api', '>=0.2.9',
   :github  => 'sanger/sequencescape-client-api',
-  :branch  => 'next_release',
+  :branch  => 'production',
   :require => 'sequencescape'
 gem 'sanger_barcode', '>= 0.2.0',
   :git     => 'git+ssh://git@github.com/sanger/sanger_barcode.git'
