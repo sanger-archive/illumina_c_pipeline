@@ -3,11 +3,11 @@ module Presenters
 
     class_inheritable_reader    :authenticated_tab_states
     write_inheritable_attribute :authenticated_tab_states, {
-        :pending     => [ 'labware-summary-button', 'labware-state-button' ],
-        :started     => [ 'labware-summary-button', 'labware-state-button' ],
-        :passed      => [ 'labware-summary-button', 'labware-state-button' ],
-        :cancelled   => [ 'labware-summary-button' ],
-        :failed      => [ 'labware-summary-button' ]
+        :pending     => [ 'labware-summary-button', 'labware-state-button', 'labware-metadata-button' ],
+        :started     => [ 'labware-summary-button', 'labware-state-button', 'labware-metadata-button' ],
+        :passed      => [ 'labware-summary-button', 'labware-state-button', 'labware-metadata-button' ],
+        :cancelled   => [ 'labware-summary-button', 'labware-metadata-button' ],
+        :failed      => [ 'labware-summary-button', 'labware-metadata-button' ]
     }
 
     write_inheritable_attribute :has_qc_data?, true

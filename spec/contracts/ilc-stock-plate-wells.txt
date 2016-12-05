@@ -1,0 +1,3433 @@
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "actions": {
+    "read": "http://localhost:3000/ilc-stock-plate-uuid/wells/1",
+    "first": "http://localhost:3000/ilc-stock-plate-uuid/wells/1",
+    "last": "http://localhost:3000/ilc-stock-plate-uuid/wells/1"
+  },
+  "size": 30,
+  "wells": [
+    {
+      "created_at": "2016-01-21 16:07:44 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-1-uuid"
+      },
+      "uuid": "well-1-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:46 +0000",
+          "updated_at": "2016-01-21 16:07:46 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:35 +0000",
+            "updated_at": "2016-01-13 11:43:58 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-1-uuid"
+            },
+            "uuid": "sample-1-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_1",
+              "resubmitted": false,
+              "sample_id": "sample_1"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "21.4",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "60"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "GSA1",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Onychomys torridus",
+              "id": 38674,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "A1",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:44 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-2-uuid"
+      },
+      "uuid": "well-2-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:47 +0000",
+          "updated_at": "2016-01-21 16:07:47 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:35 +0000",
+            "updated_at": "2016-01-13 11:43:58 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-2-uuid"
+            },
+            "uuid": "sample-2-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_2",
+              "resubmitted": false,
+              "sample_id": "sample_2"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "14.1",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "60"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "GDP2",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Onychomys torridus",
+              "id": 38674,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "A2",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:45 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-3-uuid"
+      },
+      "uuid": "well-3-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:48 +0000",
+          "updated_at": "2016-01-21 16:07:48 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:35 +0000",
+            "updated_at": "2016-01-13 11:43:58 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-3-uuid"
+            },
+            "uuid": "sample-3-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_3",
+              "resubmitted": false,
+              "sample_id": "sample_3"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "22.2",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "60"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "SP1",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Mus musculus",
+              "id": 10090,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "A3",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:45 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-4-uuid"
+      },
+      "uuid": "well-4-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:49 +0000",
+          "updated_at": "2016-01-21 16:07:49 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:36 +0000",
+            "updated_at": "2016-01-13 11:43:59 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-4-uuid"
+            },
+            "uuid": "sample-4-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_4",
+              "resubmitted": false,
+              "sample_id": "sample_4"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "17.9",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "60"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "B2",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Mus musculus",
+              "id": 10090,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "A4",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:44 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-5-uuid"
+      },
+      "uuid": "well-5-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:46 +0000",
+          "updated_at": "2016-01-21 16:07:46 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:35 +0000",
+            "updated_at": "2016-01-13 11:43:58 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-5-uuid"
+            },
+            "uuid": "sample-5-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_5",
+              "resubmitted": false,
+              "sample_id": "sample_5"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "25.6",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "60"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "GSP1",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Onychomys torridus",
+              "id": 38674,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "B1",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:44 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-6-uuid"
+      },
+      "uuid": "well-6-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:47 +0000",
+          "updated_at": "2016-01-21 16:07:47 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:35 +0000",
+            "updated_at": "2016-01-13 11:43:58 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-6-uuid"
+            },
+            "uuid": "sample-6-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_6",
+              "resubmitted": false,
+              "sample_id": "sample_6"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "142",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "120"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "GB2",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Onychomys torridus",
+              "id": 38674,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "B2",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:45 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-7-uuid"
+      },
+      "uuid": "well-7-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:48 +0000",
+          "updated_at": "2016-01-21 16:07:48 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:35 +0000",
+            "updated_at": "2016-01-13 11:43:58 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-7-uuid"
+            },
+            "uuid": "sample-7-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_7",
+              "resubmitted": false,
+              "sample_id": "sample_7"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "14.6",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "60"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "DA1",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Mus musculus",
+              "id": 10090,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "B3",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:45 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-8-uuid"
+      },
+      "uuid": "well-8-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:49 +0000",
+          "updated_at": "2016-01-21 16:07:49 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:36 +0000",
+            "updated_at": "2016-01-13 11:43:59 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-8-uuid"
+            },
+            "uuid": "sample-8-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_8",
+              "resubmitted": false,
+              "sample_id": "sample_8"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "14",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "120"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "SA3",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Mus musculus",
+              "id": 10090,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "B4",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:44 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-9-uuid"
+      },
+      "uuid": "well-9-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:46 +0000",
+          "updated_at": "2016-01-21 16:07:46 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:35 +0000",
+            "updated_at": "2016-01-13 11:43:58 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-9-uuid"
+            },
+            "uuid": "sample-9-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_9",
+              "resubmitted": false,
+              "sample_id": "sample_9"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "14",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "60"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "GDA1",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Onychomys torridus",
+              "id": 38674,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "C1",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:44 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-10-uuid"
+      },
+      "uuid": "well-10-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:47 +0000",
+          "updated_at": "2016-01-21 16:07:47 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:35 +0000",
+            "updated_at": "2016-01-13 11:43:58 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-10-uuid"
+            },
+            "uuid": "sample-10-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_10",
+              "resubmitted": false,
+              "sample_id": "sample_10"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "9.2",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "120"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "GSA3",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Onychomys torridus",
+              "id": 38674,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "C2",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:45 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-11-uuid"
+      },
+      "uuid": "well-11-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:48 +0000",
+          "updated_at": "2016-01-21 16:07:48 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:35 +0000",
+            "updated_at": "2016-01-13 11:43:58 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-11-uuid"
+            },
+            "uuid": "sample-11-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_11",
+              "resubmitted": false,
+              "sample_id": "sample_11"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "15.8",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "60"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "DP1",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Mus musculus",
+              "id": 10090,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "C3",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:45 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-12-uuid"
+      },
+      "uuid": "well-12-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:49 +0000",
+          "updated_at": "2016-01-21 16:07:49 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:36 +0000",
+            "updated_at": "2016-01-13 11:43:59 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-12-uuid"
+            },
+            "uuid": "sample-12-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_12",
+              "resubmitted": false,
+              "sample_id": "sample_12"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "13.7",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "120"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "SP3",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Mus musculus",
+              "id": 10090,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "C4",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:44 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-13-uuid"
+      },
+      "uuid": "well-13-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:46 +0000",
+          "updated_at": "2016-01-21 16:07:46 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:35 +0000",
+            "updated_at": "2016-01-13 11:43:58 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-13-uuid"
+            },
+            "uuid": "sample-13-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_13",
+              "resubmitted": false,
+              "sample_id": "sample_13"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "33.8",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "60"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "GDP1",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Onychomys torridus",
+              "id": 38674,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "D1",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:44 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-14-uuid"
+      },
+      "uuid": "well-14-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:47 +0000",
+          "updated_at": "2016-01-21 16:07:47 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:35 +0000",
+            "updated_at": "2016-01-13 11:43:58 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-14-uuid"
+            },
+            "uuid": "sample-14-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_14",
+              "resubmitted": false,
+              "sample_id": "sample_14"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "12.7",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "120"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "GSP3",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Onychomys torridus",
+              "id": 38674,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "D2",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:45 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-15-uuid"
+      },
+      "uuid": "well-15-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:48 +0000",
+          "updated_at": "2016-01-21 16:07:48 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:35 +0000",
+            "updated_at": "2016-01-13 11:43:58 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-15-uuid"
+            },
+            "uuid": "sample-15-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_15",
+              "resubmitted": false,
+              "sample_id": "sample_15"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "25.2",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "60"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "B1",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Mus musculus",
+              "id": 10090,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "D3",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:45 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-16-uuid"
+      },
+      "uuid": "well-16-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:49 +0000",
+          "updated_at": "2016-01-21 16:07:49 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:36 +0000",
+            "updated_at": "2016-01-13 11:43:59 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-16-uuid"
+            },
+            "uuid": "sample-16-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_16",
+              "resubmitted": false,
+              "sample_id": "sample_16"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "5.1",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "120"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "DA3",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Mus musculus",
+              "id": 10090,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "D4",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:44 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-17-uuid"
+      },
+      "uuid": "well-17-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:46 +0000",
+          "updated_at": "2016-01-21 16:07:46 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:35 +0000",
+            "updated_at": "2016-01-13 11:43:58 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-17-uuid"
+            },
+            "uuid": "sample-17-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_17",
+              "resubmitted": false,
+              "sample_id": "sample_17"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "52.2",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "60"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "GB1",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Onychomys torridus",
+              "id": 38674,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "E1",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:44 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-18-uuid"
+      },
+      "uuid": "well-18-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:47 +0000",
+          "updated_at": "2016-01-21 16:07:47 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:35 +0000",
+            "updated_at": "2016-01-13 11:43:58 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-18-uuid"
+            },
+            "uuid": "sample-18-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_18",
+              "resubmitted": false,
+              "sample_id": "sample_18"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "6.3",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "120"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "GDA3",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Onychomys torridus",
+              "id": 38674,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "E2",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:45 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-19-uuid"
+      },
+      "uuid": "well-19-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:48 +0000",
+          "updated_at": "2016-01-21 16:07:48 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:35 +0000",
+            "updated_at": "2016-01-13 11:43:58 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-19-uuid"
+            },
+            "uuid": "sample-19-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_19",
+              "resubmitted": false,
+              "sample_id": "sample_19"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "13.2",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "120"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "SA2",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Mus musculus",
+              "id": 10090,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "E3",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:45 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-20-uuid"
+      },
+      "uuid": "well-20-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:49 +0000",
+          "updated_at": "2016-01-21 16:07:49 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:36 +0000",
+            "updated_at": "2016-01-13 11:43:59 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-20-uuid"
+            },
+            "uuid": "sample-20-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_20",
+              "resubmitted": false,
+              "sample_id": "sample_20"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "12.8",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "120"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "DP3",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Mus musculus",
+              "id": 10090,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "E4",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:44 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-21-uuid"
+      },
+      "uuid": "well-21-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:47 +0000",
+          "updated_at": "2016-01-21 16:07:47 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:35 +0000",
+            "updated_at": "2016-01-13 11:43:58 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-21-uuid"
+            },
+            "uuid": "sample-21-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_21",
+              "resubmitted": false,
+              "sample_id": "sample_21"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "16.9",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "60"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "GSA2",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Onychomys torridus",
+              "id": 38674,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "F1",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:44 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-22-uuid"
+      },
+      "uuid": "well-22-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:47 +0000",
+          "updated_at": "2016-01-21 16:07:47 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:35 +0000",
+            "updated_at": "2016-01-13 11:43:58 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-22-uuid"
+            },
+            "uuid": "sample-22-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_22",
+              "resubmitted": false,
+              "sample_id": "sample_22"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "8.3",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "120"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "GDP3",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Onychomys torridus",
+              "id": 38674,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "F2",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:45 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-23-uuid"
+      },
+      "uuid": "well-23-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:48 +0000",
+          "updated_at": "2016-01-21 16:07:48 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:35 +0000",
+            "updated_at": "2016-01-13 11:43:59 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-23-uuid"
+            },
+            "uuid": "sample-23-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_23",
+              "resubmitted": false,
+              "sample_id": "sample_23"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "4.6",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "120"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "SP2",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Mus musculus",
+              "id": 10090,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "F3",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:45 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-24-uuid"
+      },
+      "uuid": "well-24-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:49 +0000",
+          "updated_at": "2016-01-21 16:07:49 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:36 +0000",
+            "updated_at": "2016-01-13 11:43:59 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-24-uuid"
+            },
+            "uuid": "sample-24-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_24",
+              "resubmitted": false,
+              "sample_id": "sample_24"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "110",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "120"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "B3",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Mus musculus",
+              "id": 10090,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "F4",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:44 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-25-uuid"
+      },
+      "uuid": "well-25-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:47 +0000",
+          "updated_at": "2016-01-21 16:07:47 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:35 +0000",
+            "updated_at": "2016-01-13 11:43:58 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-25-uuid"
+            },
+            "uuid": "sample-25-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_25",
+              "resubmitted": false,
+              "sample_id": "sample_25"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "23",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "60"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "GSP2",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Onychomys torridus",
+              "id": 38674,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "G1",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:45 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-26-uuid"
+      },
+      "uuid": "well-26-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:48 +0000",
+          "updated_at": "2016-01-21 16:07:48 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:35 +0000",
+            "updated_at": "2016-01-13 11:43:58 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-26-uuid"
+            },
+            "uuid": "sample-26-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_26",
+              "resubmitted": false,
+              "sample_id": "sample_26"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "100",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "120"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "GB3",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Onychomys torridus",
+              "id": 38674,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "G2",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:45 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-27-uuid"
+      },
+      "uuid": "well-27-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:48 +0000",
+          "updated_at": "2016-01-21 16:07:48 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:36 +0000",
+            "updated_at": "2016-01-13 11:43:59 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-27-uuid"
+            },
+            "uuid": "sample-27-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_27",
+              "resubmitted": false,
+              "sample_id": "sample_27"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "5.7",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "120"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "DA2",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Mus musculus",
+              "id": 10090,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "G3",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:44 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-28-uuid"
+      },
+      "uuid": "well-28-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:47 +0000",
+          "updated_at": "2016-01-21 16:07:47 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:35 +0000",
+            "updated_at": "2016-01-13 11:43:58 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-28-uuid"
+            },
+            "uuid": "sample-28-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_28",
+              "resubmitted": false,
+              "sample_id": "sample_28"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "11.8",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "60"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "GDA2",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Onychomys torridus",
+              "id": 38674,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "H1",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:45 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-29-uuid"
+      },
+      "uuid": "well-29-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:48 +0000",
+          "updated_at": "2016-01-21 16:07:48 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:35 +0000",
+            "updated_at": "2016-01-13 11:43:58 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-29-uuid"
+            },
+            "uuid": "sample-29-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_29",
+              "resubmitted": false,
+              "sample_id": "sample_29"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "46.3",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "60"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "SA1",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Mus musculus",
+              "id": 10090,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "H2",
+      "state": "passed"
+    },
+    {
+      "created_at": "2016-01-21 16:07:45 +0000",
+      "updated_at": "2016-01-21 16:08:28 +0000",
+      "plate": {
+        "actions": {
+          "read": "http://localhost:3000/ilc-stock-plate-uuid"
+        },
+        "uuid": "ilc-stock-plate-uuid"
+      },
+      "actions": {
+        "read": "http://localhost:3000/well-30-uuid"
+      },
+      "uuid": "well-30-uuid",
+      "aliquots": [
+        {
+          "created_at": "2016-01-21 16:07:49 +0000",
+          "updated_at": "2016-01-21 16:07:49 +0000",
+          "bait_library": null,
+          "insert_size": {},
+          "sample": {
+            "created_at": "2015-12-04 14:25:36 +0000",
+            "updated_at": "2016-01-13 11:43:59 +0000",
+            "actions": {
+              "read": "http://localhost:3000/sample-30-uuid"
+            },
+            "uuid": "sample-30-uuid",
+            "data_release": {
+              "accession_number": null,
+              "description": null,
+              "managed": {
+                "disease": null,
+                "subject": null,
+                "treatment": null
+              },
+              "metagenomics": {
+                "age": null,
+                "cell_type": null,
+                "compound": null,
+                "developmental_stage": null,
+                "disease": null,
+                "disease_state": null,
+                "dose": null,
+                "genotype": null,
+                "growth_condition": null,
+                "immunoprecipitate": null,
+                "organism_part": null,
+                "phenotype": null,
+                "rnai": null,
+                "subject": null,
+                "time_point": null,
+                "treatment": null
+              },
+              "public_name": null,
+              "sample_type": null,
+              "visibility": null
+            },
+            "family": {
+              "father": null,
+              "mother": null,
+              "replicate": null,
+              "sibling": null
+            },
+            "reference": {
+              "genome": "Not suitable for alignment"
+            },
+            "sanger": {
+              "description": null,
+              "name": "sample_30",
+              "resubmitted": false,
+              "sample_id": "sample_30"
+            },
+            "source": {
+              "cohort": null,
+              "control": false,
+              "country": null,
+              "dna_source": "Tissue",
+              "ethnicity": null,
+              "region": null
+            },
+            "supplier": {
+              "collection": {
+                "date": null
+              },
+              "extraction": {
+                "date": null,
+                "method": null
+              },
+              "measurements": {
+                "concentration": "15.8",
+                "concentration_determined_by": null,
+                "gc_content": null,
+                "gender": null,
+                "volume": "120"
+              },
+              "purification": {
+                "method": null,
+                "purified": null
+              },
+              "sample_name": "DP2",
+              "storage_conditions": null
+            },
+            "taxonomy": {
+              "common_name": "Mus musculus",
+              "id": 10090,
+              "organism": null,
+              "strain": null
+            }
+          },
+          "tag": {}
+        }
+      ],
+      "location": "H3",
+      "state": "passed"
+    }
+  ]
+}

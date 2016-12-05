@@ -1,0 +1,30 @@
+HTTP/1.1 201 OK
+Content-Type: application/json
+
+{
+  "plate_creation": {
+    "actions": {
+      "read": "http://localhost:3000/plate-creation-ilc-al-libs-tagged-uuid"
+    },
+    "parent": {
+      "actions": {
+        "read": "http://localhost:3000/ilc-stock-plate-uuid"
+      },
+      "uuid":"ilc-stock-plate-uuid"
+    },
+    "child": {
+      "actions": {
+        "read": "http://localhost:3000/ilc-al-libs-tagged-plate-uuid"
+      },
+      "uuid":"ilc-al-libs-tagged-plate-uuid"
+    },
+    "child_purpose": {
+      "actions": {
+        "read": "http://localhost:3000/ilc-al-libs-tagged-uuid"
+      },
+      "uuid":"ilc-al-libs-tagged-uuid"
+    },
+
+    "uuid": "plate-creation-ilc-al-libs-tagged-uuid"
+  }
+}

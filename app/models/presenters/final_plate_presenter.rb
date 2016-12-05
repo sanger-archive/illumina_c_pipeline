@@ -10,12 +10,12 @@ module Presenters
     write_inheritable_attribute :additional_creation_partial, 'labware/plates/child_tube_creation'
 
     write_inheritable_attribute :authenticated_tab_states, {
-      :pending     =>  [ 'labware-summary-button', 'labware-state-button'                                                   ],
-      :started     =>  [ 'labware-summary-button', 'labware-state-button'                                                   ],
-      :passed      =>  [ 'labware-summary-button', 'labware-state-button', 'labware-creation-button', 'well-failing-button' ],
-      :qc_complete =>  [ 'labware-summary-button', 'labware-state-button' ],
-      :cancelled   =>  [ 'labware-summary-button' ],
-      :failed      =>  [ 'labware-summary-button' ]
+      :pending     =>  [ 'labware-summary-button', 'labware-state-button', 'labware-metadata-button' ],
+      :started     =>  [ 'labware-summary-button', 'labware-state-button', 'labware-metadata-button' ],
+      :passed      =>  [ 'labware-summary-button', 'labware-state-button', 'labware-creation-button', 'well-failing-button', 'labware-metadata-button' ],
+      :qc_complete =>  [ 'labware-summary-button', 'labware-state-button', 'labware-metadata-button' ],
+      :cancelled   =>  [ 'labware-summary-button', 'labware-metadata-button' ],
+      :failed      =>  [ 'labware-summary-button', 'labware-metadata-button' ]
     }
 
     write_inheritable_attribute :printing_partial, 'labware/plates/tube_printing'

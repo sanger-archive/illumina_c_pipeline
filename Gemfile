@@ -8,7 +8,7 @@ gem 'state_machine', '~>1.0.1'
 gem 'hashie', '~>1.0.0'
 gem 'exception_notification'
 
-gem 'sequencescape-client-api', '>=0.2.6',
+gem 'sequencescape-client-api', '>=0.2.9',
   :github  => 'sanger/sequencescape-client-api',
   :branch  => 'production',
   :require => 'sequencescape'
@@ -19,15 +19,25 @@ gem 'sanger_barcode', '>= 0.2.0',
 # put test-only gems in this group so their generators
 # and rake tasks are available in development mode:
 group :test do
-  gem 'capybara'
-  gem 'cucumber-rails', :require => false
   gem 'launchy'
+  gem 'rspec-rails'
+  gem 'webmock'
+
+  gem 'capybara'
+  gem 'phantomjs'
+  gem 'poltergeist'
 end
+
 group :development do
   gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'ruby-debug-base19x'
+  gem 'pry'
 end
 
 group :deployment do
   gem 'thin'
   gem "psd_logger", :git => "git+ssh://git@github.com/sanger/psd_logger.git"
+  # Due to guar changes, can likely be fied with ruby updates
+  gem "rspec-legacy_formatters"
+  gem 'guard-rspec', require: false
 end

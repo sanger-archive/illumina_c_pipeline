@@ -1,0 +1,234 @@
+HTTP/1.1 301 OK
+Content-Type: application/json
+
+{
+  "plate": {
+    "created_at": "2016-09-28 09:42:08 +0100",
+    "updated_at": "2016-09-28 09:42:08 +0100",
+    "comments": {
+      "size": 0,
+      "actions": {
+        "read": "http://localhost:3000/ilc-stock-plate-uuid/comments",
+        "create": "http://localhost:3000/ilc-stock-plate-uuid/comments"
+      }
+    },
+    "wells": {
+      "size": 96,
+      "actions": {
+        "read": "http://localhost:3000/ilc-stock-plate-uuid/wells"
+      }
+    },
+    "submission_pools": {
+      "size": 3,
+      "actions": {
+        "read": "http://localhost:3000/ilc-stock-plate-uuid/submission_pools"
+      }
+    },
+    "requests": {
+      "size": 0,
+      "actions": {
+        "read": "http://localhost:3000/ilc-stock-plate-uuid/requests"
+      }
+    },
+    "qc_files": {
+      "size": 0,
+      "actions": {
+        "read": "http://localhost:3000/ilc-stock-plate-uuid/qc_files",
+        "create": "http://localhost:3000/ilc-stock-plate-uuid/qc_files"
+      }
+    },
+    "source_transfers": {
+      "size": 0,
+      "actions": {
+        "read": "http://localhost:3000/ilc-stock-plate-uuid/source_transfers"
+      }
+    },
+    "transfers_to_tubes": {
+      "size": 0,
+      "actions": {
+        "read": "http://localhost:3000/ilc-stock-plate-uuid/transfers_to_tubes"
+      }
+    },
+    "creation_transfers": {
+      "size": 0,
+      "actions": {
+        "read": "http://localhost:3000/ilc-stock-plate-uuid/creation_transfers"
+      }
+    },
+    "plate_purpose": {
+      "actions": {
+        "read": "http://localhost:3000/ilc-stock-plate-purpose-uuid"
+      },
+      "uuid": "ilc-stock-plate-purpose-uuid",
+      "lifespan": null,
+      "name": "ILC Stock"
+    },
+    "actions": {
+      "read": "http://localhost:3000/ilc-stock-plate-uuid"
+    },
+    "uuid": "ilc-stock-plate-uuid",
+    "name": "Plate 10",
+    "qc_state": null,
+    "barcode": {
+      "ean13": "1220000010734",
+      "number": "10",
+      "prefix": "DN",
+      "two_dimensional": null,
+      "type": 1
+    },
+    "iteration": null,
+    "label": {
+      "prefix": "No PCR (Plate) ",
+      "text": "ILC Stock"
+    },
+    "location": "Library creation freezer",
+    "pools": {
+      "submission-1-uuid": {
+        "wells": [
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "B1",
+          "B2",
+          "B3",
+          "B4",
+          "C1",
+          "C2",
+          "C3",
+          "C4",
+          "D1",
+          "D2",
+          "D3",
+          "D4",
+          "E1",
+          "E2",
+          "E3",
+          "E4",
+          "F1",
+          "F2",
+          "F3",
+          "F4",
+          "G1",
+          "G2",
+          "G3",
+          "G4",
+          "H1",
+          "H2",
+          "H3",
+          "H4"
+        ],
+        "insert_size": {
+          "from": 50,
+          "to": 100
+        },
+        "library_type": {
+          "name": "No PCR (Plate)"
+        },
+        "request_type": "Illumina-C Library Creation No PCR"
+      },
+      "submission-2-uuid": {
+        "wells": [
+          "A5",
+          "A6",
+          "A7",
+          "A8",
+          "B5",
+          "B6",
+          "B7",
+          "B8",
+          "C5",
+          "C6",
+          "C7",
+          "C8",
+          "D5",
+          "D6",
+          "D7",
+          "D8",
+          "E5",
+          "E6",
+          "E7",
+          "E8",
+          "F5",
+          "F6",
+          "F7",
+          "F8",
+          "G5",
+          "G6",
+          "G7",
+          "G8",
+          "H5",
+          "H6",
+          "H7",
+          "H8"
+        ],
+        "insert_size": {
+          "from": 50,
+          "to": 100
+        },
+        "library_type": {
+          "name": "No PCR (Plate)"
+        },
+        "request_type": "Illumina-C Library Creation No PCR"
+      },
+      "submission-3-uuid": {
+        "wells": [
+          "A9",
+          "A10",
+          "A11",
+          "A12",
+          "B9",
+          "B10",
+          "B11",
+          "B12",
+          "C9",
+          "C10",
+          "C11",
+          "C12",
+          "D9",
+          "D10",
+          "D11",
+          "D12",
+          "E9",
+          "E10",
+          "E11",
+          "E12",
+          "F9",
+          "F10",
+          "F11",
+          "F12",
+          "G9",
+          "G10",
+          "G11",
+          "G12",
+          "H9",
+          "H10",
+          "H11",
+          "H12"
+        ],
+        "insert_size": {
+          "from": 50,
+          "to": 100
+        },
+        "library_type": {
+          "name": "No PCR (Plate)"
+        },
+        "request_type": "Illumina-C Library Creation No PCR"
+      }
+    },
+    "pre_cap_groups": {},
+    "priority": 0,
+    "size": 96,
+    "state": "passed",
+    "stock_plate": {
+      "barcode": {
+        "ean13": "1111111111111",
+        "number": "10",
+        "prefix": "DN",
+        "two_dimensional": null,
+        "type": 1
+      },
+      "uuid": "ilc-stock-plate-uuid"
+    }
+  }
+}

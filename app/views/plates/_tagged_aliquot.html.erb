@@ -3,5 +3,7 @@
   class="aliquot <%= container.location %> <%= container.state %> <%= column(container) %> col-all"
   rel="<%= "details_#{id}" %>"
   data-pool="<%= container.respond_to?(:pool) ? container.pool_id : '' %>">
-  <%= container.aliquots.first.tag.identifier %>
+  <% container.aliquots.each do |aliquot| %>
+    <%= content_tag(:span,aliquot.tag.identifier,class: 'tag') %>
+  <% end %>
 </div>

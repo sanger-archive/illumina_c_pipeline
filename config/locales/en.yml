@@ -14,5 +14,8 @@ en:
       instructions: >
         <li>Select the ‘Create next plate’ tab.</li>
         <li>Click on ‘Add an empty ILB_STD_COVARIS plate’.</li>
-
-
+  walking_by:
+    manual by plate: "By Plate [Sequential Numbering]"
+    manual by pool: "By Pool"
+    wells of plate: "By Plate [Fixed numbering]"
+    as group by plate: 'Apply multiple tags'

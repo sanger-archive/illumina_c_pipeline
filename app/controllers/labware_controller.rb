@@ -4,7 +4,7 @@ class LabwareController < ApplicationController
   before_filter :check_for_current_user!, :only => [ :update ]
 
   def locate_labware
-     @labware = locate_labware_identified_by(params[:id])
+    @labware = locate_labware_identified_by(params[:id])
   end
   private :locate_labware
 

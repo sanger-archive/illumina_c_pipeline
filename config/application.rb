@@ -47,6 +47,7 @@ module IlluminaCPipeline
     config.project_uuid = nil
     config.details_root = '#'
     config.summary_root = '#'
+    config.i18n.enforce_available_locales = false
 
     # Allow state_machine to override methods like Object#fail in models
     StateMachine::Machine.ignore_method_conflicts = true
