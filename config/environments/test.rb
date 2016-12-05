@@ -20,6 +20,11 @@ IlluminaCPipeline::Application.configure do
   # Disable request forgery protection in test environment
   config.action_controller.allow_forgery_protection    = false
 
+  config.api_connection_options               = ActiveSupport::OrderedOptions.new
+  config.api_connection_options.namespace     = 'IlluminaC'
+  config.api_connection_options.url           = ENV.fetch('API_URL','http://localhost:3000/')
+  config.api_connection_options.authorisation = 'testing'
+
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.

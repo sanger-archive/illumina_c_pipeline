@@ -10,14 +10,35 @@
         <%= f.input :purpose_uuid, :as => :hidden, :value =>@creation_form.purpose_uuid %>
         <%= f.input :parent_uuid, :as => :hidden, :value => @creation_form.parent_uuid %>
         <%= f.input :tag_group_uuid, :label => false, :as => :select, :collection => @creation_form.tag_groups_with_uuid, :include_blank => false %>
-        <%= f.input :walking_by, :label => false, :as => :select, :collection => [["By Plate [Sequential Numbering]","manual by plate"],["By Pool","manual by pool"],["By Plate [Fixed numbering]","wells of plate"]], :include_blank => false %>
-        <%= f.input :direction, :label => false, :as => :select, :collection => [["In columns", "column"], ["In rows", "row"]], :include_blank => false %>
-        <label for='plate_offset'>Transfer first well to:</label>
-        <%= f.input :offset, :label => false, :as => :select, :collection => @creation_form.offsets, :include_blank => false %>
-        <label for='tag_start'>Start at tag:</label>
-        <fieldset data-type="horizontal">
-          <%= f.input :tag_start, :label => false, :as => :select, :collection => @creation_form.tag_range, :include_blank => false %>
-        </fieldset>
+        <div class="ui-grid-a">
+          <div class="ui-block-a">
+            <%= f.input :walking_by, :label => false, :as => :select, :collection => @creation_form.available_walking_by, :include_blank => false %>
+          </div>
+          <div class="ui-block-b">
+            <%= f.input :direction, :label => false, :as => :select, :collection => [["In columns", "column"], ["In rows", "row"]], :include_blank => false %>
+          </div>
+        </div>
+        <div class="ui-grid-b">
+          <div class="ui-block-a">
+            <label for='plate_offset'>Transfer first well to:</label>
+            <%= f.input :offset, :label => false, :as => :select, :collection => @creation_form.offsets, :include_blank => false %>
+          </div>
+          <div class="ui-block-b">
+            <label for='tag_start'>Start at tag:</label>
+            <%= f.input :tag_start, :label => false, :as => :select, :collection => @creation_form.tag_range, :include_blank => false %>
+          </div>
+          <div class="ui-block-c">
+            <label for='tags_per_well'>Tags per well:</label>
+            <%= f.input :tags_per_well, :label => false, :as => :select, :collection => @creation_form.available_tags_per_well, :include_blank => false %>
+          </div>
+        </div>
+        <% @creation_form.tag2_field do -%>
+          <div data-role="fieldcontain">
+            <p><em>Available templates:</em> <%= @creation_form.tag2_names.join(', ') %></p>
+            <%= f.input :tag2_tube_barcode, :input_html => {'data-info-panel'=>'tag2-tube-info', 'data-qcable-type'=>'Tag 2 Tubes', 'data-approved-list'=>'tag2s', :required=>true} %>
+          </div>
+          <%= render :partial => 'plate_creation/tag_information_panel', :locals => {:panel_type => 'tag2 tube', :form=>f } %>
+        <% end -%>
         <!-- %= f.input :direction, :as => :hidden, :value => "column" % -->
       <%- end -%>
     <br/>
@@ -69,7 +90,9 @@
      $.extend(SCAPE, {
       tags_by_name: <%= @creation_form.tags_by_name.to_json.html_safe %>,
       wells_by_column:   <%= @creation_form.wells_by_column_mapping.to_json.html_safe %>,
-      wells_by_row:      <%= @creation_form.wells_by_row_mapping.to_json.html_safe %>
+      wells_by_row:      <%= @creation_form.wells_by_row_mapping.to_json.html_safe %>,
+      tag2s:  <%= @creation_form.tag2s.to_json.html_safe %>,
+      tags_by_name: <%= @creation_form.tags_by_name.to_json.html_safe %>
      });
    })(window,jQuery);
 </script>

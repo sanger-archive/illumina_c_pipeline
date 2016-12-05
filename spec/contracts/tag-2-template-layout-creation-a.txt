@@ -1,0 +1,6 @@
+HTTP/1.1 201 OK
+Content-Type: application/json
+
+{
+  "tag_2_layout":{"uuid":"tag-2-layout-uuid"}
+}

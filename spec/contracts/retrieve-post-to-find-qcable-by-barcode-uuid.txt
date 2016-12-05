@@ -1,0 +1,7 @@
+POST /find-qcable-by-barcode-uuid/first HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+Cookie: WTSISignOn=
+X-Sequencescape-Client-Id: testing
+
+{"search":{"barcode":"3980681751743"}}

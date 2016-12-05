@@ -211,6 +211,19 @@
 
     var viewModel = new SCAPE.PlateViewModel(plate, plateElement, control);
 
+    $('.aliquot').each(function() {
+      if ($(this).children().length < 2) { return; }
+
+      var aliquot = this;
+
+      this.slide = function() {
+        aliquot.appendChild( aliquot.children[0] );
+        window.setTimeout(aliquot.slide,1000);
+      };
+
+      this.slide();
+    })
+
 
 
     control.on('change', 'input:radio', function(event){
@@ -390,6 +403,154 @@
 
   $(document).on('pageinit', '#tag-creation-page', function(){
 
+
+    var qcLookup;
+
+
+    // A status collector can have monitors registered. It will trigger
+    // its onSuccess event when all monitors are true, and its onRevert
+    // event if any are false.
+    var statusCollector = function(onSuccess,onRevert) {
+      // Fires when all guards are true
+      this.onSuccess =  onSuccess;
+      // Fires if a guard is invalidated
+      this.onRevert  = onRevert;
+      this.monitors  = [];
+    };
+
+    // Monitors are registered to a collector. When the change state they
+    // trigger the collector to check the state of all its monitors.
+    var monitor = function(state,collector) {
+      this.valid     = state||false;
+      this.collector = collector;
+    }
+
+    monitor.prototype = {
+      pass: function () {
+        this.valid = true;
+        this.collector.collate();
+      },
+      fail: function () {
+        this.valid = false;
+        this.collector.collate();
+      }
+    }
+
+    statusCollector.prototype = {
+      register: function (status) {
+        var new_monitor = new monitor(status,this);
+        this.monitors.push(new_monitor)
+        return new_monitor;
+      },
+      collate: function () {
+        for (var i =0; i < this.monitors.length; i+=1) {
+          if (!this.monitors[i].valid) { return this.onRevert(); }
+        }
+        return this.onSuccess();
+      }
+    }
+
+
+    $.ajaxSetup({
+      beforeSend: function(xhr) {
+        xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+      }
+    });
+
+    qcLookup = function(barcodeBox,collector) {
+      if (barcodeBox.length == 0) { return false; }
+      var qc_lookup = this, status;
+      this.inputBox = barcodeBox;
+      this.infoPanelId = $('#'+barcodeBox.data('info-panel'));
+      // this.qcableType  = barcodeBox.data('qcable-type');
+      this.approvedTypes = SCAPE[barcodeBox.data('approved-list')];
+      this.required = this.inputBox[0].required;
+      this.inputBox.on('change',function(){
+        qc_lookup.resetStatus();
+        qc_lookup.requestPlate(this.value);
+      });
+      this.monitor = collector.register(!this.required);
+    };
+
+    qcLookup.prototype = {
+      resetStatus: function() {
+        this.monitor.fail();
+        this.infoPanelId.find('dd').text('');
+        this.infoPanelId.find('input').val(null);
+      },
+      requestPlate: function(barcode) {
+        if ( this.inputBox.val()==="" && !this.required ) { return this.monitor.pass();}
+        $.ajax({
+          type: 'POST',
+          dataType: "json",
+          url: '/search/qcables',
+          data: 'qcable_barcode='+this.inputBox.val()
+      }).then(this.success(),this.error());
+      },
+      success: function() {
+        var qc_lookup = this;
+        return function(response) {
+          if (response.error) {
+            qc_lookup.message(response.error,'invalid')
+          } else if (response.qcable) {
+            qc_lookup.plateFound(response.qcable)
+          } else {
+            console.log(response);
+            qc_lookup.message('An unexpected response was received. Please contact support.','invalid');
+          }
+        };
+      },
+      error: function() {
+        var qc_lookup = this;
+        return function() {
+          qc_lookup.message('The barcode could not be found. There may be network issues, or problems with Sequencescape.','invalid')
+        };
+      },
+      plateFound: function(qcable) {
+        this.populateData(qcable);
+        if (this.validPlate(qcable)) {
+          this.message('The ' + qcable.qcable_type + ' is suitable.'+this.errors,'valid');
+          this.monitor.pass();
+        } else {
+          this.message(' The ' + qcable.qcable_type + ' is not suitable.'+this.errors,'invalid')
+        }
+      },
+      populateData: function(qcable) {
+        this.infoPanelId.find('dd.lot-number').text(qcable.lot_number);
+        this.infoPanelId.find('dd.template').text(qcable.tag_layout);
+        this.infoPanelId.find('dd.state').text(qcable.state);
+        this.infoPanelId.find('.asset_uuid').val(qcable.asset_uuid);
+        this.infoPanelId.find('.template_uuid').val(qcable.template_uuid);
+      },
+      validPlate: function(qcable) {
+        this.errors = '';
+
+        if (qcable.state !== 'available') { this.errors += ' The scanned item is not available.' };
+        // if (qcable.type  !== this.qcableType ) { this.errors += ' The scanned item is not a(n) ' + this.qcableType + '.' };
+        this.validateTemplate(qcable);
+        return this.errors === '';
+      },
+      validateTemplate: function(qcable) {
+        if (this.approvedTypes[qcable.template_uuid] === undefined) { this.errors += ' It does not contain suitable tags.'}
+      },
+      message: function(message,status) {
+      this.infoPanelId.find('.qc_validation_report').empty().append(
+        $(document.createElement('div')).
+          addClass('report').
+          addClass(status).
+          text(message)
+        );
+      },
+      errors: ''
+    };
+
+    var qcCollector = new statusCollector(
+      function () {$('#plate_submit').button('enable')  },
+      function () {$('#plate_submit').button('disable') }
+    );
+
+    new qcLookup($('#plate_tag2_tube_barcode'),qcCollector);
+
     $.extend(SCAPE, {
 
       tagpaletteTemplate     : _.template(SCAPE.tag_palette_template),
@@ -410,6 +571,8 @@
           $('#tag-palette li:last').addClass('ui-li ui-li-static ui-body-c ui-corner-bottom');
 
       },
+
+      templateMonitor : qcCollector.register(false),
 
       tagSubstitutionHandler : function() {
         var sourceAliquot = $(this);
@@ -454,12 +617,12 @@
       },
 
       validLayout : function() {
-        $('#plate_submit').button('enable');
+        SCAPE.templateMonitor.pass();
         SCAPE.message('','');
       },
 
       invalidLayout : function() {
-        $('#plate_submit').button('disable');
+        SCAPE.templateMonitor.fail();
         SCAPE.message('Some wells are missing tags. You may have insufficient tags available on your selected template, or have chosen to skip even columns when those wells contain material.','invalid');
       },
 
@@ -509,7 +672,7 @@
       },
 
       rearray : function() {
-        var offset,tags, onComplete, noTag, start_tag, byPlate, tagFor, byColumn, walkProcess;
+        var offset,tags, onComplete, noTag, start_tag, byPlate, tagFor, byColumn, walkProcess,tags_per_well;
         offset = parseInt($('#plate_offset').val(), 10);
         byColumn = ($('#plate_direction').val()==='column');
 
@@ -519,6 +682,7 @@
         tags = $(SCAPE.tags_by_name[$('#plate_tag_group_uuid option:selected').text()])
         onComplete = SCAPE.validLayout;
         start_tag = parseInt($('#plate_tag_start').val(), 10);
+        tags_per_well = parseInt($('#plate_tags_per_well').val(), 10);
 
         walkProcess = $('#plate_walking_by').val()
 
@@ -543,8 +707,11 @@
             case 'manual by pool':
               tag_index = position+start_tag;
               break;
+            case 'as group by plate':
+              tag_index = well_index * tags_per_well + start_tag;
+              return (tags[tag_index]||noTag())+'..';
             default:
-              alert('Unknown tagging strategy');
+              alert('Unknown tagging strategy: ' + walkProcess);
               break;
           }
           return tags[tag_index]||noTag();

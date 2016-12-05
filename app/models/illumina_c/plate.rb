@@ -9,7 +9,8 @@ class IlluminaC::Plate < Sequencescape::Plate
 
   FINAL_POOLING_PLATE_PURPOSES = [
     'ILC AL Libs Tagged',
-    'ILC Lib PCR-XP'
+    'ILC Lib PCR-XP',
+    'ILC Lib Chromium'
   ]
 
   def is_a_final_pooling_plate?

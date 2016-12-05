@@ -1,0 +1,7 @@
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{"actions":{"read":"http://localhost:3000/tag2_layout_templates/1","first":"http://localhost:3000/tag2_layout_templates/1","last":"http://localhost:3000/tag2_layout_templates/1"},"size":2,"tag2_layout_templates":[
+  {"created_at":"2015-08-17 10:20:55 +0100","updated_at":"2015-08-17 10:20:55 +0100","actions":{"read":"http://localhost:3000/unused-tag2-template-uuid"},"uuid":"unused-tag2-template-uuid","name":"Unused template","tag":{"group":"Dual Index Tag2 sequences","identifier":1,"name":"Tag 1","oligo":"TATAGCCT"}},
+  {"created_at":"2015-08-17 10:20:55 +0100","updated_at":"2015-08-17 10:20:55 +0100","actions":{"read":"http://localhost:3000/used-tag2-template-uuid"},"uuid":"used-tag2-template-uuid","name":"Used template","tag":{"group":"Dual Index Tag2 sequences","identifier":2,"name":"Tag 2","oligo":"ATAGAGGC"}}
+]}

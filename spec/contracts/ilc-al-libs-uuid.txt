@@ -1,0 +1,27 @@
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "plate_purpose": {
+    "created_at": "2016-09-28 09:35:15 +0100",
+    "updated_at": "2016-09-28 09:35:15 +0100",
+    "children": {
+      "size": 1,
+      "actions": {
+        "read": "http://localhost:3000/ilc-al-libs-uuid/children"
+      }
+    },
+    "plates": {
+      "size": 0,
+      "actions": {
+        "read": "http://localhost:3000/ilc-al-libs-uuid/plates",
+        "create": "http://localhost:3000/ilc-al-libs-uuid/plates"
+      }
+    },
+    "actions": {
+      "read": "http://localhost:3000/ilc-al-libs-uuid"
+    },
+    "uuid": "ilc-al-libs-uuid",
+    "name": "ILC AL Libs"
+  }
+}

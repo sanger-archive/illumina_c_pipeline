@@ -1,0 +1,11 @@
+<%= form_tag(metadata_path, method: "post", id: 'metadata-form') do%>
+  <%= hidden_field_tag 'asset_id', presenter.labware.uuid %>
+
+  <%= render(partial: 'metadata/header', locals: { presenter: presenter}) %>
+
+  <div class="metadata">
+  </div>
+
+  <%= render(partial: 'metadata/footer') %>
+
+<% end %>

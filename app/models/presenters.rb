@@ -25,9 +25,22 @@ module Presenters
       @printer_limit ||= Settings.printers['limit']
     end
 
+    def metadata_key_options
+      @key_options ||= Settings.metadata_key_options
+    end
+
     def label_type
       nil
     end
+
+    def metadata
+      @labware.custom_metadatum_collection.metadata
+    end
+
+    def custom_metadatum_collection_uuid
+      @labware.custom_metadatum_collection.uuid
+    end
+    alias_method :has_metadata?, :custom_metadatum_collection_uuid
 
   end
 
@@ -58,6 +71,7 @@ module Presenters
     class_inheritable_reader    :tab_views
     write_inheritable_attribute :tab_views, {
       'labware-summary-button'  => [ 'labware-summary', 'plate-printing' ],
+      'labware-metadata-button' => [ 'labware-metadata' ],
       'labware-creation-button' => [ 'labware-summary', 'plate-creation' ],
       'labware-QC-button'       => [ 'labware-summary', 'plate-creation' ],
       'labware-state-button'    => [ 'labware-summary', 'plate-state'    ],
@@ -71,11 +85,11 @@ module Presenters
 
     class_inheritable_reader    :authenticated_tab_states
     write_inheritable_attribute :authenticated_tab_states, {
-        :pending    =>  [ 'labware-summary-button', 'labware-state-button'                           ],
-        :started    =>  [ 'labware-state-button', 'labware-summary-button'                           ],
-        :passed     =>  [ 'labware-creation-button', 'labware-state-button', 'labware-summary-button' ],
-        :cancelled  =>  [ 'labware-summary-button' ],
-        :failed     =>  [ 'labware-summary-button' ]
+        :pending    =>  [ 'labware-summary-button', 'labware-state-button', 'labware-metadata-button' ],
+        :started    =>  [ 'labware-state-button', 'labware-summary-button', 'labware-metadata-button'  ],
+        :passed     =>  [ 'labware-creation-button', 'labware-state-button', 'labware-summary-button', 'labware-metadata-button' ],
+        :cancelled  =>  [ 'labware-summary-button', 'labware-metadata-button' ],
+        :failed     =>  [ 'labware-summary-button', 'labware-metadata-button' ]
     }
 
     def plate_to_walk

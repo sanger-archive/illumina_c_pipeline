@@ -15,6 +15,7 @@
         <a href="#" class="navbar-link" rel="labware-summary-button" data-transition="none" data-icon="info">Summary and Printing</a>
         </li>
         <% if current_user_uuid.present? -%>
+          <li id="labware-metadata-button"><a href="#" class="navbar-link" rel="labware-metadata-button" data-icon="add">Metadata</a></li>
           <li id="labware-state-button">
             <a href="#" class="navbar-link" rel="labware-state-button" data-icon="gear">Move tube to next state</a>
           </li>
@@ -35,6 +36,9 @@
         <div class="ui-block-a">
           <div id="labware-summary" class="scape-ui-block">
             <%= render :partial => 'labware/tube', :locals => { :tube => @presenter.labware } %>
+          </div>
+          <div id="labware-metadata" class="scape-ui-block" style="display:none;">
+            <%= render(:partial => 'metadata/metadata_tab', locals: { presenter: @presenter }) %>
           </div>
         </div>
 

@@ -42,6 +42,10 @@ module Presenters
 
             state :qc_complete, :human_name => 'QC Complete' do
               # Nope, we create the tubes in the state changer
+
+              def default_child_purpose
+                labware.plate_purpose.children.detect {|purpose| ! Settings.qc_purposes.include?(purpose.name) }
+              end
             end
 
             event :fail do

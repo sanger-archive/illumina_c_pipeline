@@ -1,0 +1,4 @@
+GET /tag2-lot-uuid HTTP/1.1
+Accept: application/json
+Cookie: WTSISignOn=
+X-Sequencescape-Client-Id: testing

@@ -1,0 +1,4 @@
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{"search":{"created_at":"2014-04-16 14:09:07 +0100","updated_at":"2014-04-16 14:09:07 +0100","actions":{"read":"http://localhost:3000/find-qcable-by-barcode-uuid","first":"http://localhost:3000/find-qcable-by-barcode-uuid/first","last":"http://localhost:3000/find-qcable-by-barcode-uuid/last","all":"http://localhost:3000/find-qcable-by-barcode-uuid/all","first":"http://localhost:3000/find-qcable-by-barcode-uuid/first","last":"http://localhost:3000/find-qcable-by-barcode-uuid/last","all":"http://localhost:3000/find-qcable-by-barcode-uuid/all"},"uuid":"find-qcable-by-barcode-uuid","name":"Find qcable by barcode"}}

@@ -1,0 +1,18 @@
+HTTP/1.1 201 OK
+Content-Type: application/json
+
+{
+  "state_change": {
+    "actions": {
+      "read": "http://localhost:3000/state-change-tag-2-tube-to-exhausted-uuid"
+    },
+    "target": {
+      "actions": {
+        "read": "http://localhost:3000/tag-2-tube-uuid"
+      }
+    },
+    "target_state": "exhausted",
+    "previous_state": "available",
+    "reason": "Used in library creation"
+  }
+}

@@ -1,0 +1,4 @@
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{"lot":{"created_at":"2015-08-17 15:39:11 +0100","updated_at":"2015-08-17 15:39:11 +0100","qcables":{"size":70,"actions":{"read":"http://localhost:3000/tag2-lot-uuid/qcables"}},"lot_type":{"actions":{"read":"http://localhost:3000/lot-type-uuid"},"uuid":"lot-type-uuid"},"template":{"actions":{"read":"http://localhost:3000/tag-2-template-uuid"},"uuid":"tag-2-template-uuid"},"actions":{"read":"http://localhost:3000/tag2-lot-uuid"},"uuid":"tag2-lot-uuid","lot_number":"lot1","lot_type_name":"Tag 2 Tubes","received_at":"2015-08-17","template_name":"Tag 502 (ATAGAGGC)"}}

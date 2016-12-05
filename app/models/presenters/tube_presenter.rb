@@ -21,6 +21,7 @@ module Presenters
     class_inheritable_reader    :tab_views
     write_inheritable_attribute :tab_views, {
       'labware-summary-button'          => [ 'labware-summary', 'tube-printing' ],
+      'labware-metadata-button'          => [ 'labware-metadata' ],
       'labware-creation-button' => [ 'labware-summary', 'tube-creation' ],
       'labware-QC-button'       => [ 'labware-summary', 'tube-creation' ],
       'labware-state-button'    => [ 'labware-summary', 'tube-state' ]
