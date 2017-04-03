@@ -60,12 +60,14 @@ module Forms
     def offsets
       last_filled_well = index_by_column_of(filled_wells_in_column_order.last)
       first_filled_well = index_by_column_of(filled_wells_in_column_order.first)
-      (first_filled_well..95-last_filled_well).map{|i| [well_location_by_column[i],i-first_filled_well]}
+      max_offset = 96 - last_filled_well
+      Array.new(max_offset) do |i|
+        [well_location_by_column[i + first_filled_well], i]
+      end
     end
 
-
     def tag_range
-      (0...tag_end).map{|i| [i+1,i]}
+      (0...tag_end).map { |i| [i + 1, i] }
     end
 
     def tag_end
@@ -76,7 +78,9 @@ module Forms
     private :tag_end
 
     def filled_wells_in_column_order
-      @wells_in_column_order ||= filled_wells.sort {|w,w2| index_by_column_of(w) <=> index_by_column_of(w2) }
+      @wells_in_column_order ||= filled_wells.sort do |w,w2|
+        index_by_column_of(w) <=> index_by_column_of(w2)
+      end
     end
     private :filled_wells_in_column_order
 
