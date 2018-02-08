@@ -36,10 +36,11 @@
   <li data-pool="<%= pool_id %>">
       <h3>Insert Size:</h3>
     <span class="insert-size <%= insert_size_class(pool) %>">
-      From: <%= pool['insert_size']['from'] %> - To: <%= pool['insert_size']['to'] %>
+      From: <%= pool.fetch('insert_size', {}).fetch('from', '..') %>
+      - To: <%= pool.fetch('insert_size', {}).fetch('to', '..') %>
     </span>
     <br/>
-    <h3>Library Type name:</h3><%= pool['library_type']['name'] %>
+    <h3>Library Type name:</h3><%= pool.fetch('library_type',{}).fetch('name', '..') %>
   </li>
 
   <% end -%>
