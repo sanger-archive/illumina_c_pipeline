@@ -27,7 +27,8 @@ module PlateHelper
   end
 
   def insert_size_class(pool)
-    (pool['insert_size']['from'] > Settings.large_insert_limit) ? 'large-insert-size' : ''
+    insert_size = pool.fetch('insert_size', {}).fetch('from', 0)
+    (insert_size > Settings.large_insert_limit) ? 'large-insert-size' : ''
   end
 
   def well_failing_applicable?(presenter)
