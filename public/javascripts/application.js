@@ -297,12 +297,9 @@
     $(document).on("keydown", ".plate-barcode", function(event) {
       var code=event.charCode || event.keyCode;
       // Check for carrage return (key code 13)
-      if (code==13) {
-        // Check that the value is 13 characters long like a barcode
-        if ($(event.currentTarget).val().length === 13) {
-          $(event.currentTarget).closest('form').find('.show-my-plates').val(false);
-          $(event.currentTarget).closest('.plate-search-form').submit();
-        }
+      if (code == 13) {
+        $(event.currentTarget).closest('form').find('.show-my-plates').val(false);
+        $(event.currentTarget).closest('.plate-search-form').submit();
       }
     });
 
