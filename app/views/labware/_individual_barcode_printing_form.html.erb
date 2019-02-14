@@ -7,7 +7,10 @@
     <% end %>
     <%= f.hidden_field :prefix %>
     <%= f.hidden_field :number %>
-    <%= f.hidden_field :study, :value => text %>
+    <%= f.hidden_field :machine %>
+    <%= f.hidden_field :ean13 %>
+    <%= f.hidden_field :stock_barcode, :value => stock_barcode %>
+    <%= f.hidden_field :text, :value => text %>
 
     <li data-role="list-divider">
       <%= label_tag :printer, 'Barcode Printer:' %>

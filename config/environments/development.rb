@@ -31,7 +31,6 @@ IlluminaCPipeline::Application.configure do
   config.details_root = ENV.fetch('DETAILS_ROOT','http://localhost:3000/uuids/')
   config.summary_root = ENV.fetch('SUMMARY_ROOT','http://localhost:3000/plate_summaries/')
 
-
   # Email settings...
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = false
@@ -55,5 +54,11 @@ IlluminaCPipeline::Application.configure do
     }
   }
 
+  config.barcode_type_label_id = {
+    1 => '198',
+    2 => '86'
+  }
+
+  config.pmb_url = ENV.fetch('PMB_URL','http://localhost:3002')
 end
 

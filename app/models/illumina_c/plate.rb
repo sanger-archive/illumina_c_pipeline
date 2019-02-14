@@ -13,6 +13,13 @@ class IlluminaC::Plate < Sequencescape::Plate
     'ILC Lib Chromium'
   ]
 
+  attribute_group :barcode do
+    attribute_accessor :prefix, :number     # The pieces that make up a barcode
+    attribute_accessor :ean13               # The EAN13 barcode number
+    attribute_accessor :machine             # Barcode suitable for code39
+    attribute_accessor :type                # Frustratingly obtuse indicator of label type (1 = plate, 2= tube)
+  end
+
   def is_a_final_pooling_plate?
     FINAL_POOLING_PLATE_PURPOSES.include?(plate_purpose.name)
   end
